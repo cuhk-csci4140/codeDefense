@@ -1,0 +1,209 @@
+{% macro input(name, value, type , group,placeholder) %}
+  <input id="{{group|default('Post')}}/{{ name }}" placeholder="{{placeholder}}" type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" />
+{% endmacro %}
+{% macro item(labelName, name ,group,value,tips,type,warning) %}
+<li>
+	<label for="Form_{{ name }}">Email</label>
+	{{ _self.input(name,value,type,group,placeholder)}}
+	{%if warning %}
+		<span>{{ warning}}</span>
+	{% endif %}
+	<span>{{tips}}</span>
+</li>
+{% endmacro %}
+{% macro submitItem(buttonName, name ,group) %}
+	<tr>
+		<td colspan="3" class="nolabel submit"><input type="submit" value="{{buttonName|default('提交')}}" name="{{group|default('Post')}}/{{ name }}" id="Form_{{ name }}">
+		</td>
+	</tr>
+{% endmacro %}
+{% macro errorMessages(data) %}
+	{%if data.errorMessage %}
+	<div class="box box-error">Error</div>
+	<div class="box box-error-msg">
+		<ol>
+		{% for key,element in data.errorMessage %}
+				{% for name,error in element %}		
+					<li>{{data.getElement(key).title}} : {{error|raw}}</li>
+				{% endfor %}
+		{% endfor %}
+		</ol>
+	</div>
+	{% endif %}
+{% endmacro %}
+
+{{_self.errorMessages(form)}} {# render this template directly #} 
+
+{% macro forms(array) %}
+	{% for key,form in array %}
+		{{_self.form(form)}}
+	{% endfor %}
+{% endmacro %}
+{% macro form(data) %}
+	{% if data.id %}
+	<form data-ajaxsubmit-hide="#FormContainer_{{data.id}}" data-ajaxsubmit-result="#FormResult_{{data.id}}" action="{{data.action}}" method="{{data.method|default('post')}}" id="Form_{{data.id}}" class="form full {% if data.getProperty('ajaxify') %}ui-ajaxsubmit{%endif%}">
+			<div class="ui-form-overview">
+			{% if data.getProperty('hide') %}
+			<span class="heading_right ui-hideable" data-hide-status="{{data.getProperty('hide')}}" data-hide-target="#FormContainer_{{data.id}}" data-hide="{{data.getProperty('navAction_hide')|default('Hide')}}">{{data.getProperty('navAction_show')|default('Edit')}}</span>
+			{% endif %}
+			<h2>{{data.name|default('title')}}</h2>
+			
+			{% if data.getProperty('description') or data.getProperty('value') %}
+				<div class="subtitle">
+				{% if data.getProperty('value') %}
+					<span style="float: right;">{{data.getProperty('value')}}</span>
+				{% endif %}
+				<span>{{data.getProperty('description')}}</span>
+				</div>
+			{% endif %}	
+			</div>
+<div id="FormContainer_{{data.id}}">
+	<div id="FormResult_{{data.id}}">
+	</div>
+	<div>
+	{%if data.getProperty('notice')%}
+	<br/>
+	<div class="box box-info">
+		{{data.getProperty('notice_title')|default('Notice')}}
+	</div>
+	<div class="box box-msg">
+		<ol>
+		{% for key,element in data.getProperty('notice') %}
+				<li>{{element}}</li>
+		{% endfor %}
+		</ol>
+	</div>
+	{% endif %}
+	
+	{%if data.errorMessage %}
+	<br/>
+	<div class="box box-error">Error</div>
+	<div class="box box-error-msg">
+		<ol>
+		{% for key,element in data.errorMessage %}
+				{% for name,error in element %}		
+					<li>{{data.getElement(key).title}} : {{error|raw}}</li>
+				{% endfor %}
+		{% endfor %}
+		</ol>
+	</div>
+	{% endif %}
+			<table style="width: 100%;">
+				{%for key, item in data.elements %}
+					{% if item.title%}
+					<tr>
+						<td><label for="Form_{{item.name}}">{{item.title}}</label></td>
+						<td>{{item.html|raw}}</td>
+						<td><span>{{item.description}}</span></td>
+					</tr>
+				    {% else %}
+				    	{{item.html|raw}}
+				    {% endif %}
+  				{% endfor %}
+  				
+			{%if not data.getProperty('hideSubmit') %}{{_self.submitItem(data.getProperty('submitText'))}}{% endif %}
+			</table>
+		</div>
+		<div style="clear:both"> </div>
+		</div>
+	</form>
+
+	{% if data.getProperty('hide') and '123' == '456'%}
+	<script type="text/javascript">	
+	$(document).ready(function(){
+		var form = '#Form_{{data.id}}';
+		{% if data.getProperty('hide') == 'true'%}
+		$(form).find('#FormContainer_{{data.id}}').hide();
+		{% endif %}
+		$(form).find('span.heading_right').attr('data-show',$(form).find('span.heading_right').text()).click(function(){
+			if($(form).find('#FormContainer_{{data.id}}').is(':visible')){
+				 $(form).find('#FormContainer_{{data.id}}').hide() 
+				 $(this).text($(this).attr('data-show'));
+			}else{
+				$(form).find('#FormContainer_{{data.id}}').show();
+				 $(this).text($(this).attr('data-hide'));
+			}
+		});
+	//});
+	});
+	</script>
+  {% endif %}
+  {% if data.getProperty('ajaxify') and '123' == '456' %}
+  <script type="text/javascript">
+	$('#Form_{{data.id}}').live('submit',function(e){
+		e.preventDefault();
+		var formContainer = '#Form_{{data.id}}';
+		var hideContainer = '#FormContainer_{{data.id}}';
+		var resultContainer = '#FormResult_{{data.id}}';
+		$(formContainer).showLoading(hideContainer); 
+		$.post($(this).attr('action'),$(this).serializeObject(),function(data) {
+			$(formContainer).hideLoading(hideContainer);
+			try{
+				console.log(jQuery.parseJSON(data));
+				$('#FormResult_{{data.id}}').html(data); 
+			}catch(error){
+				$('#FormResult_{{data.id}}').html(data); 
+			}
+			
+		//$(formContainer).hideLoading("#FormContainer_{{data.id}}");
+		});
+		return false;
+	});
+	</script>
+   {% endif %}
+
+   {% else %}
+   
+   {% endif %}
+
+{% endmacro %}
+
+{% macro miniform(data) %}
+{{_self.form(data)}}
+{% endmacro %}
+{% macro _miniform(data) %}
+	<form action="{{data.action}}" method="{{data.method|default('post')}}" id="Form_{{data.id}}" class="form">
+		<div>
+			<h1>{{data.name|default('title')}}</h1>
+	{%if data.getProperty('notice')%}
+	<div class="box box-msg">
+		<ol>
+		{% for key,element in data.getProperty('notice') %}
+				<li>{{element}}</li>
+		{% endfor %}
+		</ol>
+	</div>
+	{% endif %}
+	
+	{%if data.errorMessage %}
+	<br/>
+	<div class="box box-error">Error</div>
+	<div class="box box-error-msg">
+		<ol>
+		{% for key,element in data.errorMessage %}
+				{% for name,error in element %}		
+					<li>{{data.getElement(name).getTitle()}} : {{error}}</li>
+				{% endfor %}
+		{% endfor %}
+		</ol>
+	</div>
+	{% endif %}
+	
+			<ul>
+				{%for key, item in data.elements %}
+					{% if item.title%}
+					<li>
+						<label for="Form_{{item.name}}">{{item.title}}</label>
+						{{item.html|raw}}
+						<span>{{item.description}}</span>
+					</li>
+				    {% else %}
+				    	{{item.html|raw}}
+				    {% endif %}
+  				{% endfor %}
+  				
+			{{_self.submitItem(data.submitText)}}
+			</ul>
+		</div>
+	</form>
+{% endmacro %}

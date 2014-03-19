@@ -1,0 +1,7 @@
+{% macro navItem(labelName, is_current) %}
+	{% if is_current %}
+		<span class="current">{{labelName}}</span>
+	{% else %}
+		<span>{{labelName}}</span>
+	{% endif %}	
+{% endmacro %}

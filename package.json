@@ -1,0 +1,19 @@
+{
+  "name": "csci4140-project",
+  "version": "0.0.1",
+  "author": "",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "twig": "*",
+    "browserify": "1.16",
+    "jsmin" : "*",
+    "socket.io" : "*",
+    "mysql" : "2.0.0-alpha7"
+  }
+
+}

@@ -1,0 +1,23 @@
+{% extends environment.layout %}
+{% import "component/boxMessage.html" as _msg %}
+{% import "component/form.html" as _form %}
+
+{% block body %}
+<div class="body">
+	<div class="content bcontent">
+		<div class="bodyFull">
+			<div class="header">
+				<div class="content">
+					<h1>{{environment.helpers.view.showLastTitle()}}</h1>
+					<div class="breadcrumbs">					
+						{{environment.helpers.view.showBreadcrumb(' › ')|raw}}						
+					</div>
+				</div>
+			</div>
+			{{_form.form(form)}}
+
+		</div>
+	</div>
+</div>
+	
+{% endblock body %}

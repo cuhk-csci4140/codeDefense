@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="width-v1">
+<head>
+<title>{% block title %} {{environment.header.title}} {% endblock %}</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="/js/createjs-2013.12.12.min.js"></script>
+
+<script type="text/javascript" src="/js/bundle.js"></script>
+<link href="/styles/style.css" media="all" rel="stylesheet" type="text/css" />
+  
+</style>
+</head>
+<body>
+	{% block body %}
+	<div class="body box home">
+		<div class="content">
+			<div class="header">
+				<div class="content">
+					<h1>Title/h1>
+					<div class="subtitle">Description</div>
+				</div>
+				<div class="bottom_bar">/div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+</body>
+</html>

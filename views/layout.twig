@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="width-v1">
+<head>
+<title>{% block title %} {{environment.header.title}} {% endblock %}</title>
+{# <link rel="stylesheet" href="{{
+asset('bundles/PolyhedronSymfonyBaseBundle/css/layout.css') }}" /> #}
+<link href="styles/layout.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{#<meta property="og:image" content="{{environment.cdn}}/logo.png" /> #}
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:description" content="" />
+{% if header_script is defined %}
+<script type="text/javascript" charset="utf-8">
+	{# environment.header.header_script #}
+</script>
+{% endif %}
+</head>
+<body>
+
+	{% use 'components/navbar.twig' %} {% use 'components/navmenu.twig' %}
+
+	{% block header %}
+	<noscript>
+		<style type="text/css">
+.JsOnly {
+	display: none !important;
+}
+</style>
+		<div class="alert-bar">
+			<p>Javascript is required.
+		
+		</div>
+	</noscript>
+	{% block navbar %} {% endblock %} {% endblock %} {% block body %}
+	<div class="body box home">
+		<div class="content">
+			<div class="header">
+				<div class="content">
+					<h1>
+						title/h1>
+						<div class="subtitle">Description</div>
+				
+				</div>
+				<div class="bottom_bar"></div>
+			</div>
+		</div>
+	</div>
+
+	{% endblock %} {% block footer %}
+	<div class="footer">
+		<div class="content">
+			<div class="copyright"></div>
+			<div class="links">{% block footer_link %} {% endblock %}</div>
+		</div>
+	</div>
+	{% endblock %} {% if footer_script is defined %}
+	<script type="text/javascript" charset="utf-8">
+	{{environment.header.footer_script}}
+</script>
+	{% endif %}
+</body>
+</html>

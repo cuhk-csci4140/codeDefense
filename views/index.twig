@@ -1,0 +1,15 @@
+{% extends "layout.twig" %} {% block title %} Sample Site{% endblock
+%} {% block body %}
+<div class="body box home">
+	<div class="content">
+		<div class="header">
+			<div class="content">
+				<h1>{{message}}</h1>
+				<div class="subtitle">{{subtitle}}</div>
+			</div>
+			<div class="bottom_bar">{{bar_text|default('')}}</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
