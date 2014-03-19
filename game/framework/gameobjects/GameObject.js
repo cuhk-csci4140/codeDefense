@@ -44,6 +44,6 @@ GameObject.prototype.update = function(event) {
 GameObject.prototype.dispose = function() {
 	return false;
 };
-// TODO
+
 
 module.exports = GameObject;

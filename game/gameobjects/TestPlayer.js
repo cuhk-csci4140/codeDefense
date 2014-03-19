@@ -1,5 +1,5 @@
 var util = require('util');
-var GameObject = require('../framework/gameobjects/GameObject');
+var BoardObject = require('./BoardObject');
 
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this);
@@ -21,6 +21,6 @@ var TestPlayer = function(world) {
 	this.defaultAnimation = "stand";
 	this.initialize();
 };
-util.inherits(TestPlayer, GameObject);
+util.inherits(TestPlayer,BoardObject);
 
 module.exports = TestPlayer;

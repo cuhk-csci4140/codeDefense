@@ -1,7 +1,7 @@
 /**
  * GameObject Manager
  */
-//var THREE = require('../vendor/Three');
+// var THREE = require('../vendor/Three');
 var util = require('util');
 var GameObject = require('./gameobjects/GameObject');
 
@@ -73,6 +73,12 @@ GameObjectManager.prototype.set = function(name, objects) {
 GameObjectManager.prototype.get = function(name) {
 
 	return this.objects[this.names.indexOf(name)];
+};
+
+GameObjectManager.prototype.remove = function(name) {
+
+	delete this.objects[this.names.indexOf(name)];
+	delete this.names[this.names.indexOf(name)];
 };
 
 /**
