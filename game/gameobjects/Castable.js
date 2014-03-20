@@ -1,8 +1,8 @@
 var util = require('util');
 var BoardObject = require('./BoardObject');
-
-var Castable = function(world) {
-	Caster.super_.call(this, world);
+var world = require('../client/Core');
+var Castable = function() {
+	Castable.super_.call(this, world.instance);
 	this.name = "(Castable Spell)";
 };
 
