@@ -30,6 +30,10 @@ GameObject.prototype.getSprite = function() {
 	return this.sprite;
 };
 
+GameObject.prototype.gotoPlay = function(name){
+	this.sprite.gotoAndPlay(name);
+}
+
 /**
  * Update game object
  */
