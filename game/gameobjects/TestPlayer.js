@@ -15,14 +15,24 @@ var TestPlayer = function(world) {
 		},
 		"animations" : {
 			"stand" : [ 0, 1, "stand" ],
-			"run" : [ 2, 8, "run", 4 ],
+			"initRun" : [2,4,"run",6],
+			"run" : [ 5, 8, "run", 3 ],
 			"attack" : [ 32, 45, "stand", 4 ]
 		}
 	}));
 	this.defaultAnimation = "stand";
+	console.log("player initialized");
 	this.initialize();
 };
+
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
 
+TestPlayer.prototype.onStartMoving_ = function(){
+	this.gotoAndPlay("initRun");
+};
+
+TestPlayer.prototype.onStopMoving_ = function() {
+	this.gotoAndPlay("stand");
+};
 module.exports = TestPlayer;
