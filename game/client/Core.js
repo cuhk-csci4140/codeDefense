@@ -107,6 +107,15 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
+	}, {
+		src : "assets/gameobjects/magic/fireball.png",
+		id : "fireball"
+	}, {
+		src : "assets/gameobjects/magic/l_wall.png",
+		id : "l_wall"
+	}, {
+		src : "assets/gameobjects/magic/metor.png",
+		id : "metor"
 	} ];
 
 	this.assets = new createjs.LoadQueue(false);
