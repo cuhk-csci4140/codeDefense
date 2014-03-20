@@ -11,6 +11,67 @@
 <link href="/styles/style.css" media="all" rel="stylesheet" type="text/css" />
   
 </style>
+
+<script src="/codemirror/codemirror.js"></script>
+<link rel="stylesheet" href="/codemirror/codemirror.css">
+<script src="/codemirror/javascript.js"></script>
+<script> 
+
+
+function cast() {
+    editor.save();
+    var commandcast = document.getElementById('txtcodepanel');
+
+    var lines = commandcast.value.split('\n');
+    commandcast.value=" ";
+    editor.setValue("");
+    var i = 0;
+    while(i < lines.length){
+      eval(lines[i]);
+        i++;
+    }
+}
+
+
+</script>
+        <style type="text/css">
+            .cast-button {
+                outline: 0;
+                margin-top: 10px;
+                margin-left: 30px;
+                padding-top: 20px;
+                padding-right: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                text-decoration: none !important;
+                cursor: pointer;
+                position: relative;
+                text-align: center;
+                background-color:green;
+                color:white;
+                display:inline-block;
+                font-family:tahoma;
+            }
+        .title-button {
+            outline: 0;
+            margin: 0 0 0 0;
+               padding-top: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                padding-left: 35px;
+            width:100%;
+            text-decoration: none !important;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            background-color:rgba(3,102,6,0.5);
+            color:white;
+            display:inline-block;
+            font-family:tahoma;
+            text-align:left;
+        }
+        </style>
+
 </head>
 <body>
 	{% block body %}
@@ -26,5 +87,13 @@
 		</div>
 	</div>
 	{% endblock %}
+
+    <script type="text/javascript">
+            var editor = CodeMirror.fromTextArea(txtcodepanel, {
+                mode: "text/javascript",
+                lineNumbers: true,
+                autofocus: true
+        });
+    </script>
 </body>
 </html>
