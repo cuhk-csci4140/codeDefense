@@ -3,6 +3,7 @@ var GameObject = require('../framework/gameobjects/GameObject');
 
 var BoardObject = function(world) {
 	BoardObject.super_.call(this);
+	this.world = world;
 	this.position = {
 		vertical : 0,
 		horizontal : 0
@@ -14,6 +15,7 @@ var BoardObject = function(world) {
 	this.stats = {
 		movement : this.defaults.movement
 	};
+	
 	this.boardWidth = 12;
 	this.boardHeight = 6;
 };

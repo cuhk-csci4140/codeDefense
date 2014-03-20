@@ -1,8 +1,11 @@
 var util = require('util');
 var BoardObject = require('./BoardObject');
+var Caster = require('./Caster');
+
+var Fireball = require('../contents/spells/Fireball');
 
 var TestPlayer = function(world) {
-	TestPlayer.super_.call(this);
+	TestPlayer.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("m_mage") ],
 		"frames" : {
@@ -24,8 +27,8 @@ var TestPlayer = function(world) {
 	this.initialize();
 };
 
-//inherits
-util.inherits(TestPlayer,BoardObject);
+// util.inherits(Caster, BoardObject);
+util.inherits(TestPlayer, Caster);
 
 TestPlayer.prototype.onStartMoving_ = function(){
 	this.gotoAndPlay("initRun");
