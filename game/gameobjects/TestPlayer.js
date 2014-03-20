@@ -28,10 +28,10 @@ var TestPlayer = function(world) {
 util.inherits(TestPlayer,BoardObject);
 
 TestPlayer.prototype.onStartMoving_ = function(){
-	this.gotoPlay("initRun");
+	this.gotoAndPlay("initRun");
 };
 
 TestPlayer.prototype.onStopMoving_ = function() {
-	this.gotoPlay("stand");
+	this.gotoAndPlay("stand");
 };
 module.exports = TestPlayer;
