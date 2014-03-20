@@ -30,7 +30,7 @@ Fireball.prototype.m1 = function() {
 	return this;
 };
 
-Fireball.prototype.execute = function() {
+Fireball.prototype.execute = function(caster) {
 	console.log("fireball!");
 };
 

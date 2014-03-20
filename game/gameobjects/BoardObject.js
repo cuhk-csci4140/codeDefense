@@ -15,6 +15,7 @@ var BoardObject = function(world) {
 	this.stats = {
 		movement : this.defaults.movement
 	};
+	
 	this.boardWidth = 12;
 	this.boardHeight = 6;
 };
