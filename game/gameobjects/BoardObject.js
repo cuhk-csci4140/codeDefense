@@ -20,13 +20,15 @@ var BoardObject = function(world) {
 
 util.inherits(BoardObject, GameObject);
 
-BoardObject.prototype.move = function(h, v) {
-	this.moveTo(this.position.horizontal + h, this.position.vertical + v);
+BoardObject.prototype.move = function(h, v, equation) {
+	this.moveTo(this.position.horizontal + h, this.position.vertical + v,equation);
 };
 
-BoardObject.prototype.moveTo = function(h, v) {
+BoardObject.prototype.moveTo = function(h, v,equation) {
 	var self = this;
-
+	if (equation ==  undefined){
+		equation = createjs.Ease.linear;
+	} 
 	h = h > this.boardWidth - 1 ? this.boardWidth - 1 : (h > 0 ? h : 0);
 	v = v > this.boardHeight - 1 ? this.boardHeight - 1 : (v > 0 ? v : 0);
 
@@ -37,7 +39,7 @@ BoardObject.prototype.moveTo = function(h, v) {
 	var tween = createjs.Tween.get(this.sprite).to({
 		x : 70 + (120 * h),
 		y : 60 + (120 * v)
-	}, (this.stats.movement * distance), createjs.Ease.linear).call(
+	}, (this.stats.movement * distance), equation).call(
 			function(event) {
 				self.onStopMoving_(event);
 				self.position.vertical = v;
