@@ -10,7 +10,6 @@
 var util = require('util');
 
 var GameObject = function() {
-
 	this.spriteSheet = null;
 	this.sprite = null;
 	this.defaultAnimation = "default";
@@ -44,6 +43,5 @@ GameObject.prototype.update = function(event) {
 GameObject.prototype.dispose = function() {
 	return false;
 };
-
 
 module.exports = GameObject;
