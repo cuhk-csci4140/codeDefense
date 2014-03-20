@@ -30,6 +30,10 @@ var TestPlayer = function(world) {
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
 
+TestPlayer.prototype.onCast_ = function(){
+	this.gotoAndPlay("attack");
+}
+
 TestPlayer.prototype.onStartMoving_ = function(){
 	this.gotoAndPlay("initRun");
 };
