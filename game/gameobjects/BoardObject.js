@@ -33,6 +33,7 @@ BoardObject.prototype.moveTo = function(h, v) {
 	var distance = Math.sqrt(Math.pow(this.position.horizontal - h, 2)
 			+ Math.pow(this.position.vertical - v, 2));
 
+	self.onStartMoving_(event);
 	var tween = createjs.Tween.get(this.sprite).to({
 		x : 70 + (120 * h),
 		y : 60 + (120 * v)
@@ -46,7 +47,6 @@ BoardObject.prototype.moveTo = function(h, v) {
 }
 
 BoardObject.prototype.onStartMoving_ = function() {
-
 };
 BoardObject.prototype.onStopMoving_ = function() {
 
