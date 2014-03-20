@@ -16,7 +16,18 @@
 <link rel="stylesheet" href="/codemirror/codemirror.css">
 <script src="/codemirror/javascript.js"></script>
 <script> 
+var collapse = 1;
 
+function coex(){
+    if(collapse){
+        document.getElementById("codepanel").style.bottom = "0px"
+        collapse = 0;
+    }else{
+        document.getElementById("codepanel").style.bottom = "-240px"
+        collapse = 1;
+
+    }
+}
 
 function cast() {
     editor.save();
