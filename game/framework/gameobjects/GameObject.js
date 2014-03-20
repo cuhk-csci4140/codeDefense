@@ -10,7 +10,6 @@
 var util = require('util');
 
 var GameObject = function() {
-
 	this.spriteSheet = null;
 	this.sprite = null;
 	this.defaultAnimation = "default";
@@ -30,8 +29,8 @@ GameObject.prototype.getSprite = function() {
 	return this.sprite;
 };
 
-GameObject.prototype.gotoPlay = function(name){
-	this.sprite.gotoAndPlay(name);
+GameObject.prototype.gotoAndPlay = function(name){
+	return this.sprite.gotoAndPlay(name);
 }
 
 /**
@@ -48,6 +47,5 @@ GameObject.prototype.update = function(event) {
 GameObject.prototype.dispose = function() {
 	return false;
 };
-
 
 module.exports = GameObject;
