@@ -3,6 +3,7 @@ var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
 var Fireball = require('../contents/spells/Fireball');
+var Lightwall = require('../contents/spells/Lightwall');
 
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
