@@ -2,8 +2,11 @@ var util = require('util');
 var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
+//spells for debug
 var Fireball = require('../contents/spells/Fireball');
 var Lightwall = require('../contents/spells/Lightwall');
+var Haste = require('../contents/spells/Haste');
+var Pyroblast = require('../contents/spells/Pyroblast');
 
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
@@ -18,9 +21,9 @@ var TestPlayer = function(world) {
 		},
 		"animations" : {
 			"stand" : [ 0, 1, "stand" ],
-			"initRun" : [2,4,"run",6],
+			"initRun" : [ 2, 4, "run", 6 ],
 			"run" : [ 5, 8, "run", 3 ],
-			"attack" : [ 32, 45, "stand", 4 ]
+			"attack" : [ 32, 45, "stand", 3 ],
 		}
 	}));
 	this.defaultAnimation = "stand";
@@ -31,11 +34,11 @@ var TestPlayer = function(world) {
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
 
-TestPlayer.prototype.onCast_ = function(){
-	this.gotoAndPlay("attack");
+TestPlayer.prototype.onCast_ = function(onComplete) {
+	this.gotoAndPlay("attack", onComplete);
 }
 
-TestPlayer.prototype.onStartMoving_ = function(){
+TestPlayer.prototype.onStartMoving_ = function() {
 	this.gotoAndPlay("initRun");
 };
 
