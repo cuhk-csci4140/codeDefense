@@ -10,7 +10,7 @@ var demoLevel = function(world) {
 	this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
 
 	this.set('bori', Bori);
-	this.get('bori').sprite.setTransform(70 + 120 * 6, 60, 0.6, 0.6);
+	this.get('bori').sprite.setTransform(70 + 120 * 6, 60, -0.6, 0.6);
 	this.get('bori').setPosition(6, 0);
 	var ground = new createjs.Shape();
 	ground.graphics.beginBitmapFill(world.assets.getResult("board"),
