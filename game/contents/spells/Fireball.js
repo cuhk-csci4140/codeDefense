@@ -21,7 +21,7 @@ Fireball = function() {
 	}));
 	this.defaultAnimation = "initial";
 
-	this.castTime = 1;
+	this.castTime = 1.5;
 	console.log("Fireball initialized");
 	this.initialize();
 }

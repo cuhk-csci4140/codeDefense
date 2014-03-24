@@ -12,8 +12,11 @@ Caster.prototype.cast = function(spell) {
 
 	if (spell instanceof Castable) {
 		this.queue_(function(onComplete) {
-			this.onCast_(onComplete);
-			spell.execute(this, onComplete);
+			setTimeout((function() {
+				this.onCast_(onComplete);
+				spell.execute(this, onComplete);
+			}).bind(this), this.stats.castSpeed * spell.castTime);
+
 		});
 	} else {
 		throw new Error(spell + ' is not a Castable Spell');

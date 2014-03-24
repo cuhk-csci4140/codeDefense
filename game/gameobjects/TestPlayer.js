@@ -4,7 +4,7 @@ var Caster = require('./Caster');
 
 var Fireball = require('../contents/spells/Fireball');
 var Lightwall = require('../contents/spells/Lightwall');
-
+var Haste = require('../contents/spells/Haste');
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
