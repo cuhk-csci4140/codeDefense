@@ -16,27 +16,32 @@ Lightwall = function() {
 		"animations" : {
 			"initial" : [ 0, 7, "active", 2 ],
 			"active" : [ 8, 18, "active", 4 ],
-			"end" : [ 19, 28 , 2]
+			"end" : [ 19, 28, 2 ]
 		}
 	}));
 	this.defaultAnimation = "initial";
+	this.castTime = 1;
 	console.log("Lightwall initialized");
 	this.initialize();
 }
 
 util.inherits(Lightwall, Castable);
 
-Lightwall.prototype.m1 = function() {	
-	return this;
-};
-
-Lightwall.prototype.execute = function(caster) {
-	console.log("lightwall");
-	this.sprite.setTransform(caster.sprite.x+120, caster.sprite.y-20, 0.8, 0.8);
-	this.position.vertical = (caster.position.vertical + 1);
-	this.position.horizontal = caster.position.horizontal;
-	var level = this.world.activeLevel;
-	level.add(this);
-	//var tween = createjs.Tween.get(this).to({x:caster.boardWidth, y:caster.y}, (600 * distance) , createjs.Ease.linear);
+Lightwall.prototype.execute = function(caster, onComplete) {
+	this.queue_(function(done) {
+		console.log("lightwall");
+		this.sprite.setTransform(caster.sprite.x + 120, caster.sprite.y - 20,
+				0.8, 0.8);
+		this.position.vertical = (caster.position.vertical + 1);
+		this.position.horizontal = caster.position.horizontal;
+		var level = this.world.activeLevel;
+		level.add(this);
+		this.gotoAndPlay("initial");
+		done();
 	
+	});
+	this.triggerAction();
+	// var tween = createjs.Tween.get(this).to({x:caster.boardWidth,
+	// y:caster.y}, (600 * distance) , createjs.Ease.linear);
+
 };

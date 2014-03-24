@@ -14,7 +14,7 @@ Fireball = function() {
 			"width" : 128
 		},
 		"animations" : {
-			"initial" : [ 0, 6, null,2 ],
+			"initial" : [ 0, 6, null, 4 ],
 			"travel" : [ 7, 17, "travel" ],
 			"explode" : [ 18, 28 ]
 		}
@@ -41,13 +41,15 @@ Fireball.prototype.execute = function(caster, onComplete) {
 		this.position.horizontal = caster.position.horizontal;
 		var level = this.world.activeLevel;
 		level.add(this);
+		this.stats.movement = 250;
 		this.gotoAndPlay("initial", done);
+
 	});
 
 	this.queue_(function(done) {
-		this.stats.movement = 250;
+		this.gotoAndPlay("travel", done);
 		this.move_(12, 0, createjs.Ease.quartIn, done);
-		onComplete();
+		// onComplete();
 	});
 	this.triggerAction();
 

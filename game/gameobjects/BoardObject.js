@@ -41,7 +41,7 @@ BoardObject.prototype.triggerAction = function() {
 };
 
 BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
-	if (c <= this.actionCounter) {
+	if (c == this.actionCounter) {
 		this.triggerAction();
 	}
 };

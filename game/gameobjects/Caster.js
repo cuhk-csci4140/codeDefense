@@ -12,7 +12,7 @@ Caster.prototype.cast = function(spell) {
 
 	if (spell instanceof Castable) {
 		this.queue_(function(onComplete) {
-			this.onCast_();
+			this.onCast_(onComplete);
 			spell.execute(this, onComplete);
 		});
 	} else {
