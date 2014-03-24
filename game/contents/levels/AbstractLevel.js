@@ -37,8 +37,8 @@ AbstractLevel.prototype.set = function(name, object) {
 	}
 
 	if (object instanceof GameObject) {
-		this.gameobjects.set(name, object);
-		
+		this.gameobjects.add(name, object);
+
 	} else {
 		throw new Error(object + " is not a instanceof GameObject");
 	}

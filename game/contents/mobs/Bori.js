@@ -2,6 +2,7 @@ var util = require('util');
 var BoardObject = require('../../gameobjects/BoardObject');
 
 var Bori = function(world) {
+	
 	Bori.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
@@ -14,8 +15,8 @@ var Bori = function(world) {
 		},
 		"animations" : {
 			"stand" : [ 0, 5, "stand" ],
-			"initRun" : [ 6, 7, "run", 2 ],
-			"run" : [ 8, 22, "run", 2 ]
+			"initRun" : [ 11, 16, "run", 6],
+			"run" : [ 16, 22, "run", 4 ]
 		}
 	}));
 	this.defaultAnimation = "stand";
@@ -25,11 +26,11 @@ var Bori = function(world) {
 
 util.inherits(Bori, BoardObject);
 
-TestPlayer.prototype.onStartMoving_ = function() {
+Bori.prototype.onStartMoving_ = function() {
 	this.gotoAndPlay("initRun");
 };
 
-TestPlayer.prototype.onStopMoving_ = function() {
+Bori.prototype.onStopMoving_ = function() {
 	this.gotoAndPlay("stand");
 };
 
