@@ -5,7 +5,7 @@ Pyroblast = function() {
 	Pyroblast.super_.call(this);
 	this.name = "Pyroblast";
 	this.setSpriteSheet(new createjs.SpriteSheet({
-		"images" : [ this.world.assets.getResult("Pyroblast") ],
+		"images" : [ this.world.assets.getResult("pyroblast") ],
 		"frames" : {
 			"regX" : 80,
 			"height" : 160,
