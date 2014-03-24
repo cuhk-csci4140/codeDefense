@@ -15,22 +15,49 @@ var BoardObject = function(world) {
 	this.stats = {
 		movement : this.defaults.movement
 	};
-	
+
 	this.boardWidth = 12;
 	this.boardHeight = 6;
+
+	this.actionQueue_ = [];
 };
 
 util.inherits(BoardObject, GameObject);
 
-BoardObject.prototype.move = function(h, v, equation) {
-	this.moveTo(this.position.horizontal + h, this.position.vertical + v,equation);
+BoardObject.prototype.queue_ = function(callback) {
+	this.actionQueue_.push(callback);
 };
 
-BoardObject.prototype.moveTo = function(h, v,equation) {
+BoardObject.prototype.triggerAction = function() {
+	var action = this.actionQueue_.shift();
+	console.log(action);
+	if (action) {
+		action.call(this, this.queueOnCompleteEvent_.bind(this));
+	}
+};
+
+BoardObject.prototype.queueOnCompleteEvent_ = function() {
+	this.triggerAction();
+};
+
+BoardObject.prototype.move = function(h, v, equation) {
+	this.queue_(function(event) {
+		this.moveTo_(this.position.horizontal + h, this.position.vertical + v,
+				equation, event);
+	});
+
+};
+BoardObject.prototype.moveTo = function(h, v, equation) {
+	this.queue_(function(event) {
+		console.log("moving " + h, "," + v);
+		this.moveTo_(h, v, equation, event);
+	});
+};
+BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 	var self = this;
-	if (equation ==  undefined){
+	if (equation == undefined) {
 		equation = createjs.Ease.linear;
-	} 
+	}
 	h = h > this.boardWidth - 1 ? this.boardWidth - 1 : (h > 0 ? h : 0);
 	v = v > this.boardHeight - 1 ? this.boardHeight - 1 : (v > 0 ? v : 0);
 
@@ -41,12 +68,12 @@ BoardObject.prototype.moveTo = function(h, v,equation) {
 	var tween = createjs.Tween.get(this.sprite).to({
 		x : 70 + (120 * h),
 		y : 60 + (120 * v)
-	}, (this.stats.movement * distance), equation).call(
-			function(event) {
-				self.onStopMoving_(event);
-				self.position.vertical = v;
-				self.position.horizontal = h;
-			});
+	}, (this.stats.movement * distance), equation).call(function(event) {
+		self.onStopMoving_(event);
+		self.position.vertical = v;
+		self.position.horizontal = h;
+		onCompleteEvent();
+	})
 
 }
 
