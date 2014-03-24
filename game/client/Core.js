@@ -112,7 +112,7 @@ Core.prototype.initialize = function(callback) {
 		id : "fireball"
 	}, {
 		src : "assets/gameobjects/magic/l_wall.png",
-		id : "l_wall"
+		id : "lightwall"
 	}, {
 		src : "assets/gameobjects/magic/metor.png",
 		id : "metor"
