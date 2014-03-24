@@ -9,14 +9,14 @@ Lightwall = function() {
 		"frames" : {
 			"regX" : 98,
 			"height" : 196,
-			"count" : 28,
+			"count" : 27,
 			"regY" : 96,
 			"width" : 192
 		},
 		"animations" : {
 			"initial" : [ 0, 7, "active", 2 ],
 			"active" : [ 8, 18, "active", 4 ],
-			"end" : [ 19, 28 , 2]
+			"end" : [ 19, 27 , 2]
 		}
 	}));
 	this.defaultAnimation = "initial";
