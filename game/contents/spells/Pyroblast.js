@@ -38,6 +38,8 @@ Pyroblast.prototype.execute = function(caster) {
 	this.position.horizontal = caster.position.horizontal;
 	var level = this.world.activeLevel;
 	level.add(this);
+	this.gotoAndPlay("initial");
+	done();
 	//var tween = createjs.Tween.get(this).to({x:caster.boardWidth, y:caster.y}, (600 * distance) , createjs.Ease.linear);
 	// explosion remember to transform
 };

@@ -29,9 +29,7 @@ GameObject.prototype.getSprite = function() {
 	return this.sprite;
 };
 
-GameObject.prototype.gotoAndPlay = function(name){
-	return this.sprite.gotoAndPlay(name);
-}
+
 
 /**
  * Update game object
