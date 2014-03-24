@@ -1,13 +1,16 @@
 var util = require('util');
 var AbstractLevel = require('./AbstractLevel');
 var Mage = require('../../gameobjects/TestPlayer');
+//var Bori = require('../mobs/Bori');
 
 var demoLevel = function(world) {
 	demoLevel.super_.call(this, world);
 
 	this.set('player', Mage);
 	this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-
+	//this.set('bori', Bori);
+	//this.get('bori').sprite.setTransform(70+120*12, 60, 0.6, 0.6);
+	//this.get('bori').setPosition(12, 0);
 	var ground = new createjs.Shape();
 	ground.graphics.beginBitmapFill(world.assets.getResult("board"),
 			"no-repeat").drawRect(0, 0, 1440, 727);

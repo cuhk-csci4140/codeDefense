@@ -105,6 +105,9 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/characters/m_mage.png",
 		id : "m_mage"
 	}, {
+		src : "assets/gameobjects/mobs/bori.png",
+		id : "bori"
+	}, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
