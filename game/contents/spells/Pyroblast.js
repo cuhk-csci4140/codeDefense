@@ -5,7 +5,7 @@ Pyroblast = function() {
 	Pyroblast.super_.call(this);
 	this.name = "Pyroblast";
 	this.setSpriteSheet(new createjs.SpriteSheet({
-		"images" : [ this.world.assets.getResult("Pyroblast") ],
+		"images" : [ this.world.assets.getResult("pyroblast") ],
 		"frames" : {
 			"regX" : 80,
 			"height" : 160,
@@ -39,7 +39,7 @@ Pyroblast.prototype.execute = function(caster) {
 	var level = this.world.activeLevel;
 	level.add(this);
 	this.gotoAndPlay("initial");
-	done();
+//	done();
 	//var tween = createjs.Tween.get(this).to({x:caster.boardWidth, y:caster.y}, (600 * distance) , createjs.Ease.linear);
 	// explosion remember to transform
 };

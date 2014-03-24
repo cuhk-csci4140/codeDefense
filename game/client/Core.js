@@ -116,6 +116,9 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/metor.png",
 		id : "metor"
+	}, {
+		src : "assets/gameobjects/magic/pyroblast.png",
+		id : "pyroblast"
 	} ];
 
 	this.assets = new createjs.LoadQueue(false);

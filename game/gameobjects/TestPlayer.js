@@ -2,9 +2,12 @@ var util = require('util');
 var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
+//spells for debug
 var Fireball = require('../contents/spells/Fireball');
 var Lightwall = require('../contents/spells/Lightwall');
 var Haste = require('../contents/spells/Haste');
+var Pyroblast = require('../contents/spells/Pyroblast');
+
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
