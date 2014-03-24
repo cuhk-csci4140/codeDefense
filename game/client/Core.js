@@ -122,6 +122,12 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/pyroblast.png",
 		id : "pyroblast"
+	}, {
+		src : "assets/gameobjects/magic/firepillar.png",
+		id : "firepillar"
+	}, {
+		src : "assets/gameobjects/magic/thunderbolt.png",
+		id : "thunderbolt"
 	} ];
 
 	this.assets = new createjs.LoadQueue(false);
