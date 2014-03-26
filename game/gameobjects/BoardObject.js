@@ -27,12 +27,13 @@ var BoardObject = function(world) {
 
 util.inherits(BoardObject, GameObject);
 
-BoardObject.prototype.setPosition = function( h, v){
-	this.position = {
-			vertical : v,
-			horizontal : h
-		};
-	
+BoardObject.prototype.setPosition = function(h, v) {
+	this.position.vertical = v;
+	this.position.horizontal = h;
+
+	this.sprite.x = 70 + (120 * h);
+	this.sprite.y = 60 + (120 * v);
+
 };
 BoardObject.prototype.queue_ = function(callback) {
 	this.actionQueue_.push(callback);
