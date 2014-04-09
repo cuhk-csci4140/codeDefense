@@ -36,7 +36,9 @@ Fireball.prototype.m2 = function() {
 	console.log("m2");
 };
 Fireball.prototype.execute = function(caster, onComplete) {
-	
+
+	this.calTarget(caster);
+	console.log("fireball calculating target");
 	this.queue_(function(done) {
 		console.log("fireball!");
 		var distance = caster.boardWidth - (caster.x + 70);
@@ -52,11 +54,36 @@ Fireball.prototype.execute = function(caster, onComplete) {
 
 	this.queue_(function(done) {
 		this.gotoAndPlay("travel", done);
-		this.move_(12, 0, createjs.Ease.quartIn, done);
-		// onComplete();
+		this.move_(this.targetX, 0, createjs.Ease.quartIn, done);
+	});
+
+	this.queue_(function(done) {
+		console.log("fireball explode!");
+		this.gotoAndPlay("explode", done);
+	});
+	this.queue_(function(done) {
+		console.log("remove fireball");
+		var level = this.world.activeLevel;
+		level.remove(this);
 	});
 	this.triggerAction();
 
 };
+
+Fireball.prototype.calTarget = function(caster) {
+	// get back the gameBoard
+	var gameBoard = this.world.activeLevel.gameboard;
+	// Fireball is horizontal shooting
+	// get the first hit target in same horizontal
+	var vertical = caster.position.vertical;
+	var target;
+	for (var horizontal = (caster.position.horizontal + 1); horizontal < 12; horizontal++) {
+		if ((target = gameBoard[horizontal][vertical]) != null) {
+			break;
+		}
+	}
+	this.targetX = horizontal;
+	this.targetY = vertical;
+}
 
 module.exports = Fireball;
