@@ -36,6 +36,7 @@ Fireball.prototype.m2 = function() {
 	console.log("m2");
 };
 Fireball.prototype.execute = function(caster, onComplete) {
+	
 	this.queue_(function(done) {
 		console.log("fireball!");
 		var distance = caster.boardWidth - (caster.x + 70);

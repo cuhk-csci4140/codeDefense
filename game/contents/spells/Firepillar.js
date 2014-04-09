@@ -1,8 +1,8 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-var Firepillar = function() {
-	Firepillar.super_.call(this);
+var Firepillar = function(world) {
+	Firepillar.super_.call(this,world);
 	this.name = "Firepillar";
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ this.world.assets.getResult("firepillar") ],

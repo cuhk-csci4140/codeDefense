@@ -7,14 +7,31 @@ var Caster = function(world) {
 };
 
 util.inherits(Caster, BoardObject);
+Caster.prototype.isCastable = function(spell) {
+	if (spell instanceof Castable || spell.castable_ === true) {
+		return true;
+	} else {
+		return false;
+	}
 
+};
 Caster.prototype.cast = function(spell) {
 
 	if (spell instanceof Castable || spell.castable_ === true) {
+		spell.castable_ = false;
+
 		this.queue_(function(onComplete) {
 			setTimeout((function() {
-				this.onCast_(onComplete);
-				spell.execute(this, onComplete);
+				var onCastActionComplete = spell.execute(this, onComplete);
+				console.log(onCastActionComplete);
+				if (onCastActionComplete instanceof Function) {
+
+					this.onCast_(onComplete, onCastActionComplete);
+				} else {
+					this.onCast_(onComplete);
+				}
+				// the spell callback
+
 			}).bind(this), this.stats.castSpeed * spell.castTime);
 
 		});

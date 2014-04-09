@@ -2,7 +2,6 @@ var util = require('util');
 var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
-
 var ScriptService = require('../contents/services/ScriptService');
 
 var TestPlayer = function(world) {
@@ -42,8 +41,16 @@ var TestPlayer = function(world) {
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
 
-TestPlayer.prototype.onCast_ = function(onComplete) {
-	this.gotoAndPlay("attack", onComplete);
+TestPlayer.prototype.onCast_ = function(onComplete, onCastActionComplete) {
+	var done = function() {
+		if (onCastActionComplete instanceof Function) {
+			onCastActionComplete();
+		}
+		if (onComplete instanceof Function) {
+			onComplete();
+		}
+	};
+	this.gotoAndPlay("attack", done);
 }
 
 TestPlayer.prototype.onStartMoving_ = function() {

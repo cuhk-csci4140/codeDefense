@@ -6,8 +6,8 @@ var Castable = require('../../gameobjects/Castable');
  * 
  * @returns
  */
-var Haste = function() {
-	Haste.super_.call(this);
+var Haste = function(world) {
+	Haste.super_.call(this,world);
 	this.name = "Haste";
 	this.castTime = 0;
 	console.log("Haste initialized");
