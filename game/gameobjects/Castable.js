@@ -6,9 +6,17 @@ var Castable = function(world) {
 	Castable.super_.call(this, world);
 	this.name = "(Castable Spell)";
 	this.castTime = 1;
+        // require calculation of target
+        this.targetX = null;
+        this.targetY = null;
+        this.target = [];
 };
 
 util.inherits(Castable, BoardObject);
+
+Castable.prototype.calTarget = function(){
+    // require override in child class.
+};
 
 Castable.prototype.execute = function(caster, onComplete) {
 	if (caster instanceof BoardObject) {
