@@ -5,7 +5,15 @@ var AbstractLevel = function(world) {
 	this.initialized = false;
 	this.stage = world.stage;
 	this.gameobjects = world.gameobjects;
-
+	// gameBoard for the board, init all null;
+	var array = new Array();
+	for(var i=0; i<12;i++){
+		array[i] = new Array();
+		for(var j=0; j<6;j++){
+			array[i][j] = null;
+		}
+	}
+	this.gameboard = array;
 };
 
 AbstractLevel.prototype.newGameObject = function(className) {
@@ -58,5 +66,4 @@ AbstractLevel.prototype.update = function(event) {
 AbstractLevel.prototype.dispose = function() {
 
 };
-
 module.exports = AbstractLevel;

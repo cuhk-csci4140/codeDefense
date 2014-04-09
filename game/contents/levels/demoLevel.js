@@ -10,9 +10,12 @@ var demoLevel = function(world) {
 util.inherits(demoLevel, AbstractLevel);
 
 demoLevel.prototype.initialize = function() {
+
+	this.initialized = true;
+
 	this.set('player', Mage);
 	this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-
+	this.get('player').setPosition(0, 0);
 	this.set('bori', Bori);
 	this.get('bori').sprite.setTransform(70 + 120 * 6, 60, -0.6, 0.6);
 	this.get('bori').setPosition(6, 0);

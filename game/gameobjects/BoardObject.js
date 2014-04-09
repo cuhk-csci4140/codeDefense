@@ -29,7 +29,7 @@ util.inherits(BoardObject, GameObject);
 BoardObject.prototype.setPosition = function(h, v) {
 	this.position.vertical = v;
 	this.position.horizontal = h;
-
+	this.world.activeLevel.gameboard[h][v] = this;
 	this.sprite.x = 70 + (120 * h);
 	this.sprite.y = 60 + (120 * v);
 
@@ -56,6 +56,9 @@ BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
 
 BoardObject.prototype.move = function(h, v, equation) {
 	this.queue_(function(event) {
+		console.log("move object in game board");
+		this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
+		this.world.activeLevel.gameboard[this.position.horizontal+h][this.position.vertical+v] = this;
 		this.moveTo_(this.position.horizontal + h, this.position.vertical + v,
 				equation, event);
 	});
@@ -63,8 +66,12 @@ BoardObject.prototype.move = function(h, v, equation) {
 
 BoardObject.prototype.moveTo = function(h, v, equation) {
 	this.queue_(function(event) {
+		console.log("move object in game board");
+		this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
+		this.world.activeLevel.gameboard[h][v] = this;
 		console.log("moving " + h, "," + v);
 		this.moveTo_(h, v, equation, event);
+		
 	});
 };
 
