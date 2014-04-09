@@ -3,7 +3,6 @@ var Castable = require('../../gameobjects/Castable');
 
 var Fireball = function(world) {
     Fireball.super_.call(this, world);
-
     this.name = "Fireball";
     this.setSpriteSheet(new createjs.SpriteSheet({
         "images": [this.world.assets.getResult("fireball")],
@@ -17,7 +16,7 @@ var Fireball = function(world) {
         "animations": {
             "initial": [0, 6, null, 4],
             "travel": [7, 17, "travel"],
-            "explode": [18, 28, null, 4]
+            "explode": [18, 28, null, 6]
         }
     }));
     this.defaultAnimation = "initial";
@@ -36,9 +35,9 @@ Fireball.prototype.m2 = function() {
     console.log("m2");
 };
 Fireball.prototype.execute = function(caster, onComplete) {
-    this.calTarget(caster);
     console.log("fireball calculating target");
     this.queue_(function(done) {
+        this.calTarget(caster);
         console.log("fireball!");
         var distance = caster.boardWidth - (caster.x + 70);
         this.sprite.setTransform(caster.sprite.x + 70, caster.sprite.y, 1, 1);
@@ -53,7 +52,7 @@ Fireball.prototype.execute = function(caster, onComplete) {
 
     this.queue_(function(done) {
         this.gotoAndPlay("travel", done);
-        this.move_(this.targetX, 0, createjs.Ease.quartIn, done);
+        this.moveTo_(this.targetX, this.targetY, createjs.Ease.quartIn, done);
     });
 
     this.queue_(function(done) {
@@ -75,8 +74,9 @@ Fireball.prototype.calTarget = function(caster) {
     // Fireball is horizontal shooting
     // get the first hit target in same horizontal
     var vertical = caster.position.vertical;
+    var horizontal;
     var target;
-    for (var horizontal = (caster.position.horizontal + 1); horizontal < 12; horizontal++) {
+    for (horizontal = (caster.position.horizontal + 1); horizontal < 12; horizontal++) {
         if ((target = gameBoard[horizontal][vertical]) != null) {
             break;
         }

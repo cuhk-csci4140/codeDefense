@@ -1,8 +1,8 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-var Lightwall = function() {
-	Lightwall.super_.call(this);
+var Lightwall = function(world) {
+	Lightwall.super_.call(this,world);
 	this.name = "Lightwall";
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ this.world.assets.getResult("lightwall") ],
