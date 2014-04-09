@@ -17,7 +17,7 @@ var Fireball = function(world) {
         "animations": {
             "initial": [0, 6, null, 4],
             "travel": [7, 17, "travel"],
-            "explode": [18, 28]
+            "explode": [18, 28, null, 4]
         }
     }));
     this.defaultAnimation = "initial";
