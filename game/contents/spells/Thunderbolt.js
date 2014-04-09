@@ -1,7 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-Thunderbolt = function() {
+var Thunderbolt = function() {
 	Thunderbolt.super_.call(this);
 	this.name = "Thunderbolt";
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -24,15 +24,12 @@ Thunderbolt = function() {
 
 util.inherits(Thunderbolt, Castable);
 
-Thunderbolt.prototype.m1 = function() {
-	return this;
-};
-
 Thunderbolt.prototype.execute = function(caster) {
 	console.log("Thunderbolt");
-	this.sprite.setTransform(caster.sprite.x+120, caster.sprite.y-480, 1, 1);
+	this.sprite
+			.setTransform(caster.sprite.x + 120, caster.sprite.y - 480, 1, 1);
 	this.position.vertical = caster.position.vertical;
-	this.position.horizontal = (caster.position.horizontal+1);
+	this.position.horizontal = (caster.position.horizontal + 1);
 	var level = this.world.activeLevel;
 	level.add(this);
 	this.gotoAndPlay("initial");
@@ -41,3 +38,4 @@ Thunderbolt.prototype.execute = function(caster) {
 	// y:caster.y}, (600 * distance) , createjs.Ease.linear);
 	// explosion remember to transform
 };
+module.exports = Thunderbolt;

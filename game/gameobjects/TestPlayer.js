@@ -2,13 +2,9 @@ var util = require('util');
 var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
-//spells for debug
-var Fireball = require('../contents/spells/Fireball');
-var Lightwall = require('../contents/spells/Lightwall');
-var Haste = require('../contents/spells/Haste');
-var Pyroblast = require('../contents/spells/Pyroblast');
-var Firepillar = require('../contents/spells/Firepillar');
-var Thunderbolt = require('../contents/spells/Thunderbolt');
+
+var ScriptService = require('../contents/services/ScriptService');
+
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -28,6 +24,17 @@ var TestPlayer = function(world) {
 		}
 	}));
 	this.defaultAnimation = "stand";
+
+	// register to script service
+	world.services[ScriptService.NAME].setContext(this);
+	world.services[ScriptService.NAME].setCallback((function(e) {
+		if (e.status == 0) {
+			// rollback
+		} else {
+			this.triggerAction();
+		}
+	}).bind(this));
+
 	console.log("player initialized");
 	this.initialize();
 };

@@ -5,6 +5,8 @@ var util = require('../framework/Util');
 var jQuery = require('../vendor/jquery');
 // connection
 var GameObjectManager = require('../framework/GameObjectManager');
+
+var ScriptSevice = require('../contents/services/ScriptService');
 // var Connection = require('../framework/net/client/AbstractConnection');
 
 // modules
@@ -35,6 +37,7 @@ var Core = function(opts) {
 	Core.opts = this.opts;
 
 	this.assets;
+	this.services = [];
 	this.gameobjects = new GameObjectManager(); // global gameobject
 
 	this.canvas = opts.canvas;
@@ -129,6 +132,8 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/magic/thunderbolt.png",
 		id : "thunderbolt"
 	} ];
+
+	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
 
 	this.assets = new createjs.LoadQueue(false);
 

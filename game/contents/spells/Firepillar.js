@@ -1,7 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-Firepillar = function() {
+var Firepillar = function() {
 	Firepillar.super_.call(this);
 	this.name = "Firepillar";
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -26,9 +26,6 @@ Firepillar = function() {
 
 util.inherits(Firepillar, Castable);
 
-Firepillar.prototype.m1 = function() {
-	return this;
-};
 
 Firepillar.prototype.execute = function(caster) {
 	console.log("Firepillar");
@@ -43,3 +40,5 @@ Firepillar.prototype.execute = function(caster) {
 	// y:caster.y}, (600 * distance) , createjs.Ease.linear);
 	// explosion remember to transform
 };
+
+module.exports = Firepillar;

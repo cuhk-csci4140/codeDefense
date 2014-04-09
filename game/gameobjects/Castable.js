@@ -1,8 +1,9 @@
 var util = require('util');
 var BoardObject = require('./BoardObject');
-var world = require('../client/Core');
-var Castable = function() {
-	Castable.super_.call(this, world.instance);
+var core = require('../client/Core');
+var Castable = function(world) {
+	console.log(core);
+	Castable.super_.call(this, world);
 	this.name = "(Castable Spell)";
 	this.castTime = 1;
 };
@@ -17,5 +18,7 @@ Castable.prototype.execute = function(caster, onComplete) {
 		throw new Error(Caster + " is not a BoardObject");
 	}
 };
+Castable.DummyCastable = function() {
 
+};
 module.exports = Castable;

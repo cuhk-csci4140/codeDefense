@@ -6,7 +6,7 @@ var Castable = require('../../gameobjects/Castable');
  * 
  * @returns
  */
-Haste = function() {
+var Haste = function() {
 	Haste.super_.call(this);
 	this.name = "Haste";
 	this.castTime = 0;
@@ -25,3 +25,4 @@ Haste.prototype.execute = function(caster, onComplete) {
 
 	this.triggerAction();
 };
+module.exports = Haste;

@@ -1,8 +1,9 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-Fireball = function() {
-	Fireball.super_.call(this);
+var Fireball = function(world) {
+	Fireball.super_.call(this, world);
+
 	this.name = "Fireball";
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ this.world.assets.getResult("fireball") ],
@@ -26,12 +27,14 @@ Fireball = function() {
 	this.initialize();
 }
 util.inherits(Fireball, Castable);
+Fireball.exposeMethods = [ "m1" ];
 
 Fireball.prototype.m1 = function() {
-
-	return this;
+	console.log("m1");
 };
-
+Fireball.prototype.m2 = function() {
+	console.log("m2");
+};
 Fireball.prototype.execute = function(caster, onComplete) {
 	this.queue_(function(done) {
 		console.log("fireball!");
@@ -54,3 +57,5 @@ Fireball.prototype.execute = function(caster, onComplete) {
 	this.triggerAction();
 
 };
+
+module.exports = Fireball;

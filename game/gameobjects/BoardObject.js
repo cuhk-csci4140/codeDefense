@@ -1,6 +1,5 @@
 var util = require('util');
 var GameObject = require('../framework/gameobjects/GameObject');
-
 var BoardObject = function(world) {
 	BoardObject.super_.call(this);
 	this.world = world;

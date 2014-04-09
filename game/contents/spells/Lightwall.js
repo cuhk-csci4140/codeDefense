@@ -1,7 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-Lightwall = function() {
+var Lightwall = function() {
 	Lightwall.super_.call(this);
 	this.name = "Lightwall";
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -16,7 +16,7 @@ Lightwall = function() {
 		"animations" : {
 			"initial" : [ 0, 7, "active", 2 ],
 			"active" : [ 8, 18, "active", 4 ],
-			"end" : [ 19, 27 , 2]
+			"end" : [ 19, 27, 2 ]
 		}
 	}));
 	this.defaultAnimation = "initial";
@@ -38,10 +38,12 @@ Lightwall.prototype.execute = function(caster, onComplete) {
 		level.add(this);
 		this.gotoAndPlay("initial");
 		done();
-	
+
 	});
 	this.triggerAction();
 	// var tween = createjs.Tween.get(this).to({x:caster.boardWidth,
 	// y:caster.y}, (600 * distance) , createjs.Ease.linear);
 
 };
+
+module.exports = Lightwall;

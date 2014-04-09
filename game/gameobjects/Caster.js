@@ -10,7 +10,7 @@ util.inherits(Caster, BoardObject);
 
 Caster.prototype.cast = function(spell) {
 
-	if (spell instanceof Castable) {
+	if (spell instanceof Castable || spell.castable_ === true) {
 		this.queue_(function(onComplete) {
 			setTimeout((function() {
 				this.onCast_(onComplete);

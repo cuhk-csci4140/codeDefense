@@ -1,7 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-Pyroblast = function() {
+var Pyroblast = function() {
 	Pyroblast.super_.call(this);
 	this.name = "Pyroblast";
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -27,10 +27,6 @@ Pyroblast = function() {
 
 util.inherits(Pyroblast, Castable);
 
-Pyroblast.prototype.m1 = function() {
-	return this;
-};
-
 Pyroblast.prototype.execute = function(caster) {
 	console.log("Pyroblast");
 	this.sprite.setTransform(caster.sprite.x, caster.sprite.y + 70, 1, 1);
@@ -44,3 +40,4 @@ Pyroblast.prototype.execute = function(caster) {
 	// y:caster.y}, (600 * distance) , createjs.Ease.linear);
 	// explosion remember to transform
 };
+module.exports = Pyroblast;
