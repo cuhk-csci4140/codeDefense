@@ -41,7 +41,6 @@ Fireball.prototype.execute = function(caster, onComplete) {
 	this.queue_(function(done) {
 		this.calTarget(caster);
 		console.log("fireball!");
-		var distance = caster.boardWidth - (caster.x + 70);
 		this.sprite.setTransform(caster.sprite.x + 70, caster.sprite.y, 1, 1);
 		this.position.vertical = caster.position.vertical;
 		this.position.horizontal = caster.position.horizontal;
@@ -53,7 +52,7 @@ Fireball.prototype.execute = function(caster, onComplete) {
 	});
 
 	this.queue_(function(done) {
-		this.gotoAndPlay("travel", done);
+		this.gotoAndPlay("travel");
 		this.moveTo_(this.targetX, this.targetY, createjs.Ease.quartIn, done);
 	});
 
