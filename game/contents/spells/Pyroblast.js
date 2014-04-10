@@ -2,7 +2,7 @@ var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
 var Pyroblast = function(world) {
-	Pyroblast.super_.call(this,world);
+	Pyroblast.super_.call(this, world);
 	this.name = "Pyroblast";
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ this.world.assets.getResult("pyroblast") ],
