@@ -2,6 +2,7 @@ var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
 var Fireball = function(world) {
+
 	Fireball.super_.call(this, world);
 	this.name = "Fireball";
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -35,6 +36,7 @@ Fireball.prototype.m2 = function() {
 	console.log("m2");
 };
 Fireball.prototype.execute = function(caster, onComplete) {
+
 	console.log("fireball calculating target");
 	this.queue_(function(done) {
 		this.calTarget(caster);
