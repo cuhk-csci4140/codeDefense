@@ -9,12 +9,14 @@ var BoardObject = function(world) {
 	};
 	this.defaults = {
 		movement : 500,
-		castSpeed : 500
+		castSpeed : 500,
+                castRange : 2
 	};
 
 	this.stats = {
 		movement : this.defaults.movement,
-		castSpeed : this.defaults.castSpeed
+		castSpeed : this.defaults.castSpeed,
+                castRange : this.defaults.castRange
 	};
 
 	this.boardWidth = 12;
