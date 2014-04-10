@@ -23,10 +23,12 @@ Caster.prototype.cast = function(spell) {
 		this.queue_(function(onComplete) {
 			setTimeout((function() {
 				var onCastActionComplete = spell.execute(this, onComplete);
-				console.log(onCastActionComplete);
-				if (onCastActionComplete instanceof Function) {
+				// console.log(onCastActionComplete);
 
-					this.onCast_(onComplete, onCastActionComplete);
+				// we pass the return callback( if we have) instead of the
+				// original onComplete
+				if (onCastActionComplete instanceof Function) {
+					this.onCast_(onCastActionComplete);
 				} else {
 					this.onCast_(onComplete);
 				}
