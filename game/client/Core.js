@@ -7,6 +7,8 @@ var jQuery = require('../vendor/jquery');
 var GameObjectManager = require('../framework/GameObjectManager');
 
 var ScriptSevice = require('../contents/services/ScriptService');
+
+var CombatSevice = require('../contents/services/CombatService');
 // var Connection = require('../framework/net/client/AbstractConnection');
 
 // modules
@@ -134,7 +136,7 @@ Core.prototype.initialize = function(callback) {
 	} ];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
-
+	this.services[CombatSevice.NAME] = new CombatSevice(this);
 	this.assets = new createjs.LoadQueue(false);
 
 	var game = this;

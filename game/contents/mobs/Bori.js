@@ -1,6 +1,6 @@
 var util = require('util');
 var BoardObject = require('../../gameobjects/BoardObject');
-
+var CombatService = require('../services/CombatService');
 var Bori = function(world) {
 
 	Bori.super_.call(this, world);
@@ -22,6 +22,26 @@ var Bori = function(world) {
 	this.defaults.movement = 2000;
 	this.stats.movement = 2000;
 	this.defaultAnimation = "stand";
+
+	this.myTurn = {};
+	// register to script service
+	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
+			(function(event) {
+				if (event.turn == CombatService.TurnEnemy) {
+					this.myTurn = event;
+					//action 1
+					this.move(-1, 0);
+					//action 2 
+					this.queue_(function(done) {
+						world.services[CombatService.NAME].nextTurn(event);
+						done();
+					});
+					
+					//start the queue.
+					this.triggerAction();
+				}
+			}.bind(this)));
+
 	console.log("Bori initialized");
 	this.initialize();
 };
@@ -36,5 +56,5 @@ Bori.prototype.onStopMoving_ = function() {
 	this.gotoAndPlay("stand");
 };
 
-//BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
+// BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 module.exports = Bori;

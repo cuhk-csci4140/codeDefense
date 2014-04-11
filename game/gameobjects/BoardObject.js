@@ -10,13 +10,13 @@ var BoardObject = function(world) {
 	this.defaults = {
 		movement : 500,
 		castSpeed : 500,
-                castRange : 2
+		castRange : 2
 	};
 
 	this.stats = {
 		movement : this.defaults.movement,
 		castSpeed : this.defaults.castSpeed,
-                castRange : this.defaults.castRange
+		castRange : this.defaults.castRange
 	};
 
 	this.boardWidth = 12;
@@ -40,6 +40,7 @@ BoardObject.prototype.setPosition = function(h, v) {
 };
 BoardObject.prototype.queue_ = function(callback) {
 	this.actionQueue_.push(callback);
+	return this;
 };
 
 BoardObject.prototype.triggerAction = function() {
