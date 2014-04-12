@@ -44,6 +44,8 @@ function cast() {
         i++;
     }
     }).apply(game.gameobjects.get('player'),[]);
+
+    game.gameobjects.get('player').triggerAction();
 }
 
 
@@ -99,7 +101,7 @@ function cast() {
 						<div class="subtitle">Description</div>
 				
 				</div>
-				<div class="bottom_bar">/div></div>
+				<div class="bottom_bar"></div></div>
 			</div>
 		</div>
 		{% endblock %}

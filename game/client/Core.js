@@ -5,6 +5,10 @@ var util = require('../framework/Util');
 var jQuery = require('../vendor/jquery');
 // connection
 var GameObjectManager = require('../framework/GameObjectManager');
+
+var ScriptSevice = require('../contents/services/ScriptService');
+
+var CombatSevice = require('../contents/services/CombatService');
 // var Connection = require('../framework/net/client/AbstractConnection');
 
 // modules
@@ -35,6 +39,7 @@ var Core = function(opts) {
 	Core.opts = this.opts;
 
 	this.assets;
+	this.services = [];
 	this.gameobjects = new GameObjectManager(); // global gameobject
 
 	this.canvas = opts.canvas;
@@ -105,6 +110,9 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/characters/m_mage.png",
 		id : "m_mage"
 	}, {
+		src : "assets/gameobjects/mobs/bori.png",
+		id : "bori"
+	}, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
@@ -112,12 +120,23 @@ Core.prototype.initialize = function(callback) {
 		id : "fireball"
 	}, {
 		src : "assets/gameobjects/magic/l_wall.png",
-		id : "l_wall"
+		id : "lightwall"
 	}, {
 		src : "assets/gameobjects/magic/metor.png",
 		id : "metor"
+	}, {
+		src : "assets/gameobjects/magic/pyroblast.png",
+		id : "pyroblast"
+	}, {
+		src : "assets/gameobjects/magic/firepillar.png",
+		id : "firepillar"
+	}, {
+		src : "assets/gameobjects/magic/thunderbolt.png",
+		id : "thunderbolt"
 	} ];
 
+	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
+	this.services[CombatSevice.NAME] = new CombatSevice(this);
 	this.assets = new createjs.LoadQueue(false);
 
 	var game = this;

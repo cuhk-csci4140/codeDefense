@@ -17,8 +17,11 @@ var GameObject = function() {
 };
 // util.inherits(GameObject , THREE.Mesh);
 GameObject.prototype.initialize = function() {
-	this.sprite = new createjs.Sprite(this.spriteSheet, this.defaultAnimation);
-	this.sprite.framerate = this.framerate;
+	if (this.spriteSheet) {
+		this.sprite = new createjs.Sprite(this.spriteSheet,
+				this.defaultAnimation);
+		this.sprite.framerate = this.framerate;
+	}
 };
 
 GameObject.prototype.setSpriteSheet = function(ss) {
@@ -28,10 +31,6 @@ GameObject.prototype.setSpriteSheet = function(ss) {
 GameObject.prototype.getSprite = function() {
 	return this.sprite;
 };
-
-GameObject.prototype.gotoAndPlay = function(name){
-	return this.sprite.gotoAndPlay(name);
-}
 
 /**
  * Update game object
