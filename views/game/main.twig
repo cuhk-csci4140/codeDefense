@@ -1,13 +1,15 @@
 {% extends "game/layout.twig" %} {% block title %} Game Main {% endblock
 %} {% block body %}
 <div id="loader" class="loader"></div>
+<div class="game-ui">
+<div class="game-ui-v">
 <div id="game-canvas-container" class="canvas-container">
-	<canvas id="game-canvas"></canvas>
+	<canvas id="game-canvas" class="canvas-board"></canvas>
 </div>
-<div id="codepanel" style=" z-index:10000; bottom:0px; position:absolute;width:100%;height:300px;background-color:rgba(255,255,255,0.5)">
+<div id="codepanel" style=" z-index:10000; bottom:0px;width:750px;height:290px;background-color:rgba(255,255,255,0.5)">
     <a href="javascript:coex()" class="title-button">Type javascript code to control your avata!</a>
     
-    <div style="background-color:rgba(0,255,0,0.5);width:100%;color:white;padding: padding-top: 0px;padding-right:5px;padding-bottom:0px;padding-left:35px;font-family:tahoma">
+    <div style="background-color:rgba(0,255,0,0.5);width:750px;color:white;padding: padding-top: 0px;padding-right:0px;padding-bottom:0px;padding-left:0px;font-family:tahoma">
     <table>
     <tr>
         <td style="width:100;color:white">Wave: 01</td>
@@ -21,4 +23,13 @@
         Cast spells!!!
     </a>
 </div>
+</div>
+<div class="game-ui-h">
+this.move(x,y);<br>
+this.cast(new Fireball());<br>
+this.triggerAction();<br>
+
+</div>
+</div>
+
 {% endblock %}
