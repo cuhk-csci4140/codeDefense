@@ -35,8 +35,9 @@ Fireball.prototype.m1 = function() {
 Fireball.prototype.m2 = function() {
 	console.log("m2");
 };
-Fireball.prototype.execute = function(caster, onComplete) {
 
+Fireball.prototype.execute = function(caster, onComplete) {
+        //onComplete is from caster/
 	console.log("fireball calculating target");
 	this.queue_(function(done) {
 		this.calTarget(caster);
@@ -64,9 +65,15 @@ Fireball.prototype.execute = function(caster, onComplete) {
 		console.log("remove fireball");
 		var level = this.world.activeLevel;
 		level.remove(this);
+                
+                //done is from Fireball's queue
+                done();
+                //onComplete is from Caster's queue
+                onComplete();
 	});
 	this.triggerAction();
-
+    //if doesn't return a function , skill execution is independent of caster turn.
+   return (function(){ }).bind(this);    
 };
 
 Fireball.prototype.calTarget = function(caster) {

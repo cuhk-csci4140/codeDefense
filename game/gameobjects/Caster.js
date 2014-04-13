@@ -20,8 +20,12 @@ Caster.prototype.cast = function(spell) {
 	if (spell instanceof Castable || spell.castable_ === true) {
 		spell.castable_ = false;
 
+                /*
+                 * @param onComplete is Caster's queue onCompleteCallback
+                 */
 		this.queue_(function(onComplete) {
 			setTimeout((function() {
+                                //spell has to use onComplete if   spell.execute return a onCastActionComplete Callback
 				var onCastActionComplete = spell.execute(this, onComplete);
 				// console.log(onCastActionComplete);
 

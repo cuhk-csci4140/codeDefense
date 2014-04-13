@@ -48,11 +48,17 @@ BoardObject.prototype.triggerAction = function() {
 	// console.log(action);
 	if (action) {
 		this.actionCounter++;
+                //pass OnCompleteCallback to next action
 		action.call(this, this.queueOnCompleteEvent_.bind(this,
 				this.actionCounter));
 	}
 };
 
+/**
+ * OnComplete Callback Templete
+ * @param {type} c
+ * @returns {undefined}
+ */
 BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
 	if (c == this.actionCounter) {
 		this.triggerAction();
