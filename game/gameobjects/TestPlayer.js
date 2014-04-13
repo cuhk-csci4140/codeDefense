@@ -3,7 +3,7 @@ var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
 
 var ScriptService = require('../contents/services/ScriptService');
-
+var CombatService = require('../contents/services/CombatService');
 var TestPlayer = function(world) {
 	TestPlayer.super_.call(this, world);
 	this.setSpriteSheet(new createjs.SpriteSheet({
@@ -30,9 +30,18 @@ var TestPlayer = function(world) {
 		if (e.status == 0) {
 			// rollback
 		} else {
-			this.triggerAction();
+			this.triggerAction_();
 		}
 	}).bind(this));
+
+	this.myTurn = {};
+	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
+			(function(event) {
+				if (event.turn == CombatService.TurnAlly) {
+					this.myTurn = event;
+					this.triggerAction_();
+				}
+			}.bind(this)));
 
 	console.log("player initialized");
 	this.initialize();
@@ -41,6 +50,19 @@ var TestPlayer = function(world) {
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
 
+/**
+ * whenever triggerAction , we go to next turn
+ */
+TestPlayer.prototype.triggerAction = function() {
+	this.world.services[CombatService.NAME].nextTurn(this.myTurn);
+};
+
+/**
+ * the original triggerAction method
+ */
+TestPlayer.prototype.triggerAction_ = function() {
+	TestPlayer.super_.prototype.triggerAction.apply(this);
+};
 TestPlayer.prototype.onCast_ = function(onComplete, onCastActionComplete) {
 	var done = function() {
 		if (onCastActionComplete instanceof Function) {

@@ -18,11 +18,23 @@ Teleport.exposeMethods = [];
 
 Teleport.prototype.execute = function(caster, onComplete) {
 	return (function() {
-		if (this.args.length == 2) {
+		if (this.args.length >= 2) {
 			var x = parseInt(this.args[0]);
 			var y = parseInt(this.args[1]);
 			if (x >= 0 && x < this.boardWidth && y >= 0 && y < this.boardHeight) {
 				caster.setPosition(x, y);
+				if (this.args.length >= 3) {
+					if (!caster.isCastable(this.args[2])
+							&& this.args[2] instanceof Function) {
+						this.args[2] = this.args[2]();
+					}
+
+					if (caster.isCastable(this.args[2])) {
+						caster.cast_(this.args[2], onComplete);
+						return;
+					}
+				}
+
 			} else {
 				console.log("Teleporting to a invalid position");
 			}

@@ -23,7 +23,7 @@ var Pyroblast = function(world) {
     this.defaultAnimation = "initial";
     console.log("Pyroblast initialized");
     this.initialize();
-}
+    }
 
 util.inherits(Pyroblast, Castable);
 

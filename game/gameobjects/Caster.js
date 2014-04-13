@@ -42,6 +42,36 @@ Caster.prototype.cast = function(spell) {
 	}
 
 };
+Caster.prototype.cast_ = function(spell, onComplete) {
+
+	if (spell instanceof Castable || spell.castable_ === true) {
+		spell.castable_ = false;
+
+		if (!(onComplete instanceof Function)) {
+			onComplete = function() {
+			};
+		}
+
+		(function() {
+			var onCastActionComplete = spell.execute(this, onComplete);
+			// console.log(onCastActionComplete);
+
+			// we pass the return callback( if we have) instead of the
+			// original onComplete
+			if (onCastActionComplete instanceof Function) {
+				this.onCast_(onCastActionComplete);
+			} else {
+				this.onCast_(onComplete);
+			}
+			// the spell callback
+
+		}).bind(this)();
+
+	} else {
+		throw new Error(spell + ' is not a Castable Spell');
+	}
+
+};
 
 Caster.prototype.onCast_ = function() {
 

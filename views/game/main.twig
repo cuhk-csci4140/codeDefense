@@ -1,24 +1,51 @@
 {% extends "game/layout.twig" %} {% block title %} Game Main {% endblock
-%} {% block body %}
-<div id="loader" class="loader"></div>
-<div id="game-canvas-container" class="canvas-container">
-	<canvas id="game-canvas"></canvas>
-</div>
-<div id="codepanel" style=" z-index:10000; bottom:0px; position:absolute;width:100%;height:300px;background-color:rgba(255,255,255,0.5)">
-    <a href="javascript:coex()" class="title-button">Type javascript code to control your avata!</a>
-    
-    <div style="background-color:rgba(0,255,0,0.5);width:100%;color:white;padding: padding-top: 0px;padding-right:5px;padding-bottom:0px;padding-left:35px;font-family:tahoma">
-    <table>
-    <tr>
-        <td style="width:100;color:white">Wave: 01</td>
-        <td style="width:100;color:white">HP: 100</td>
-        <td style="width:100;color:white">MP: 100</td>
-    </tr>
-    </table>
-    </div>
-    <textarea rows="4" cols="50" id="txtcodepanel"></textarea>
-    <a id="game-cast-trigger" class="cast-button" href="#">
-        Cast spells!!!
-    </a>
-</div>
-{% endblock %}
+    %} {% block body %}
+    <div id="loader" class="loader"></div>
+    <div class="game-ui">
+        <div class="game-ui-v">
+            <div id="game-canvas-container" class="canvas-container">
+                <canvas id="game-canvas" class="canvas-board"></canvas>
+            </div>
+            <div id="codepanel" class="codepanel">
+
+
+
+                <div style="height:50%;">
+                    <textarea  cols="60" id="txtcodepanel" placeholder="Command me to kill all monsters!"></textarea>
+                </div>
+                <a id="game-cast-trigger" class="cast-button" href="#">
+                    Cast spells!!!
+                </a>
+            </div>
+        </div>
+        <div class="game-ui-h">
+            <div class="instructionPanel" id="instructionPanel">
+                <div class="instPanTitle">Basic commands</div>
+                <div class="basiccmd">
+                    Movements<br>
+                    this.move(x,y);<br><br>
+                    Magic: Fireball<br>
+                    this.cast(new Fireball());<br><br>
+                    Trigger Action<br>
+                    this.triggerAction();<br><br>
+
+                </div>
+
+                <a href="#" onclick="showBox('You have killed all monsters!', 'You Win!!');
+                        return false;">MsgBox Demo: showBox(title,msg)</a>
+
+            </div>
+            <div class="gameInfoPanel" id="gameInfoPanel">
+                <div class="instPanTitle">Game Status</div>
+                <div class="basiccmd">
+                    Stage <label id="stage">1</label> Round <label id="round">1</label><br>
+                    HP <progress id="hp" style="position:absolute;left:35px;top:57px" max="100" min="0" value="10"></progress><br>
+                    MP <progress id="mp" style="position:absolute;left:35px;top:73px" max="100" min="0" value="60"></progress><br>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    {% endblock %}

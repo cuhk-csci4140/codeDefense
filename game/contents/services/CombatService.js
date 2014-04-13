@@ -9,8 +9,12 @@ var CombatService = function(world) {
 
 CombatService.NAME = "service.combat";
 
+CombatService.TurnAlly = "combat.service.ally";
+CombatService.TurnEnemy = "combat.service.enemy";
 CombatService.Events = {
-	NextWave : 'combat.events.nextwave'
+	NextWave : 'combat.events.nextwave',
+	NextTurn : 'combat.events.nextturn',
+	PositionChange : 'combat.events.changePosition'
 };
 
 CombatService.prototype.reset = function() {
@@ -22,6 +26,7 @@ CombatService.prototype.reset = function() {
 CombatService.prototype.resetWave = function() {
 	this.turnCounter = 0;
 	this.turnListeners_ = [];
+	this.turn = CombatService.TurnAlly;
 };
 
 CombatService.prototype.nextWave = function() {
@@ -43,8 +48,8 @@ CombatService.prototype.nextWave = function() {
 CombatService.prototype.callLater = function(turns, callback) {
 
 	var target = this.turnCounter + turns;
-	if (!this.listeners[target] instanceof Array) {
-		this.listeners[target] = [];
+	if (!(this.listeners_[target] instanceof Array)) {
+		this.listeners_[target] = [];
 	}
 
 	this.turnListeners_[target].push(callback);
@@ -53,16 +58,29 @@ CombatService.prototype.callLater = function(turns, callback) {
 /**
  * go to next turn
  */
-CombatService.prototype.nextTurn = function() {
-	this.turnCounter = this.turnCounter + 1;
+CombatService.prototype.nextTurn = function(event) {
+	if (this.turnCounter == 0
+			|| (event instanceof Object && event.data == this.turnCounter)) {
+		this.turnCounter = this.turnCounter + 1;
 
-	if (this.turnListeners_[this.turnCounter] instanceof Array) {
-		this.turnListeners_[this.turnCounter].forEach(function(target) {
-			target(this);
+		if (this.turnListeners_[this.turnCounter] instanceof Array) {
+			this.turnListeners_[this.turnCounter].forEach(function(target) {
+				target(this);
+			});
+		}
+
+		this.turn = this.turn == CombatService.TurnAlly ? CombatService.TurnEnemy
+				: CombatService.TurnAlly;
+
+		this.dispatch({
+			event : CombatService.Events.NextTurn,
+			turn : this.turn,
+			data : this.turnCounter,
+			target : this
 		});
-	}
 
-	delete this.turnListeners_[this.turnCounter];
+		delete this.turnListeners_[this.turnCounter];
+	}
 };
 
 /**
@@ -73,12 +91,11 @@ CombatService.prototype.nextTurn = function() {
  *            callback
  */
 CombatService.prototype.subscribe = function(e, callback) {
-	if (!this.listeners[e] instanceof Array) {
-		this.listeners[e] = [];
+	if (!(this.listeners_[e] instanceof Array)) {
+		this.listeners_[e] = [];
 	}
 
-	this.listeners[e].push(callback);
-
+	this.listeners_[e].push(callback);
 };
 
 /**
@@ -88,8 +105,8 @@ CombatService.prototype.subscribe = function(e, callback) {
  * @param object
  */
 CombatService.prototype.dispatch = function(object) {
-	if (this.listeners[object.event] instanceof Array) {
-		this.listeners[object.event].forEach(function(target) {
+	if (this.listeners_[object.event] instanceof Array) {
+		this.listeners_[object.event].forEach(function(target) {
 			target(object);
 		});
 	}
