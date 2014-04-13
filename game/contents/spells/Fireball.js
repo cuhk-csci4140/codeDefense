@@ -85,6 +85,6 @@ Fireball.prototype.calTarget = function(caster) {
 	}
 	this.targetX = horizontal;
 	this.targetY = vertical;
-}
+};
 
 module.exports = Fireball;

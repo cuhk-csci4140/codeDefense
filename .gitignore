@@ -3,4 +3,4 @@ node_modules
 public/js/bundle.js
 php/r/game/bundle.js
 game/temp
-/nbproject/private/
+nbproject/*
