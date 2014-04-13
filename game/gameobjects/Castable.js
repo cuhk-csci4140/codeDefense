@@ -14,6 +14,7 @@ var Castable = function(world) {
 
 util.inherits(Castable, BoardObject);
 
+
 Castable.prototype.calTarget = function(){
     // require override in child class.
 };

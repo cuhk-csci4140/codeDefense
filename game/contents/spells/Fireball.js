@@ -1,5 +1,5 @@
 var util = require('util');
-var Castable = require('../../gameobjects/Castable');
+var ShootingSpell = require('../../gameobjects/ShootingSpell');
 
 var Fireball = function(world) {
 
@@ -26,7 +26,7 @@ var Fireball = function(world) {
 	console.log("Fireball initialized");
 	this.initialize();
 }
-util.inherits(Fireball, Castable);
+util.inherits(Fireball, ShootingSpell);
 Fireball.exposeMethods = [ "m1" ];
 
 Fireball.prototype.m1 = function() {
@@ -36,11 +36,10 @@ Fireball.prototype.m2 = function() {
 	console.log("m2");
 };
 
-Fireball.prototype.execute = function(caster, onComplete) {
+Fireball.prototype.shoot = function(caster, onComplete) {
         //onComplete is from caster/
 	console.log("fireball calculating target");
 	this.queue_(function(done) {
-		this.calTarget(caster);
 		console.log("fireball!");
 		this.sprite.setTransform(caster.sprite.x + 70, caster.sprite.y, 1, 1);
 		this.position.vertical = caster.position.vertical;
@@ -72,25 +71,10 @@ Fireball.prototype.execute = function(caster, onComplete) {
                 onComplete();
 	});
 	this.triggerAction();
-    //if doesn't return a function , skill execution is independent of caster turn.
-   return (function(){ }).bind(this);    
+        
+        return function(){}.bind(this);
 };
 
-Fireball.prototype.calTarget = function(caster) {
-	// get back the gameBoard
-	var gameBoard = this.world.activeLevel.gameboard;
-	// Fireball is horizontal shooting
-	// get the first hit target in same horizontal
-	var vertical = caster.position.vertical;
-	var horizontal;
-	var target;
-	for (horizontal = (caster.position.horizontal + 1); horizontal < 12; horizontal++) {
-		if ((target = gameBoard[horizontal][vertical]) != null) {
-			break;
-		}
-	}
-	this.targetX = horizontal;
-	this.targetY = vertical;
-};
+
 
 module.exports = Fireball;
