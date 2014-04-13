@@ -1,7 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
-var Firepillar = function(world) {
+var Firepillar = function(world, args) {
     Firepillar.super_.call(this, world);
     this.name = "Firepillar";
     this.setSpriteSheet(new createjs.SpriteSheet({
@@ -21,6 +21,7 @@ var Firepillar = function(world) {
     }));
     this.defaultAnimation = "initial";
     this.castTime = 0.5;
+    this.args = args;
     console.log("Firepillar initialized");
     this.initialize();
 }
@@ -31,10 +32,16 @@ util.inherits(Firepillar, Castable);
 Firepillar.prototype.execute = function(caster) {
     this.queue_(function(done) {
         console.log("Firepillar");
-        this.sprite.setTransform(caster.sprite.x + 120, caster.sprite.y - 120, 1, 1);
+        var distX = this.args[0];
+        // check bounding
+        if((caster.position.horizontal + distX) > 12){
+            
+        }
+        this.sprite.setTransform(caster.sprite.x + (120*distX), caster.sprite.y - 120, 1, 1);
         this.position.vertical = caster.position.vertical;
-        this.position.horizontal = (caster.position.horizontal + 1);
+        this.position.horizontal = (caster.position.horizontal + distX);
         var level = this.world.activeLevel;
+        this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = this;
         level.add(this);
         this.gotoAndPlay("initial", done);
     });
