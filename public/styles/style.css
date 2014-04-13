@@ -1,31 +1,261 @@
 html,body {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 body {
-	background-color: #ffffff;
-	margin: 0;
-	overflow: hidden;
-	font-family: arial;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+    font-family: arial;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 #loader {
-	display: none;
+    display: none;
 }
 
 .loader {
-	width: 100%;
-	height: 50px;
-	position: absolute;
-	text-align: center;
-	margin-top: 250px;
-	background: url('/assets/loader.gif') no-repeat;
-	background-position: 50% 50%;
-	display: block !important;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    text-align: center;
+    margin-top: 250px;
+    background: url('/assets/loader.gif') no-repeat;
+    background-position: 50% 50%;
+    display: block !important;
 }
 
 .canvas-container {
-	text-align: center;
+
+
+}
+
+.canvas-board {
+
+    width:70% !important;
+    display:inline-block;
+    position:relative;
+}
+
+
+.game-ui {
+    width:1080px;
+    height:670px;
+    display:inline;
+}
+.game-ui-v {
+    width:750px;
+    height:670px;
+    display:inline;
+}
+.game-ui-h {
+
+    width:30%;
+    right:0px;
+    top:0px;
+    position:absolute;
+    z-index:100;
+    display:inline;
+
+
+}
+
+.codepanel{
+    position:fixed;
+    border:10px;
+    z-index:10; 
+    bottom:0;
+    background-color:rgba(255,255,255,0.5);
+    -webkit-border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    -moz--border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round; 
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+}
+
+.unknonw{
+
+    background-color:rgba(0,255,0,0.5);
+    width:750px;color:white;
+
+    padding-top: 0px;
+    padding-right:0px;
+    padding-bottom:0px;
+    padding-left:0px;
+    font-family:Rockwell Extra Bold;
+}
+
+.cast-button {
+    outline: 0;
+    text-align: center;
+    padding-top: 5px;
+    border:10px;
+    padding-bottom: 5px;
+    width:100%;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    //background-color: green;
+    //background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+    color: #402F08;
+    display: inline-block;
+    font-family: Rockwell Extra Bold;
+    box-shadow: 4px 4px 3px rgba(20%,20%,40%,0.5);
+    -webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    -moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round; 
+}
+
+.title-button {
+    outline: 0;
+    margin: 0 0 0 0;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    width: 100%;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    background-color: rgba(3, 102, 6, 0.5);
+    color: white;
+    display: inline-block;
+    font-family: Rockwell Extra Bold;
+    text-align: left;
+    height:20px;
+
+    box-shadow: 4px 4px 3px rgba(20%,20%,40%,0.5);
+
+}
+
+.instructionPanel{
+    height:100% !important;
+    border:10px;
+    -webkit-border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    -moz--border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round; 
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+
+}
+
+.gameInfoPanel{
+
+    position:fixed;
+    border:10px;
+    z-index:10; 
+    bottom:0;
+    background-color:rgba(255,255,255,0.5);
+    -webkit-border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    -moz--border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round;
+    border-image: url(/assets/gameobjects/bg/bg1.png) 10 10 10 10 round; 
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+}
+
+.instPanTitle{
+    border:4px;
+    -webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    -moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round; 
+    color: #402F08;
+    font-family: Rockwell Extra Bold;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.instInfoPanTitle{
+    border:4px;
+    -webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    -moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round; 
+    color: #402F08;
+    font-family: Rockwell Extra Bold;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.basiccmd{
+    color: #402F08;
+    font-family: Rockwell Extra Bold;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.popupbox{
+    border:4px;
+    -webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    -moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round; 
+    color: #402F08;
+    font-family: Rockwell Extra Bold;
+    height:200px;
+    width:300px;
+}
+
+.PopupDiv{
+    border:4px;
+    -webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    -moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+    border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round; 
+    color: #402F08;
+    font-family: Rockwell Extra Bold;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    width:300px;
+    height:150px;
+
+}
+
+.popupokbtn{
+    left:125px;
+    outline: 0;
+    text-align: center;
+    padding-top: 5px;
+    border:10px;
+    padding-bottom: 5px;
+    bottom:5px;
+    width:50px;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    //background-color: green;
+    //background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+    color: #402F08;
+    display: inline-block;
+    font-family: Rockwell Extra Bold;
+    box-shadow: 4px 4px 3px rgba(20%,20%,40%,0.5);
+    -webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    -moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round; 
+}
+
+.boxtitle{
+    font-size:20px;
+    text-align: center;
+}
+
+.boxmsg{
+    font-size:16px;
+    text-align: center;
 }

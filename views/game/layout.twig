@@ -1,117 +1,104 @@
 <!DOCTYPE html>
 <html class="width-v1">
-<head>
-<title>{% block title %} {{environment.header.title}} {% endblock %}</title>
+    <head>
+        <title>{% block title %} {{environment.header.title}} {% endblock %}</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<script type="text/javascript" src="/js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="/js/createjs-2013.12.12.min.js"></script>
 
-<script type="text/javascript" src="/js/bundle.js"></script>
-<link href="/styles/style.css" media="all" rel="stylesheet"
-	type="text/css" />
+        <script type="text/javascript" src="/js/bundle.js"></script>
+        <link href="/styles/style.css" media="all" rel="stylesheet"
+              type="text/css" />
 
-</style>
+    </style>
+    <script src="/js/popup.js"></script>
+    <script src="/codemirror/codemirror.js"></script>
+    <script src="/codemirror/placeholder.js"></script>
+    <link rel="stylesheet" href="/codemirror/codemirror.css">
+    <script src="/codemirror/javascript.js"></script>
+    <script>
+        function showBox(title, msg) {
+            Popup.showModal('modal');
+            title = '<div class="boxtitle">' + title + '</div>';
+            msg = '<div class="boxmsg">' + msg + '</div>';
+            document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');">';
+        }
 
-<script src="/codemirror/codemirror.js"></script>
-<link rel="stylesheet" href="/codemirror/codemirror.css">
-<script src="/codemirror/javascript.js"></script>
-<script> 
-var collapse = 1;
+        function coex() {
+            if (collapse) {
+                document.getElementById("codepanel").style.bottom = "0px";
+                collapse = 0;
+            } else {
+                document.getElementById("codepanel").style.bottom = "-240px";
+                collapse = 1;
 
-function coex(){
-    if(collapse){
-        document.getElementById("codepanel").style.bottom = "0px"
-        collapse = 0;
-    }else{
-        document.getElementById("codepanel").style.bottom = "-240px"
-        collapse = 1;
+            }
+        }
 
-    }
-}
+        function cast() {
+            editor.save();
+            var commandcast = document.getElementById('txtcodepanel');
 
-function cast() {
-    editor.save();
-    var commandcast = document.getElementById('txtcodepanel');
+            var lines = commandcast.value.split('\n');
+            (function() {
+                commandcast.value = " ";
+                editor.setValue("");
+                var i = 0;
+                while (i < lines.length) {
+                    eval(lines[i]);
+                    i++;
+                }
+            }).apply(game.gameobjects.get('player'), []);
 
-    var lines = commandcast.value.split('\n');
-    (function(){
-    commandcast.value=" ";
-    editor.setValue("");
-    var i = 0;
-    while(i < lines.length){
-      eval(lines[i]);
-        i++;
-    }
-    }).apply(game.gameobjects.get('player'),[]);
+            game.gameobjects.get('player').triggerAction();
+        }
 
-    game.gameobjects.get('player').triggerAction();
-}
+        function resizePan() {
+            var codePanHeight = (window.innerHeight - ($(".canvas-board").height()));
+            var codePanWidth = (window.innerWidth * 0.7 - 20);
+            $(".CodeMirror").css("height", codePanHeight - 65);
+            $(".codepanel").css("width", codePanWidth);
+            $(".game-ui-h").css("height", ($(".canvas-board").height() - 20));
+            $(".cast-button").css("width", window.innerWidth * 0.7 - 40);
+            $(".gameInfoPanel").css("height", codePanHeight - 20);
+            $(".gameInfoPanel").css("width", window.innerWidth * 0.3 - 20);
+        }
 
-
-</script>
-<style type="text/css">
-.cast-button {
-	outline: 0;
-	margin-top: 10px;
-	margin-left: 30px;
-	padding-top: 20px;
-	padding-right: 0px;
-	padding-bottom: 20px;
-	padding-left: 0px;
-	text-decoration: none !important;
-	cursor: pointer;
-	position: relative;
-	text-align: center;
-	background-color: green;
-	color: white;
-	display: inline-block;
-	font-family: tahoma;
-}
-
-.title-button {
-	outline: 0;
-	margin: 0 0 0 0;
-	padding-top: 10px;
-	padding-right: 0px;
-	padding-bottom: 10px;
-	padding-left: 0px;
-	width: 750px;
-	text-decoration: none !important;
-	cursor: pointer;
-	position: relative;
-	text-align: center;
-	background-color: rgba(3, 102, 6, 0.5);
-	color: white;
-	display: inline-block;
-	font-family: tahoma;
-	text-align: left;
-}
-</style>
+    </script>
 
 </head>
 <body>
-	{% block body %}
-	<div class="body box home">
-		<div class="content">
-			<div class="header">
-				<div class="content">
-					<h1>
-						Title/h1>
-						<div class="subtitle">Description</div>
-				
-				</div>
-				<div class="bottom_bar"></div></div>
-			</div>
-		</div>
-		{% endblock %}
+    {% block body %}
+        <div class="body box home">
+            <div class="content">
+                <div class="header">
+                    <div class="content">
+                        <h1>Title/h1>
+                            <div class="subtitle">Description</div>
 
-		<script type="text/javascript">
-            var editor = CodeMirror.fromTextArea(txtcodepanel, {
-                mode: "text/javascript",
-                lineNumbers: true,
-                autofocus: true
+                    </div>
+                    <div class="bottom_bar"></div></div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <div id="modal" >
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        var editor = CodeMirror.fromTextArea(txtcodepanel, {
+            mode: "text/javascript",
+            lineNumbers: true,
+            autofocus: true
         });
+        window.onload = resizePan;
+        window.onresize = resizePan;
+
+
     </script>
 
 </body>
