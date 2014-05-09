@@ -7,9 +7,9 @@ var AbstractLevel = function(world) {
 	this.gameobjects = world.gameobjects;
 	// gameBoard for the board, init all null;
 	var array = new Array();
-	for(var i=0; i<12;i++){
+	for (var i = 0; i < 12; i++) {
 		array[i] = new Array();
-		for(var j=0; j<6;j++){
+		for (var j = 0; j < 6; j++) {
 			array[i][j] = null;
 		}
 	}
@@ -47,20 +47,21 @@ AbstractLevel.prototype.remove = function() {
 };
 AbstractLevel.prototype.remove_ = function(object) {
 	var sprite;
-        if (object instanceof GameObject) {
-            sprite = object.getSprite();
+	if (object instanceof GameObject) {
+		sprite = object.getSprite();
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
 			throw new Error("gameobject:" + object
 					+ " is not a instanceof GameObject");
 		}
-                object = temp;
+		object = temp;
 		sprite = temp.getSprite();
 	}
-        this.gameboard[object.position.horizontal][object.position.vertical] = null;
+	object.dispose();
 	this.world.stage.removeChild(sprite);
-        delete object;
+
+	delete object;
 };
 AbstractLevel.prototype.set = function(name, object) {
 	if (typeof object == "function") {

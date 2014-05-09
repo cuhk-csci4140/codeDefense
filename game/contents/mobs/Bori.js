@@ -24,23 +24,25 @@ var Bori = function(world) {
 	this.defaultAnimation = "stand";
 
 	this.myTurn = {};
+
+	this.AI = function(event) {
+		if (event.turn == this.faction) {
+			this.myTurn = event;
+			// action 1
+			this.move(-1, 0);
+			// action 2
+			this.queue_(function(done) {
+				world.services[CombatService.NAME].nextTurn(event);
+				done();
+			});
+
+			// start the queue.
+			this.triggerAction();
+		}
+	}.bind(this);
 	// register to script service
 	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
-			(function(event) {
-				if (event.turn == this.faction) {
-					this.myTurn = event;
-					//action 1
-					this.move(-1, 0);
-					//action 2 
-					this.queue_(function(done) {
-						world.services[CombatService.NAME].nextTurn(event);
-						done();
-					});
-					
-					//start the queue.
-					this.triggerAction();
-				}
-			}.bind(this)));
+			this.AI);
 
 	console.log("Bori initialized");
 	this.initialize();
@@ -48,6 +50,12 @@ var Bori = function(world) {
 
 util.inherits(Bori, BoardObject);
 
+Bori.prototype.dispose = function() {
+	Bori.super_.prototype.dispose.call(this);
+
+	this.world.services[CombatService.NAME].unsubscribe(CombatService.Events.NextTurn,
+			this.AI);
+};
 Bori.prototype.onStartMoving_ = function() {
 	this.gotoAndPlay("initRun");
 };

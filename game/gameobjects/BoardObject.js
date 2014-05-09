@@ -162,4 +162,9 @@ BoardObject.prototype.frameCount_ = function(name) {
 			.frameCount_(this.spriteSheet._data[name].next)
 			: 0;
 }
+
+BoardObject.prototype.dispose = function() {
+	this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
+};
+
 module.exports = BoardObject;

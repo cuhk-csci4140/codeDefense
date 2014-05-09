@@ -108,6 +108,28 @@ CombatService.prototype.subscribe = function(e, callback) {
 };
 
 /**
+ * CombatService event unsubscribe
+ * 
+ * @this {CombatService}
+ * @param e,
+ *            callback
+ */
+CombatService.prototype.unsubscribe = function(e, callback) {
+	console.log("[CombatService] unsubscribe " + e + callback);
+	if (!(this.listeners_[e] instanceof Array)) {
+		return false;
+	}
+	if (this.listeners_[e] instanceof Array) {
+		var len = this.listeners_[e].length;
+		this.listeners_[e] = this.listeners_[e].filter(function(x) {
+			return x != callback
+		});
+		return len > this.listeners_[e].length;
+	}
+
+};
+
+/**
  * CombatService event dispatch
  * 
  * @this {CombatService}
