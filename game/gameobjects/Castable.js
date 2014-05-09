@@ -39,7 +39,7 @@ Castable.prototype.animate = function(caster,onComplete){
         return this.execute(caster,onComplete);
     }
     else{
-        throw new Error("Y U no enough mp!Caster MP: "+caster.mp+" Spell cost:"+this.cost);
+        throw new Error("Y U no enough mp!");
     }
 }
 
