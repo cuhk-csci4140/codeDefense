@@ -1,7 +1,10 @@
 var util = require('util');
 var BoardObject = require('../../gameobjects/BoardObject');
+var CombatService = require('../services/CombatService');
 var Mob = function(world) {
 	Mob.super_.call(this, world);
+        //variable to calculate hp bar;
+        this.originHp;
         this.hpBar = new createjs.Shape();
         this.hpBar.graphics.beginFill("#ff0000").drawRect(0, 0, 100, 10);
 };
@@ -43,13 +46,21 @@ Mob.prototype.moveHPbar = function(h, v, equation){
     var distance = Math.sqrt(Math.pow(this.position.horizontal - h, 2)
             + Math.pow(this.position.vertical - v, 2));    
     var tween = createjs.Tween.get(this.hpBar).to({
-        x: 93 + (120 * h),
+        x: 35 + (120 * h),
         y: 10 + (120 * v)
     }, (self.stats.movement * distance), equation).call(function(event) {
         self.position.vertical = v;
         self.position.horizontal = h;
         self.onStopMoving_(event);
     });
+};
+
+Mob.prototype.dispose = function() {
+	Mob.super_.prototype.dispose.call(this);
+
+	this.world.services[CombatService.NAME].unsubscribe(
+			CombatService.Events.NextTurn, this.AI);
+
 };
 
 Mob.prototype.getHPbar = function(){

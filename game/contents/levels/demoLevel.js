@@ -30,8 +30,8 @@ demoLevel.prototype.initialize = function() {
 		this.set('bori' + i, Bori);
 		this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60 * (i - 6),
 				-0.6, 0.6);
-		this.get('bori' + i).hpBar.setTransform(93 + 120 * i, (120 * (i - 6)) + 10,
-				-0.6, 0.6);                                
+		this.get('bori' + i).hpBar.setTransform( 35 + 120 * i, (120 * (i - 6)) + 10,
+				0.6, 0.6);                                
 		this.get('bori' + i).setPosition(i, i - 6);
 		this.get('bori' + i).setFaction(CombatService.TurnEnemy);
 		this.add(this.get('bori' + i));

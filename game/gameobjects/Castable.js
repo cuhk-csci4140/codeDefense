@@ -38,8 +38,13 @@ Castable.prototype.dealDamage = function() {
 		var current = this.target[i];
 		console.log(current);
 		current.hp -= this.damage;
-		if (current.hp <= 0) {
-			this.world.activeLevel.remove(current);
+                if (current.hp > 0 ){
+                    var scale = (current.hp / current.originHp);
+                    current.hpBar.graphics.clear();
+                    current.hpBar.graphics.beginFill("#ff0000").drawRect(0, 0, (100 * scale), 10);  
+                }
+		else {
+                    this.world.activeLevel.remove(current);
 		}
 	}
 }

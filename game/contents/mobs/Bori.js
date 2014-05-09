@@ -3,7 +3,8 @@ var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
 	Bori.super_.call(this, world);
-        this.hp = 5;
+        this.hp = 2;
+        this.originHp = 2;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {
@@ -58,12 +59,6 @@ var Bori = function(world) {
 
 util.inherits(Bori, Mob);
 
-Bori.prototype.dispose = function() {
-	Bori.super_.prototype.dispose.call(this);
-
-	this.world.services[CombatService.NAME].unsubscribe(
-			CombatService.Events.NextTurn, this.AI);
-};
 Bori.prototype.onStartMoving_ = function() {
 	this.gotoAndPlay("initRun");
 };

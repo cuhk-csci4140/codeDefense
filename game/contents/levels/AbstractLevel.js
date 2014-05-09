@@ -56,8 +56,12 @@ AbstractLevel.prototype.remove = function() {
 };
 AbstractLevel.prototype.remove_ = function(object) {
 	var sprite;
+        var hpBar;
 	if (object instanceof GameObject) {
 		sprite = object.getSprite();
+                if(object instanceof Mob){
+                    hpBar = object.getHPbar();
+                }
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
@@ -69,7 +73,7 @@ AbstractLevel.prototype.remove_ = function(object) {
 	}
 	object.dispose();
 	this.world.stage.removeChild(sprite);
-
+        this.world.stage.removeChild(hpBar);
 	delete object;
 };
 AbstractLevel.prototype.set = function(name, object) {
