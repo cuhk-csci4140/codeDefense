@@ -1,6 +1,7 @@
 var util = require('util');
 var BoardObject = require('./BoardObject');
 var Caster = require('./Caster');
+var Mob = require('./Mob');
 
 var ScriptService = require('../contents/services/ScriptService');
 var CombatService = require('../contents/services/CombatService');
@@ -40,7 +41,21 @@ var TestPlayer = function(world) {
 			(function(event) {
 				if (event.turn == this.faction) {
 					this.myTurn = event;
-					this.triggerAction_();
+                                        // check any mob cross the line
+                                        var tmp;
+                                        var gameboard = this.world.activeLevel.gameboard;
+                                        for(tmp = 0; tmp < 6; tmp++){
+                                            var target = gameboard[0][tmp];
+                                            if(target!= null){
+                                                if(target instanceof Mob){
+                                                    this.hp -= target.damage;
+                                                }
+                                            }
+                                        }
+                                        if(this.hp < 0 ){
+                                            console.log('LOST!');
+                                        }
+                                        this.triggerAction_();
 				}
 			}.bind(this)));
 
