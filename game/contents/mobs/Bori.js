@@ -2,8 +2,9 @@ var util = require('util');
 var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
+    this.myTurn = {};
     Bori.super_.call(this, world);
-    this.hp = 5;
+    this.hp = 1;
     this.setSpriteSheet(new createjs.SpriteSheet({
         "images": [world.assets.getResult("bori")],
         "frames": {
@@ -23,7 +24,6 @@ var Bori = function(world) {
     this.stats.movement = 2000;
     this.defaultAnimation = "stand";
     this.damage = 50;
-    this.myTurn = {};
 
     this.AI = function(event) {
         if (event.turn == this.faction) {
