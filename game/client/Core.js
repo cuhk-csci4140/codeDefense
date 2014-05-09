@@ -106,6 +106,7 @@ Core.prototype.initialize = function(callback) {
 	// preloader
 	this.onWindowResize();
 	this.levels['demo'] = require('../contents/levels/demoLevel');
+	this.levels['test'] = require('../contents/levels/testLevel');
 	var assets = [ {
 		src : "assets/gameobjects/characters/m_mage.png",
 		id : "m_mage"
@@ -163,10 +164,19 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
+
+	try {
+		this.gameobjects.dispose();
+	} catch (e) {
+		console.log("[ERROR] GameObjectManager : " + e);
+	}
+
+	this.services[CombatSevice.NAME].reset();
 	if (this.activeLevel) {
 		this.activeLevel.dispose();
 		delete this.activeLevel;
 	}
+	this.gameobjects = new GameObjectManager(); // global gameobject
 
 	this.activeLevel = new this.levels[level](this);
 	this.activeLevel.initialize();
@@ -178,17 +188,24 @@ Core.prototype.setLevel = function(level) {
  * @this {Core}
  */
 Core.prototype.render = function(event) {
-	var delta = event.delta / 1000;
-	this.stage.update(event);
-	this.gameobjects.render(event);
-        //get player
-        var player = this.gameobjects.get('player');
-        //get hp and mp bar
-        var hpBar = document.querySelector("#hp");
-        var mpBar = document.querySelector("#mp");
-        //update hp and mp
-        hpBar.value = player.hp;
-        mpBar.value = player.mp;
+
+	try {
+		
+		var delta = event.delta / 1000;
+		this.stage.update(event);
+		this.gameobjects.render(event);
+	} catch (e) {
+		showBox('Oops! Cast Error.', e);
+	}
+
+	// get player
+	var player = this.gameobjects.get('player');
+	// get hp and mp bar
+	var hpBar = document.querySelector("#hp");
+	var mpBar = document.querySelector("#mp");
+	// update hp and mp
+	hpBar.value = player.hp;
+	mpBar.value = player.mp;
 }
 
 Core.prototype.onWindowResize = function() {
