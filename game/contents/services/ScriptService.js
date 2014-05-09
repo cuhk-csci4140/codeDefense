@@ -114,6 +114,8 @@ ScriptService.prototype.runScript = function(script) {
 	// exception
 	if (result.exception instanceof Error) {
 		console.log("[" + ScriptService.NAME + "} error : " + result.exception);
+		showBox('Oops! Cast Error.', result.exception);
+        
 	}
 
 	if (this.callback instanceof Function) {
@@ -133,7 +135,7 @@ ScriptService.prototype.runScript_ = function(script, context, spells) {
 	var exception = false;
 
 	var result = (function(spells, console, window, document, XMLHttpRequest,
-			$, jQuery, util, ScriptService, game, world, Castable, JSON) {
+			$, jQuery, util, ScriptService, game, world, Castable, JSON , showBox) {
 		try {
 			eval(script);
 		} catch (e) {
@@ -143,7 +145,7 @@ ScriptService.prototype.runScript_ = function(script, context, spells) {
 		log : function() {
 
 		}
-	}, {}, {}, false, false, false, false, false, false, false, false, false ]);
+	}, {}, {}, false, false, false, false, false, false, false, false, false , showBox]);
 
 	return {
 		'result' : result,
