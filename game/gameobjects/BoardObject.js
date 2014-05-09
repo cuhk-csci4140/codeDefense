@@ -22,13 +22,13 @@ var BoardObject = function(world) {
 	this.boardWidth = 12;
 	this.boardHeight = 6;
 
+	this.actionQueueEmpty = true;
 	this.actionQueue_ = [];
 	this.actionCounter = 0;
-        this.hp = 1;
+	this.hp = 1;
 };
 
 util.inherits(BoardObject, GameObject);
-
 
 BoardObject.prototype.setFaction = function(faction) {
 	this.faction = faction;
@@ -54,9 +54,12 @@ BoardObject.prototype.triggerAction = function() {
 	// console.log(action);
 	if (action) {
 		this.actionCounter++;
+		this.actionQueueEmpty = false;
 		// pass OnCompleteCallback to next action
 		action.call(this, this.queueOnCompleteEvent_.bind(this,
 				this.actionCounter));
+	} else {
+		this.actionQueueEmpty = true;
 	}
 };
 

@@ -17,6 +17,7 @@ jQuery(function() {
 				function(e) {
 					editor.save();
 			//		console.log(e.currentTarget);
+				//	$(this).addClass('disabled');
 					game.services[ScriptService.NAME].runScript(document
 							.querySelector('#txtcodepanel').value);
 				})

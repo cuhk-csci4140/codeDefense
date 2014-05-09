@@ -23,14 +23,14 @@ var TestPlayer = function(world) {
 		}
 	}));
 	this.defaultAnimation = "stand";
-        this.hp = 100;
-        this.mp = 100;
+	this.hp = 100;
+	this.mp = 100;
 	// register to script service
 	world.services[ScriptService.NAME].setContext(this);
 	world.services[ScriptService.NAME].setCallback((function(e) {
 		if (e.status == 0) {
 			// rollback
-		} else {
+		} else if (this.actionQueueEmpty == true) {
 			this.triggerAction_();
 		}
 	}).bind(this));
