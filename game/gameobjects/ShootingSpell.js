@@ -43,11 +43,11 @@ ShootingSpell.prototype.calTarget = function(caster) {
                 for (i = 1; i <= this.range; i++) {
                     for (j = 1; j <= this.range; j++) {
                         targetNow = gameBoard[horizontal + i][vertical + j];
-                        if (targetNow !== null) {
+                        if ((targetNow !== null) && (typeof(targetNow) !== "undefined")) {
                             this.target.push(targetNow);
                         }
                         targetNow = gameBoard[horizontal - i][vertical - j];
-                        if (targetNow !== null) {
+                        if ((targetNow !== null) && (typeof(targetNow) !== "undefined")) {
                             this.target.push(targetNow);
                         }
                     }
