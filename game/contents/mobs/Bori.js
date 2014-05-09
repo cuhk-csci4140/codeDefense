@@ -27,7 +27,7 @@ var Bori = function(world) {
 	// register to script service
 	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
 			(function(event) {
-				if (event.turn == CombatService.TurnEnemy) {
+				if (event.turn == this.faction) {
 					this.myTurn = event;
 					//action 1
 					this.move(-1, 0);

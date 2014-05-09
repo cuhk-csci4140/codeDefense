@@ -11,6 +11,9 @@ CombatService.NAME = "service.combat";
 
 CombatService.TurnAlly = "combat.service.ally";
 CombatService.TurnEnemy = "combat.service.enemy";
+
+CombatService.Factions = [ CombatService.TurnAlly, CombatService.TurnEnemy ];
+
 CombatService.Events = {
 	NextWave : 'combat.events.nextwave',
 	NextTurn : 'combat.events.nextturn',
@@ -69,9 +72,15 @@ CombatService.prototype.nextTurn = function(event) {
 			});
 		}
 
-		this.turn = this.turn == CombatService.TurnAlly ? CombatService.TurnEnemy
-				: CombatService.TurnAlly;
+		this.turn = CombatService.Factions[(CombatService.Factions
+				.indexOf(this.turn) + 1)
+				% CombatService.Factions.length];
 
+		// CombatService.Factions
+		/*
+		 * this.turn = this.turn == CombatService.TurnAlly ?
+		 * CombatService.TurnEnemy : CombatService.TurnAlly;
+		 */
 		this.dispatch({
 			event : CombatService.Events.NextTurn,
 			turn : this.turn,

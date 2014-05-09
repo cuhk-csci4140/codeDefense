@@ -2,6 +2,7 @@ var util = require('util');
 var AbstractLevel = require('./AbstractLevel');
 var Mage = require('../../gameobjects/TestPlayer');
 var Bori = require('../mobs/Bori');
+var CombatService = require('../services/CombatService');
 
 var demoLevel = function(world) {
 	demoLevel.super_.call(this, world);
@@ -16,6 +17,7 @@ demoLevel.prototype.initialize = function() {
 	this.set('player', Mage);
 	this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
 	this.get('player').setPosition(0, 0);
+	this.get('player').setFaction(CombatService.TurnAlly);
 
 	var ground = new createjs.Shape();
 	ground.graphics.beginBitmapFill(this.world.assets.getResult("board"),
@@ -26,8 +28,10 @@ demoLevel.prototype.initialize = function() {
 
 	for (var i = 6; i <= 11; i++) {
 		this.set('bori' + i, Bori);
-		this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60*(i-6), -0.6, 0.6);
-		this.get('bori' + i).setPosition(i, i -6);
+		this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60 * (i - 6),
+				-0.6, 0.6);
+		this.get('bori' + i).setPosition(i, i - 6);
+		this.get('bori' + i).setFaction(CombatService.TurnEnemy);
 		this.add(this.get('bori' + i));
 	}
 	this.initialized = true;
