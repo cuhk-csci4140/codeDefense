@@ -82,14 +82,14 @@ ScriptService.prototype.runScript = function(script) {
 				var real = new target(world, arguments);
 				var casted = false;
 				var methods = {
-					execute : function(caster, onComplete) {
+					animate : function(caster, onComplete) {
 						if (casted) {
 							console
 									.log("You can not execute this skill again.");
 							return;
 						}
 						casted = true;
-						return real.execute(caster, onComplete);
+						return real.animate(caster, onComplete);
 					},
 					castable_ : true
 				};

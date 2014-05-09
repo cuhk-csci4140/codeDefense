@@ -21,6 +21,7 @@ var Firepillar = function(world, args) {
     }));
     this.defaultAnimation = "initial";
     this.castTime = 0.5;
+    this.cost = 30;
     this.args = args;
     console.log("Firepillar initialized");
     this.initialize();

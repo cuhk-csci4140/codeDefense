@@ -24,6 +24,7 @@ var BoardObject = function(world) {
 
 	this.actionQueue_ = [];
 	this.actionCounter = 0;
+        this.hp = 1;
 };
 
 util.inherits(BoardObject, GameObject);

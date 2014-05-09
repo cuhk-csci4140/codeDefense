@@ -20,6 +20,7 @@ var Thunderbolt = function(world, args) {
 	this.defaultAnimation = "initial";
 	this.args = args;
 	this.castTime = 5;
+        this.cost = 70;
 	console.log("Thunderbolt initialized");
 	this.initialize();
 }

@@ -4,6 +4,7 @@ var Castable = require('./Castable');
 
 var Caster = function(world) {
 	Caster.super_.call(this, world);
+
 };
 
 util.inherits(Caster, BoardObject);
@@ -26,7 +27,7 @@ Caster.prototype.cast = function(spell) {
 		this.queue_(function(onComplete) {
 			setTimeout((function() {
                                 //spell has to use onComplete if   spell.execute return a onCastActionComplete Callback
-				var onCastActionComplete = spell.execute(this, onComplete);
+				var onCastActionComplete = spell.animate(this, onComplete);
 				// console.log(onCastActionComplete);
 
 				// we pass the return callback( if we have) instead of the
@@ -47,7 +48,6 @@ Caster.prototype.cast = function(spell) {
 
 };
 Caster.prototype.cast_ = function(spell, onComplete) {
-
 	if (spell instanceof Castable || spell.castable_ === true) {
 		spell.castable_ = false;
 
@@ -63,9 +63,9 @@ Caster.prototype.cast_ = function(spell, onComplete) {
 			// we pass the return callback( if we have) instead of the
 			// original onComplete
 			if (onCastActionComplete instanceof Function) {
-				this.onCast_(onCastActionComplete);
+				this.onCast_(spell,onCastActionComplete);
 			} else {
-				this.onCast_(onComplete);
+				this.onCast_(spell,onComplete);
 			}
 			// the spell callback
 

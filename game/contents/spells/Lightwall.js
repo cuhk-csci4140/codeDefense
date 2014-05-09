@@ -21,6 +21,7 @@ var Lightwall = function(world) {
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1;
+        this.cost = 25;
 	console.log("Lightwall initialized");
 	this.initialize();
 }

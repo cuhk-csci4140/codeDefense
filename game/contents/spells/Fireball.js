@@ -21,8 +21,8 @@ var Fireball = function(world) {
 		}
 	}));
 	this.defaultAnimation = "initial";
-
 	this.castTime = 1.5;
+        this.cost = 10;
 	console.log("Fireball initialized");
 	this.initialize();
 }
