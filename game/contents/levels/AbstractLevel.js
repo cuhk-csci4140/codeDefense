@@ -1,5 +1,6 @@
 var GameObjectManager = require('../../framework/GameObjectManager');
 var GameObject = require('../../framework/gameobjects/GameObject');
+var Mob = require('../../contents/mobs/Mob');
 var AbstractLevel = function(world) {
 	this.world = world;
 	this.initialized = false;
@@ -26,18 +27,26 @@ AbstractLevel.prototype.add = function() {
 
 };
 AbstractLevel.prototype.add_ = function(object) {
+        var stageChild = object;
+        var hpbar = null;
 	if (object instanceof GameObject) {
-		object = object.getSprite();
+		stageChild = object.getSprite();
+                if(object instanceof Mob){
+                    hpbar = object.getHPbar();
+                }
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
 			throw new Error("gameobject:" + object
 					+ " is not a instanceof GameObject");
 		}
-		object = temp.getSprite();
+		stageChild = temp.getSprite();
 	}
-
-	this.world.stage.addChild(object);
+        
+	this.world.stage.addChild(stageChild);
+        if(hpbar !== null){
+            this.world.stage.addChild(hpbar);
+        }
 };
 AbstractLevel.prototype.remove = function() {
 	for (var i = 0; i < arguments.length; i++) {

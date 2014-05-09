@@ -1,9 +1,9 @@
 var util = require('util');
-var BoardObject = require('../../gameobjects/BoardObject');
+var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
-
 	Bori.super_.call(this, world);
+        this.hp = 5;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {
@@ -28,8 +28,16 @@ var Bori = function(world) {
 	this.AI = function(event) {
 		if (event.turn == this.faction) {
 			this.myTurn = event;
+
 			// action 1
-			this.move(-1, 0);
+			if (this.position.horizontal > 0) {
+				this.move(-1, 0);
+			} else {
+				// despawn
+				this.dispose();
+				showBox("CAUTION!", "A monster just passed you.");
+			}
+
 			// action 2
 			this.queue_(function(done) {
 				world.services[CombatService.NAME].nextTurn(event);
@@ -48,13 +56,13 @@ var Bori = function(world) {
 	this.initialize();
 };
 
-util.inherits(Bori, BoardObject);
+util.inherits(Bori, Mob);
 
 Bori.prototype.dispose = function() {
 	Bori.super_.prototype.dispose.call(this);
 
-	this.world.services[CombatService.NAME].unsubscribe(CombatService.Events.NextTurn,
-			this.AI);
+	this.world.services[CombatService.NAME].unsubscribe(
+			CombatService.Events.NextTurn, this.AI);
 };
 Bori.prototype.onStartMoving_ = function() {
 	this.gotoAndPlay("initRun");

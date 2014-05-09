@@ -78,8 +78,7 @@ BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
 };
 
 BoardObject.prototype.move = function(h, v, equation) {
-    this
-            .queue_(function(event) {
+    this.queue_(function(event) {
                 console.log("move object in game board");
                 this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
                 this.world.activeLevel.gameboard[this.position.horizontal + h][this.position.vertical
