@@ -38,7 +38,7 @@ var TestPlayer = function(world) {
 	this.myTurn = {};
 	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
 			(function(event) {
-				if (event.turn == CombatService.TurnAlly) {
+				if (event.turn == this.faction) {
 					this.myTurn = event;
 					this.triggerAction_();
 				}
