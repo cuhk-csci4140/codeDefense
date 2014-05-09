@@ -51,6 +51,7 @@ Pyroblast.prototype.shoot = function(caster,onComplete) {
 
 	this.queue_(function(done) {
 		console.log("Pyroblast explode!");
+                this.sprite.setTransform(this.sprite.x , this.sprite.y, 2, 3);
 		this.gotoAndPlay("explode", done);
 	});
 	this.queue_(function(done) {
