@@ -46,18 +46,21 @@ AbstractLevel.prototype.remove = function() {
 
 };
 AbstractLevel.prototype.remove_ = function(object) {
-	if (object instanceof GameObject) {
-		object = object.getSprite();
+	var sprite;
+        if (object instanceof GameObject) {
+            sprite = object.getSprite();
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
 			throw new Error("gameobject:" + object
 					+ " is not a instanceof GameObject");
 		}
-		object = temp.getSprite();
+                object = temp;
+		sprite = temp.getSprite();
 	}
-
-	this.world.stage.removeChild(object);
+        this.gameboard[object.position.horizontal][object.position.vertical] = null;
+	this.world.stage.removeChild(sprite);
+        delete object;
 };
 AbstractLevel.prototype.set = function(name, object) {
 	if (typeof object == "function") {
