@@ -28,6 +28,11 @@ var BoardObject = function(world) {
 
 util.inherits(BoardObject, GameObject);
 
+
+BoardObject.prototype.setFaction = function(faction) {
+	this.faction = faction;
+}
+
 BoardObject.prototype.setPosition = function(h, v) {
 	this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
 	this.position.vertical = v;
@@ -48,7 +53,7 @@ BoardObject.prototype.triggerAction = function() {
 	// console.log(action);
 	if (action) {
 		this.actionCounter++;
-                //pass OnCompleteCallback to next action
+		// pass OnCompleteCallback to next action
 		action.call(this, this.queueOnCompleteEvent_.bind(this,
 				this.actionCounter));
 	}
@@ -56,7 +61,9 @@ BoardObject.prototype.triggerAction = function() {
 
 /**
  * OnComplete Callback Templete
- * @param {type} c
+ * 
+ * @param {type}
+ *            c
  * @returns {undefined}
  */
 BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
