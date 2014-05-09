@@ -2,26 +2,27 @@ var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 
 var Thunderbolt = function(world, args) {
-    Thunderbolt.super_.call(this, world);
-    this.name = "Thunderbolt";
-    this.setSpriteSheet(new createjs.SpriteSheet({
-        "images": [this.world.assets.getResult("thunderbolt")],
-        "frames": {
-            "regX": 160,
-            "height": 560,
-            "count": 39,
-            "regY": 0,
-            "width": 320
-        },
-        "animations": {
-            "initial": [0, 39, null, 10]
-        }
-    }));
-    this.defaultAnimation = "initial";
-    this.args = args;
-    this.castTime = 5;
-    console.log("Thunderbolt initialized");
-    this.initialize();
+	Thunderbolt.super_.call(this, world);
+	this.name = "Thunderbolt";
+	this.setSpriteSheet(new createjs.SpriteSheet({
+		"images" : [ this.world.assets.getResult("thunderbolt") ],
+		"frames" : {
+			"regX" : 160,
+			"height" : 560,
+			"count" : 39,
+			"regY" : 0,
+			"width" : 320
+		},
+		"animations" : {
+			"initial" : [ 0, 39, null, 10 ]
+		}
+	}));
+	this.defaultAnimation = "initial";
+	this.args = args;
+	this.castTime = 5;
+        this.cost = 70;
+	console.log("Thunderbolt initialized");
+	this.initialize();
 }
 
 util.inherits(Thunderbolt, Castable);

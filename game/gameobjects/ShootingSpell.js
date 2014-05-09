@@ -26,10 +26,11 @@ ShootingSpell.prototype.calTarget = function(caster) {
 	var gameBoard = this.world.activeLevel.gameboard;
 	// Fireball is horizontal shooting
 	// get the first hit target in same horizontal
-	var vertical = caster.position.vertical;
+        //console.log("veritcal and horizontal: "+this.position.vertical+", "+ this.position.horizontal);
+	var vertical = this.position.vertical;
 	var horizontal;
 	var target;
-	for (horizontal = (caster.position.horizontal + 1); horizontal < 12; horizontal++) {
+	for (horizontal = (this.position.horizontal + 1); horizontal < 12; horizontal++) {
 		if ((target = gameBoard[horizontal][vertical]) != null) {
 			break;
 		}

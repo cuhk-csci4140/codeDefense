@@ -181,6 +181,14 @@ Core.prototype.render = function(event) {
 	var delta = event.delta / 1000;
 	this.stage.update(event);
 	this.gameobjects.render(event);
+        //get player
+        var player = this.gameobjects.get('player');
+        //get hp and mp bar
+        var hpBar = document.querySelector("#hp");
+        var mpBar = document.querySelector("#mp");
+        //update hp and mp
+        hpBar.value = player.hp;
+        mpBar.value = player.mp;
 }
 
 Core.prototype.onWindowResize = function() {

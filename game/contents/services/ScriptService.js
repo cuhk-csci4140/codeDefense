@@ -82,14 +82,23 @@ ScriptService.prototype.runScript = function(script) {
 				var real = new target(world, arguments);
 				var casted = false;
 				var methods = {
-					execute : function(caster, onComplete) {
+					animate : function(caster, onComplete) {
 						if (casted) {
 							console
 									.log("You can not execute this skill again.");
 							return;
 						}
 						casted = true;
-						return real.execute(caster, onComplete);
+						
+						var result;
+						try {
+							result =  real.animate(caster, onComplete);
+						} catch (e) {
+							showBox('Oops! Cast Error.', e);
+						}
+						
+						return result;
+
 					},
 					castable_ : true
 				};
@@ -115,16 +124,22 @@ ScriptService.prototype.runScript = function(script) {
 	if (result.exception instanceof Error) {
 		console.log("[" + ScriptService.NAME + "} error : " + result.exception);
 		showBox('Oops! Cast Error.', result.exception);
-        
+
 	}
 
 	if (this.callback instanceof Function) {
-		this.callback({
-			status : !(result.exception instanceof Error),
-			error : result.exception,
-			result : result.result,
-			service : this
-		});
+
+		try {
+			this.callback({
+				status : !(result.exception instanceof Error),
+				error : result.exception,
+				result : result.result,
+				service : this
+			});
+
+		} catch (e) {
+			showBox('Oops! Cast Error.', e);
+		}
 	}
 
 	console.log("ScriptService Result:")
@@ -135,7 +150,8 @@ ScriptService.prototype.runScript_ = function(script, context, spells) {
 	var exception = false;
 
 	var result = (function(spells, console, window, document, XMLHttpRequest,
-			$, jQuery, util, ScriptService, game, world, Castable, JSON , showBox) {
+			$, jQuery, util, ScriptService, game, world, Castable, JSON,
+			showBox) {
 		try {
 			eval(script);
 		} catch (e) {
@@ -145,7 +161,8 @@ ScriptService.prototype.runScript_ = function(script, context, spells) {
 		log : function() {
 
 		}
-	}, {}, {}, false, false, false, false, false, false, false, false, false , showBox]);
+	}, {}, {}, false, false, false, false, false, false, false, false, false,
+			showBox ]);
 
 	return {
 		'result' : result,

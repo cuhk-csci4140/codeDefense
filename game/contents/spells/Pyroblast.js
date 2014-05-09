@@ -21,6 +21,7 @@ var Pyroblast = function(world) {
 		}
 	}));
 	this.defaultAnimation = "initial";
+        this.cost = 50;
 	console.log("Pyroblast initialized");
 	this.initialize();
 }
