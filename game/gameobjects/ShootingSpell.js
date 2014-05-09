@@ -36,6 +36,7 @@ ShootingSpell.prototype.calTarget = function(caster) {
 	}
 	this.targetX = horizontal;
 	this.targetY = vertical;
+        this.target = gameBoard[horizontal][vertical];
 };
 
 module.exports = ShootingSpell;

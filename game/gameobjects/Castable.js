@@ -17,6 +17,14 @@ util.inherits(Castable, BoardObject);
 
 Castable.prototype.calTarget = function(){
     // require override in child class.
+    /**
+     Done class:
+        Fireball - 
+        Firepillar - args check, bound check, register on board
+        Thunderbolt
+        
+     */
+    
 };
 
 Castable.prototype.execute = function(caster, onComplete) {
