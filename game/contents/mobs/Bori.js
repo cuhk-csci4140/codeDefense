@@ -1,9 +1,9 @@
 var util = require('util');
-var BoardObject = require('../../gameobjects/BoardObject');
+var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
-
 	Bori.super_.call(this, world);
+        this.hp = 5;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {
@@ -48,7 +48,7 @@ var Bori = function(world) {
 	this.initialize();
 };
 
-util.inherits(Bori, BoardObject);
+util.inherits(Bori, Mob);
 
 Bori.prototype.dispose = function() {
 	Bori.super_.prototype.dispose.call(this);
