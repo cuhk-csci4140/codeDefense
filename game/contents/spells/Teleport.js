@@ -9,7 +9,7 @@ var Teleport = function(world, args) {
 	this.castTime = 0.5;
 	console.log("Teleport initialized");
 	this.args = args;
-        this.cost = 20;
+    this.cost = 20;
 	this.initialize();
 }
 util.inherits(Teleport, Castable);

@@ -3,7 +3,7 @@ var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
 	Bori.super_.call(this, world);
-        this.hp = 5;
+        this.hp = 1;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {

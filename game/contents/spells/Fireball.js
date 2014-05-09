@@ -22,7 +22,7 @@ var Fireball = function(world) {
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1.5;
-        this.cost = 10;
+	this.cost = 10;
 	console.log("Fireball initialized");
 	this.initialize();
 }
@@ -37,7 +37,7 @@ Fireball.prototype.m2 = function() {
 };
 
 Fireball.prototype.shoot = function(caster, onComplete) {
-        //onComplete is from caster/
+	// onComplete is from caster/
 	console.log("fireball calculating target");
 	this.queue_(function(done) {
 		console.log("fireball!");
@@ -59,24 +59,23 @@ Fireball.prototype.shoot = function(caster, onComplete) {
 	this.queue_(function(done) {
 		console.log("fireball explode!");
 		this.gotoAndPlay("explode", done);
-                this.dealDamage();
+		this.dealDamage();
 	});
 	this.queue_(function(done) {
 		console.log("remove fireball");
 		var level = this.world.activeLevel;
 		level.remove(this);
-                
-                //done is from Fireball's queue
-                done();
-                //onComplete is from Caster's queue
-                onComplete();
+
+		// done is from Fireball's queue
+		done();
+		// onComplete is from Caster's queue
+		onComplete();
 	});
-        
+
 	this.triggerAction();
-        
-        return function(){}.bind(this);
+
+	return function() {
+	}.bind(this);
 };
-
-
 
 module.exports = Fireball;
