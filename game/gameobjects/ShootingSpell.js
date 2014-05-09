@@ -31,13 +31,15 @@ ShootingSpell.prototype.calTarget = function(caster) {
 	var horizontal;
 	var target;
 	for (horizontal = (this.position.horizontal + 1); horizontal < 12; horizontal++) {
-		if ((target = gameBoard[horizontal][vertical]) != null) {
-			break;
+            target = gameBoard[horizontal][vertical];
+		if (target !== null) {
+                    this.target.push(target);
+                    this.targetX = horizontal;
+                    this.targetY = vertical;
+                    break;
 		}
 	}
-	this.targetX = horizontal;
-	this.targetY = vertical;
-        this.target = gameBoard[horizontal][vertical];
+        //this.target = gameBoard[horizontal][vertical];
 };
 
 module.exports = ShootingSpell;
