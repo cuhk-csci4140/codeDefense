@@ -70,6 +70,6 @@ Thunderbolt.prototype.calTarget = function(caster) {
     if (this.targetX < 12 || this.targetY < 6) {
         throw new Error("Spells casted in VOID!");
     }
-    this.target = gameBoard[this.targetX][this.targetY];
+    this.target.push(gameBoard[this.targetX][this.targetY]);
 };
 module.exports = Thunderbolt;

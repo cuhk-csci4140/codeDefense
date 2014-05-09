@@ -13,6 +13,8 @@ var Castable = function(world) {
         this.target = [];
         this.cost = 1;
         this.damage = 1;
+        this.aoe = false;
+        this.range = 0;
 };
 
 util.inherits(Castable, BoardObject);
@@ -69,6 +71,32 @@ Castable.prototype.execute = function(caster, onComplete) {
     }
 };
 Castable.DummyCastable = function() {
+
+};
+Castable.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
+	var self = this;
+	if (equation == undefined) {
+		equation = createjs.Ease.linear;
+	}
+        if (self instanceof Castable)
+	h = h > this.boardWidth - 1 ? this.boardWidth : (h > 0 ? h : 0);
+	v = v > this.boardHeight - 1 ? this.boardHeight : (v > 0 ? v : 0);
+
+	var distance = Math.sqrt(Math.pow(this.position.horizontal - h, 2)
+			+ Math.pow(this.position.vertical - v, 2));
+
+	self.onStartMoving_(event);
+	var tween = createjs.Tween.get(this.sprite).to({
+		x : 70 + (120 * h),
+		y : 60 + (120 * v)
+	}, (this.stats.movement * distance), equation).call(function(event) {
+		self.position.vertical = v;
+		self.position.horizontal = h;
+		self.onStopMoving_(event);
+		if (onCompleteEvent) {
+			onCompleteEvent();
+		}
+	})
 
 };
 module.exports = Castable;
