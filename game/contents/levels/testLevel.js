@@ -34,7 +34,7 @@ testLevel.prototype.initialize = function() {
 			x = [ 3 + Math.ceil(Math.random() * 9) - 1,
 					Math.ceil(Math.random() * 6) - 1 ];
 		} while ( (x[0] == 5 && x[1] == 3));
-		console.log(x);
+		//console.log(x);
 
 		this.get('bori' + i).setPosition(x[0], x[1]);
 		this.get('bori' + i).setFaction(CombatService.TurnEnemy);

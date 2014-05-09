@@ -173,11 +173,13 @@ Core.prototype.setLevel = function(level) {
 
 	this.services[CombatSevice.NAME].reset();
 	if (this.activeLevel) {
+		console.log("[CORE] unload current level");
 		this.activeLevel.dispose();
 		delete this.activeLevel;
 	}
 	this.gameobjects = new GameObjectManager(); // global gameobject
 
+	console.log("[CORE] load level " + level);
 	this.activeLevel = new this.levels[level](this);
 	this.activeLevel.initialize();
 
@@ -189,14 +191,15 @@ Core.prototype.setLevel = function(level) {
  */
 Core.prototype.render = function(event) {
 
-	try {
-		
-		var delta = event.delta / 1000;
-		this.stage.update(event);
-		this.gameobjects.render(event);
-	} catch (e) {
-		showBox('Oops! Cast Error.', e);
-	}
+	// try {
+
+	var delta = event.delta / 1000;
+	this.stage.update(event);
+	this.gameobjects.render(event);
+	// } catch (e) {
+	//showBox('Oops! Cast Error.', e);
+	// throw e;
+	// }
 
 	// get player
 	var player = this.gameobjects.get('player');

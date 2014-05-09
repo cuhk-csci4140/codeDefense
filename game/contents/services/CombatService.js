@@ -115,7 +115,7 @@ CombatService.prototype.subscribe = function(e, callback) {
  *            callback
  */
 CombatService.prototype.unsubscribe = function(e, callback) {
-	console.log("[CombatService] unsubscribe " + e + callback);
+	console.log("[CombatService] unsubscribe " + e " : " + callback);
 	if (!(this.listeners_[e] instanceof Array)) {
 		return false;
 	}
