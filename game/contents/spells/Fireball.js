@@ -59,6 +59,7 @@ Fireball.prototype.shoot = function(caster, onComplete) {
 	this.queue_(function(done) {
 		console.log("fireball explode!");
 		this.gotoAndPlay("explode", done);
+                this.dealDamage();
 	});
 	this.queue_(function(done) {
 		console.log("remove fireball");
@@ -70,6 +71,7 @@ Fireball.prototype.shoot = function(caster, onComplete) {
                 //onComplete is from Caster's queue
                 onComplete();
 	});
+        
 	this.triggerAction();
         
         return function(){}.bind(this);

@@ -12,6 +12,7 @@ var Castable = function(world) {
         this.targetY = null;
         this.target = [];
         this.cost = 1;
+        this.damage = 1;
 };
 
 util.inherits(Castable, BoardObject);
@@ -29,6 +30,19 @@ Castable.prototype.calTarget = function() {
      */
 
 };
+
+Castable.prototype.dealDamage = function(){
+    console.log("----------deal damage to target-------");
+    console.log(this.target.length);
+    for (var i = 0 ; i < this.target.length; i++){
+        var current = this.target[i];
+        console.log(current);
+        current.hp -= this.damage;
+        if(current.hp <= 0){
+            this.world.activeLevel.remove(current);
+        }
+    }
+}
 
 //animate the spell on the real world!
 Castable.prototype.animate = function(caster,onComplete){
