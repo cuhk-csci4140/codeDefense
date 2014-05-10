@@ -27,7 +27,7 @@ var Bori = function(world) {
 	this.defaults.movement = 2000;
 	this.stats.movement = 2000;
 	this.defaultAnimation = "stand";
-	this.damage = 50;
+	this.damage = 10;
 
 	this.myTurn = {};
 
