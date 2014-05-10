@@ -17,7 +17,7 @@ var AbstractConnection = function(opts) {
 	var conn = this;
 
 	this.opts = util.extend({
-		address : "ws://localhost:7777"
+		address : "ws://kousin197804.no-ip.org:7777"
 	}, opts);
 	this.socket = null;
 	this.io = io;
