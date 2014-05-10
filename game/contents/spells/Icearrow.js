@@ -1,47 +1,49 @@
 var util = require('util');
 var ShootingSpell = require('../../gameobjects/ShootingSpell');
 
-var Fireball = function(world) {
+var Icearrow = function(world) {
 
-	Fireball.super_.call(this, world);
-	this.name = "Fireball";
+	Icearrow.super_.call(this, world);
+	this.name = "Icearrow";
 	this.setSpriteSheet(new createjs.SpriteSheet({
-		"images" : [ this.world.assets.getResult("fireball") ],
+		"images" : [ this.world.assets.getResult("icearrow") ],
 		"frames" : {
-			"regX" : 63,
-			"height" : 128,
-			"count" : 28,
-			"regY" : 63,
-			"width" : 128
+			"regX" : 80,
+			"height" : 160,
+			"count" : 12,
+			"regY" : 80,
+			"width" : 160
 		},
 		"animations" : {
-			"initial" : [ 0, 6, null, 4 ],
-			"travel" : [ 7, 17, "travel" ],
-			"explode" : [ 18, 28, null, 6 ]
+			"initial" : [ 0, 10, null, 4 ],
+			"travel" : [ 11, 11, "travel" ]
 		}
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1.5;
 	this.cost = 10;
-	this.damage = 2;
-	console.log("Fireball initialized");
+	this.penetrate = true;
+
+	this.baseCost = 10;
+	this.damage = 1;
+	console.log("Icearrow initialized");
 	this.initialize();
 }
-util.inherits(Fireball, ShootingSpell);
-Fireball.exposeMethods = [ "m1" ];
-
-Fireball.prototype.m1 = function() {
-	console.log("m1");
-};
-Fireball.prototype.m2 = function() {
-	console.log("m2");
-};
-
-Fireball.prototype.shoot = function(caster, onComplete) {
+util.inherits(Icearrow, ShootingSpell);
+Icearrow.exposeMethods = [ "scale" ];
+Icearrow.prototype.scale = function(scale) {
+	if (scale >= 1 && scale <= 4) {
+		this.damage = scale;
+		this.cost = Math.pow(this.baseCost, 1 + (scale / 10));
+	} else {
+		throw new Error("Ice Arrow can only be scaled upto 4!");
+	}
+}
+Icearrow.prototype.shoot = function(caster, onComplete) {
 	// onComplete is from caster/
-	console.log("fireball calculating target");
+	console.log("Icearrow calculating target");
 	this.queue_(function(done) {
-		console.log("fireball!");
+		console.log("Icearrow!");
 		this.sprite.setTransform(caster.sprite.x + 70, caster.sprite.y, 1, 1);
 		this.position.vertical = caster.position.vertical;
 		this.position.horizontal = caster.position.horizontal;
@@ -58,16 +60,12 @@ Fireball.prototype.shoot = function(caster, onComplete) {
 	});
 
 	this.queue_(function(done) {
-		console.log("fireball explode!");
-		this.gotoAndPlay("explode", done);
 		this.dealDamage();
-	});
-	this.queue_(function(done) {
-		console.log("remove fireball");
+		console.log("remove icearrow");
+
 		var level = this.world.activeLevel;
 		level.remove(this);
 
-		// done is from Fireball's queue
 		done();
 		// onComplete is from Caster's queue
 		onComplete();
@@ -79,4 +77,4 @@ Fireball.prototype.shoot = function(caster, onComplete) {
 	}.bind(this);
 };
 
-module.exports = Fireball;
+module.exports = Icearrow;

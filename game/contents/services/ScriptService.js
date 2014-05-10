@@ -23,7 +23,10 @@ var ScriptService = function(world) {
 		Lightwall : require('../spells/Lightwall'),
 		Pyroblast : require('../spells/Pyroblast'),
 		Thunderbolt : require('../spells/Thunderbolt'),
-		Teleport : require('../spells/Teleport')
+		Teleport : require('../spells/Teleport'),
+		Icearrow : require('../spells/Icearrow'),
+		Cartridge : require('../spells/Cartridge')
+
 	};
 
 };
@@ -89,14 +92,14 @@ ScriptService.prototype.runScript = function(script) {
 							return;
 						}
 						casted = true;
-						
+
 						var result;
 						try {
-							result =  real.animate(caster, onComplete);
+							result = real.animate(caster, onComplete);
 						} catch (e) {
 							showBox('Oops! Cast Error.', e);
 						}
-						
+
 						return result;
 
 					},
@@ -107,7 +110,9 @@ ScriptService.prototype.runScript = function(script) {
 					target.exposeMethods.forEach(function(m) {
 						methods[m] = function() {
 							real[m].apply(real, arguments);
+							return methods;
 						};
+
 					});
 				}
 				return methods;

@@ -51,10 +51,11 @@ CombatService.prototype.nextWave = function() {
 CombatService.prototype.callLater = function(turns, callback) {
 
 	var target = this.turnCounter + turns;
-	if (!(this.listeners_[target] instanceof Array)) {
-		this.listeners_[target] = [];
+	if (!(this.turnListeners_[target] instanceof Array)) {
+		this.turnListeners_[target] = [];
 	}
 
+	console.log("[CombatService] callLater [" + turns + "] :" + callback);
 	this.turnListeners_[target].push(callback);
 };
 
@@ -67,8 +68,12 @@ CombatService.prototype.nextTurn = function(event) {
 		this.turnCounter = this.turnCounter + 1;
 
 		if (this.turnListeners_[this.turnCounter] instanceof Array) {
+			console.log("[CombatService] execute CallLater ["
+					+ this.turnCounter + "]");
 			this.turnListeners_[this.turnCounter].forEach(function(target) {
-				target(this);
+				if (target instanceof Function) {
+					target(this);
+				}
 			});
 		}
 

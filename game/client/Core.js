@@ -110,6 +110,12 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/mobs/bori.png",
 		id : "bori"
 	}, {
+                src : "assets/gameobjects/mobs/Chibi.png",
+                id : "chibi"
+        }, {
+                src : "assets/gameobjects/mobs/tree.png",
+                id : "tree"
+        }, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
@@ -130,6 +136,9 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/thunderbolt.png",
 		id : "thunderbolt"
+	}, {
+		src : "assets/gameobjects/magic/icearrow.png",
+		id : "icearrow"
 	} ];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
@@ -199,6 +208,7 @@ Core.prototype.render = function(event) {
 	// update hp and mp
 	hpBar.value = player.hp;
 	mpBar.value = player.mp;
+	mpBar.max = player.maxMp;
 
 }
 

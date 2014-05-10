@@ -4,9 +4,11 @@ var CombatService = require('../services/CombatService');
 var Mob = function(world) {
 	Mob.super_.call(this, world);
         //variable to calculate hp bar;
+
         this.originHp;
         this.hpBar = new createjs.Shape();
         this.hpBar.graphics.beginFill("#ff0000").drawRect(0, 0, 100, 10);
+
 };
 
 util.inherits(Mob, BoardObject);
@@ -29,8 +31,8 @@ Mob.prototype.moveHonTai = function(h, v, equation, onCompleteEvent){
 
     this.onStartMoving_(event);
     var tween = createjs.Tween.get(this.sprite).to({
-        x: 70 + (120 * h),
-        y: 60 + (120 * v)
+        x: this.padX + (120 * h),
+        y: this.padY + (120 * v)
     }, (self.stats.movement * distance), equation).call(function(event) {
         self.position.vertical = v;
         self.position.horizontal = h;
@@ -39,14 +41,18 @@ Mob.prototype.moveHonTai = function(h, v, equation, onCompleteEvent){
             onCompleteEvent();
         }
     });    
-}
+};
+
+Mob.prototype.setPositionExtra = function(h,v){
+            this.hpBar.setTransform(25 + 120 * h, (120 * v) + 10, 0.75, 0.75);    
+};
 
 Mob.prototype.moveHPbar = function(h, v, equation){
     var self = this;
     var distance = Math.sqrt(Math.pow(this.position.horizontal - h, 2)
             + Math.pow(this.position.vertical - v, 2));    
     var tween = createjs.Tween.get(this.hpBar).to({
-        x: 35 + (120 * h),
+        x: 25 + (120 * h),
         y: 10 + (120 * v)
     }, (self.stats.movement * distance), equation).call(function(event) {
         self.position.vertical = v;
