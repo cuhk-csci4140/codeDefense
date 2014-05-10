@@ -9,7 +9,7 @@ var GameObjectManager = require('../framework/GameObjectManager');
 var ScriptSevice = require('../contents/services/ScriptService');
 
 var CombatSevice = require('../contents/services/CombatService');
-// var Connection = require('../framework/net/client/AbstractConnection');
+var Connection = require('../framework/net/client/AbstractConnection');
 
 // modules
 // var HelloWorldModule = require('../modules/helloworld/client/module');
@@ -89,10 +89,10 @@ Core.prototype.initialize = function(callback) {
 	// this.overlay = new Overlay();
 	// initialize connection to game server (default:same domain as the client
 	// side) ,port 7777
-	/*
-	 * this.connection = new Connection({ address : 'ws://' + document.domain +
-	 * ':7777' });
-	 */
+	
+	  this.connection = new Connection({ address : 'ws://' + document.domain +
+	  ':7777' });
+	 
 	// define all modules here
 	// this.modules['hello-world'] = new HelloWorldModule(this);
 	// this.modules[AuthModule.NAME] = new AuthModule(this);
@@ -110,6 +110,12 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/mobs/bori.png",
 		id : "bori"
 	}, {
+                src : "assets/gameobjects/mobs/Chibi.png",
+                id : "chibi"
+        }, {
+                src : "assets/gameobjects/mobs/tree.png",
+                id : "tree"
+        }, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
@@ -130,6 +136,9 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/thunderbolt.png",
 		id : "thunderbolt"
+	}, {
+		src : "assets/gameobjects/magic/icearrow.png",
+		id : "icearrow"
 	} ];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
@@ -154,7 +163,7 @@ Core.prototype.initialize = function(callback) {
 	this.assets.loadManifest(assets);
 
 	// start connection
-	// this.connection.connect();
+	this.connection.connect();
 	// this.initialized = true;
 	return this;
 };
@@ -199,6 +208,7 @@ Core.prototype.render = function(event) {
 	// update hp and mp
 	hpBar.value = player.hp;
 	mpBar.value = player.mp;
+	mpBar.max = player.maxMp;
 
 }
 

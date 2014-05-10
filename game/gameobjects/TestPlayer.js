@@ -26,6 +26,7 @@ var TestPlayer = function(world) {
     this.defaultAnimation = "stand";
     this.hp = 100;
     this.mp = 100;
+    this.maxMp = 100;
     // register to script service
     world.services[ScriptService.NAME].setContext(this);
     world.services[ScriptService.NAME].setCallback((function(e) {
@@ -40,9 +41,14 @@ var TestPlayer = function(world) {
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
             (function(event) {
                 if (this.hp <= 0) {
-                    showBox("LOST!", "OMG");
-                } else {
+                    showBox("LOSE!", "OMG");
+                } else if (this.world.activeLevel.checkBoard()) {
+                    showBox("WIN!", "GG");
+                }
+                else {
                     if (event.turn == this.faction) {
+                    	
+                    	console.log("Player start");
                         this.myTurn = event;
 
                         this.triggerAction_();
@@ -61,6 +67,7 @@ util.inherits(TestPlayer, Caster);
  * whenever triggerAction , we go to next turn
  */
 TestPlayer.prototype.triggerAction = function() {
+	console.log("Player is done");
     this.world.services[CombatService.NAME].nextTurn(this.myTurn);
 };
 
@@ -89,4 +96,5 @@ TestPlayer.prototype.onStartMoving_ = function() {
 TestPlayer.prototype.onStopMoving_ = function() {
     this.gotoAndPlay("stand");
 };
+
 module.exports = TestPlayer;
