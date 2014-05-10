@@ -1,6 +1,10 @@
 var util = require('util');
 var Mob = require('./Mob');
+var Firepillar = require('../spells/Firepillar');
+var Lightwall = require('../spells/Lightwall');
 var CombatService = require('../services/CombatService');
+var TestPlayer = require('../../gameobjects/TestPlayer');
+
 var Bori = function(world) {
     Bori.super_.call(this, world);
     this.hp = 2;
@@ -33,7 +37,21 @@ var Bori = function(world) {
 
             // action 1
             if (this.position.horizontal > 1) {
-                this.move(-1, 0);
+                var grid = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
+                if (grid == null) {
+                    // able to move
+                    this.move(-1, 0);
+                } else {
+                    if (grid instanceof Firepillar) {
+                        this.move(-1, 0);
+                        grid.dealDamage();
+                    } else if (grid instanceof Lightwall) {
+                        // dun move, no codes
+                    } else if(grid instanceof TestPlayer){
+                        // attack the player!
+                        grid.hp -= this.damage;
+                    }
+                }
             } else if (this.position.horizontal == 1) {
                 this.move(-1, 0);
                 this.world.gameobjects.get("player").hp -= this.damage;

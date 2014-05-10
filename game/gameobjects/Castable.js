@@ -22,11 +22,13 @@ util.inherits(Castable, BoardObject);
 Castable.prototype.calTarget = function() {
 	// require override in child class.
 	/*
-	 * Done class: Fireball - OK, calTarget put list of enemy Firepillar - OK,
-	 * args check, bound check, register on board, TODO: remember to add
-	 * checking in enemy move Thunderbolt - OK, TODO: calTarget Lightwall - OK
-	 * TODO: remember to add checking in enemy move
-	 * 
+	 * Done class: 
+         * Fireball - TODO: seems nothing??
+         * Firepillar - TODO: Bori killed before arriving
+         * Thunderbolt - TODO: backward casting
+         * Lightwall - TODO: casting check exist of object
+	 * Pyroblast - TODO: seems nothing??
+         * 
 	 */
 
 };
