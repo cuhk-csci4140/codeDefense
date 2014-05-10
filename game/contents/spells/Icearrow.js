@@ -22,14 +22,23 @@ var Icearrow = function(world) {
 	this.defaultAnimation = "initial";
 	this.castTime = 1.5;
 	this.cost = 10;
-        this.penetrate = true;
+	this.penetrate = true;
+
+	this.baseCost = 10;
+	this.damage = 1;
 	console.log("Icearrow initialized");
 	this.initialize();
 }
 util.inherits(Icearrow, ShootingSpell);
-Icearrow.exposeMethods = [ "m1" ];
-
-
+Icearrow.exposeMethods = [ "scale" ];
+Icearrow.prototype.scale = function(scale) {
+	if (scale >= 1 && scale <= 4) {
+		this.damage = scale;
+		this.cost = Math.pow(this.baseCost, 1 + (scale / 10));
+	} else {
+		throw new Error("Ice Arrow can only be scaled upto 4!");
+	}
+}
 Icearrow.prototype.shoot = function(caster, onComplete) {
 	// onComplete is from caster/
 	console.log("Icearrow calculating target");
@@ -51,7 +60,7 @@ Icearrow.prototype.shoot = function(caster, onComplete) {
 	});
 
 	this.queue_(function(done) {
-                this.dealDamage();
+		this.dealDamage();
 		console.log("remove icearrow");
 
 		var level = this.world.activeLevel;

@@ -28,23 +28,22 @@ testLevel.prototype.initialize = function() {
 
 	for (var i = 1; i <= 10; i++) {
 		this.set('bori' + i, Bori);
-                var currentBori = this.get('bori' + i);
+		var currentBori = this.get('bori' + i);
 		currentBori.sprite.setTransform(0, 0, -0.6, 0.6);
 		var x;
-                var y;
+		var y;
 		do {
-			x = 3 + Math.ceil(Math.random() * 9) - 1;
-			y = Math.ceil(Math.random() * 6) - 1 ;
-		} while ( (x == 5 && y == 3));
-		//console.log(x);
+			x = 4 + Math.ceil(Math.random() * 8) - 1;
+			y = Math.ceil(Math.random() * 6) - 1;
+		} while ((x == 5 && y == 3 && this.gameboard[x][y] != null));
+		// console.log(x);
 
 		currentBori.setPosition(x, y);
-		currentBori.hpBar.setTransform( 35 + 120 * x, (120 * y) + 10,
-				0.6, 0.6);                
+		currentBori.hpBar.setTransform(35 + 120 * x, (120 * y) + 10, 0.6, 0.6);
 		currentBori.setFaction(CombatService.TurnEnemy);
 		this.add(currentBori);
 	}
-        console.log(this.gameboard);
+	console.log(this.gameboard);
 	this.initialized = true;
 };
 
