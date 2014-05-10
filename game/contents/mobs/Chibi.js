@@ -9,6 +9,8 @@ var Chibi = function(world) {
     Chibi.super_.call(this, world);
     this.hp = 5;
     this.originHp = 5;
+    this.padX = 40;
+    this.padY = 40;    
     this.setSpriteSheet(new createjs.SpriteSheet({
         "images": [world.assets.getResult("chibi")],
         "frames": {
@@ -81,6 +83,7 @@ var Chibi = function(world) {
 
     console.log("Chibi initialized");
     this.initialize();
+    this.sprite.setTransform(0,0,-0.6,0.6);
 };
 
 util.inherits(Chibi, Mob);

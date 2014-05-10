@@ -9,6 +9,8 @@ var Bori = function(world) {
 	Bori.super_.call(this, world);
 	this.hp = 2;
 	this.originHp = 2;
+        this.padX = 65;
+        this.padY = 70;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {
@@ -79,6 +81,7 @@ var Bori = function(world) {
 
 	console.log("Bori initialized");
 	this.initialize();
+        this.sprite.setTransform(0,0,-0.6,0.6);
 };
 
 util.inherits(Bori, Mob);
