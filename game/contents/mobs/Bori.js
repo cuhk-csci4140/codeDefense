@@ -43,7 +43,8 @@ var Bori = function(world) {
                     this.move(-1, 0);
                 } else {
                     if (grid instanceof Firepillar) {
-                        this.move(-1, 0); // need to implement the damage part and cancel the Firepillar
+                        this.move(-1, 0);
+                        grid.dealDamage();
                     } else if (grid instanceof Lightwall) {
                         // dun move, no codes
                     } else if(grid instanceof TestPlayer){

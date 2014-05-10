@@ -24,7 +24,7 @@ Castable.prototype.calTarget = function() {
 	/*
 	 * Done class: 
          * Fireball - TODO: seems nothing??
-         * Firepillar - TODO: damage and function call when step
+         * Firepillar - TODO: Bori killed before arriving
          * Thunderbolt - TODO: backward casting
          * Lightwall - TODO: casting check exist of object
 	 * Pyroblast - TODO: seems nothing??
