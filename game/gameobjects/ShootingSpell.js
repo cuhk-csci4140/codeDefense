@@ -1,9 +1,11 @@
 var util = require('util');
 var Castable = require('./Castable');
+var Mob = require('../contents/mobs/Mob');
 
 var ShootingSpell = function(world) {
     console.log("Initialize a shooting spell");
     ShootingSpell.super_.call(this, world);
+    this.penetrate;
     //this.calTarget();
 };
 
@@ -23,7 +25,7 @@ ShootingSpell.prototype.shoot = function(caster, onComplete) {
 ShootingSpell.prototype.calTarget = function(caster) {
     console.log(this.name + " calculating target");
     var gameBoard = this.world.activeLevel.gameboard;
-
+    console.log(gameBoard);
     // get back the gameBoard
     // Fireball is horizontal shooting
     // get the first hit target in same horizontal
@@ -31,13 +33,17 @@ ShootingSpell.prototype.calTarget = function(caster) {
     var vertical = this.position.vertical;
     var horizontal;
     var target;
+    //flag to indicate if target array all null
+    var allNull = true;
     for (horizontal = (this.position.horizontal + 1); horizontal < 12; horizontal++) {
         target = gameBoard[horizontal][vertical];
-        if (target !== null) {
+        if (target instanceof Mob) {
+            console.log("H: "+ horizontal + " V: " + vertical + " is Mob");
+            allNull = false;
             this.target.push(target);
             this.targetX = horizontal;
             this.targetY = vertical;
-            if (this.aoe == true) {
+            if (this.aoe === true) {
                 // AOE!
                 var i, j, targetNow;
                 for (i = 1; i <= this.range; i++) {
@@ -54,12 +60,21 @@ ShootingSpell.prototype.calTarget = function(caster) {
                 }
 
             }
-            break;
+            if(this.penetrate !== true){
+                break;
+            }
         }
+        else{
+            console.log("H: "+ horizontal + " V: " + vertical + " is Null");
+        }
+        //this.target = gameBoard[horizontal][vertical];
+    }
+    if(allNull | this.penetrate){
         this.targetX = 13;
         this.targetY = vertical;
-        this.target = [];
-        //this.target = gameBoard[horizontal][vertical];
+        if(allNull){
+            this.target = [];
+        }
     }
 };
 

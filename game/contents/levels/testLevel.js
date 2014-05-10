@@ -26,7 +26,7 @@ testLevel.prototype.initialize = function() {
 
 	this.add(ground, this.get('player'));
 
-	for (var i = 1; i <= 6; i++) {
+	for (var i = 1; i <= 10; i++) {
 		this.set('bori' + i, Bori);
                 var currentBori = this.get('bori' + i);
 		currentBori.sprite.setTransform(0, 0, -0.6, 0.6);
@@ -44,6 +44,7 @@ testLevel.prototype.initialize = function() {
 		currentBori.setFaction(CombatService.TurnEnemy);
 		this.add(currentBori);
 	}
+        console.log(this.gameboard);
 	this.initialized = true;
 };
 

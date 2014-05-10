@@ -23,7 +23,8 @@ var ScriptService = function(world) {
 		Lightwall : require('../spells/Lightwall'),
 		Pyroblast : require('../spells/Pyroblast'),
 		Thunderbolt : require('../spells/Thunderbolt'),
-		Teleport : require('../spells/Teleport')
+		Teleport : require('../spells/Teleport'),
+                Icearrow : require('../spells/Icearrow')
 	};
 
 };

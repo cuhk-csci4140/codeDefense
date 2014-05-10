@@ -24,10 +24,15 @@
                 <div class="basiccmd">
                     Movements<br>
                     this.move(x,y);<br><br>
-                    Magic: Fireball<br>
-                    this.cast(new Fireball());<br><br>
+                    Magic<br>
+                    this.cast(new spells.Fireball());<br>
+                    this.cast(new spells.Pyroblast());<br>
+                    this.cast(new spells.Thunderbolt(x,y)); *Relative position, +/- 2<br>
+                    this.cast(new spells.Teleport(x,y)); *Absolute position<br>
                     
                     <br>
+                    <br>
+                    Challenge yourself: 
                     <a href="javascript:game.setLevel('test');">Test Level</a>
 
                 </div>
