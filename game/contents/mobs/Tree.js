@@ -9,8 +9,10 @@ var Tree = function(world) {
     Tree.super_.call(this, world);
     this.hp = 5;
     this.originHp = 5;
+    this.padX = 50;
+    this.padY = 30;
     this.setSpriteSheet(new createjs.SpriteSheet({
-        "images": [world.assets.getResult("chibi")],
+        "images": [world.assets.getResult("tree")],
         "frames": {
             "regX": 132,
             "height": 264,
@@ -82,6 +84,7 @@ var Tree = function(world) {
     console.log("Tree initialized");
     this.initialize();
     // remember to add things
+    this.sprite.setTransform(0, 0, -0.6, 0.6);
 };
 
 util.inherits(Tree, Mob);
