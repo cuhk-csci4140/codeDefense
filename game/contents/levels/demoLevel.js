@@ -31,25 +31,27 @@ demoLevel.prototype.initialize = function() {
         var rand = Math.random();
         if (rand > 0.5) {
             this.set('bori' + i, Bori);
-            this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60 * (i - 6), //70
-                    -0.7, 0.7);
-            this.get('bori' + i).hpBar.setTransform(35 + 120 * i, (120 * (i - 6)) + 10,
-                    0.6, 0.6);
+            /*this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60 * (i - 6), //70
+             -0.7, 0.7);
+             this.get('bori' + i).hpBar.setTransform(35 + 120 * i, (120 * (i - 6)) + 10,
+             0.6, 0.6);*/
             this.get('bori' + i).setPosition(i, i - 6);
             this.get('bori' + i).setFaction(CombatService.TurnEnemy);
             this.add(this.get('bori' + i));
         } else {
             this.set('chibi' + i, Chibi);
-            this.get('chibi' + i).sprite.setTransform(30+ 120 * i, -30 * (i - 6),
-                    -0.6, 0.6);
-            this.get('chibi' + i).hpBar.setTransform(35 + 120 * i, (120 * (i - 6)) + 10,
-                    0.6, 0.6);
+            /*this.get('chibi' + i).sprite.setTransform(30+ 120 * i, -30 * (i - 6),
+             -0.6, 0.6);
+             this.get('chibi' + i).hpBar.setTransform(35 + 120 * i, (120 * (i - 6)) + 10,
+             0.6, 0.6);*/
             this.get('chibi' + i).setPosition(i, i - 6);
             this.get('chibi' + i).setFaction(CombatService.TurnEnemy);
             this.add(this.get('chibi' + i));
         }
     }
     this.initialized = true;
+    this.get('player').mp = 200;
+    this.get('player').maxMp = 200;
 };
 
 demoLevel.prototype.update = function(event) {

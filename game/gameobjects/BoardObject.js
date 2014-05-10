@@ -1,8 +1,9 @@
 var util = require('util');
 var GameObject = require('../framework/gameobjects/GameObject');
-
 var BoardObject = function(world) {
 	BoardObject.super_.call(this);
+        this.padX = 70;
+        this.padY = 65;
 	this.world = world;
 	this.position = {
 		vertical : 0,
@@ -41,10 +42,17 @@ BoardObject.prototype.setPosition = function(h, v) {
 	this.position.horizontal = h;
 
 	this.world.activeLevel.gameboard[h][v] = this;
-	this.sprite.x = 70 + (120 * h);
-	this.sprite.y = 60 + (120 * v);
+	this.sprite.x = this.padX + (120 * h);
+	this.sprite.y = this.padY + (120 * v);
+        
+        this.setPositionExtra(h,v);
 
 };
+
+BoardObject.prototype.setPositionExtra = function(h,v){//if any extra thing want to do when setPosition, eg HP Bar position
+    
+}
+
 BoardObject.prototype.queue_ = function(callback) {
 	this.actionQueue_.push(callback);
 	return this;
@@ -137,8 +145,8 @@ BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 
 	self.onStartMoving_(event);
 	var tween = createjs.Tween.get(this.sprite).to({
-		x : 70 + (120 * h),
-		y : 60 + (120 * v)
+		x : this.padX + (120 * h),
+		y : this.padY + (120 * v)
 	}, (this.stats.movement * distance), equation).call(function(event) {
 		self.position.vertical = v;
 		self.position.horizontal = h;

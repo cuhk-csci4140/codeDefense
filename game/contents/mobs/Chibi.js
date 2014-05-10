@@ -9,6 +9,8 @@ var Chibi = function(world) {
     Chibi.super_.call(this, world);
     this.hp = 5;
     this.originHp = 5;
+    this.padX = 40;
+    this.padY = 40;
     this.setSpriteSheet(new createjs.SpriteSheet({
         "images": [world.assets.getResult("chibi")],
         "frames": {
@@ -30,9 +32,8 @@ var Chibi = function(world) {
     this.defaultAnimation = "stand";
     this.damage = 50;
 
-    this.myTurn = {};
-
     this.AI = function(event) {
+
         if (event.turn == this.faction) {
             this.myTurn = event;
 
@@ -40,8 +41,14 @@ var Chibi = function(world) {
             if (this.position.horizontal > 1) {
                 var grid = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
                 if (grid == null) {
+
+                    var grid2 = this.world.activeLevel.gameboard[this.position.horizontal - 2][this.position.vertical];
                     // able to move
-                    this.move(-1, 0);
+                    if (grid2 == null) {
+                        this.move(-2, 0);
+                    } else {
+                        this.move(-1, 0);
+                    }
                 } else {
                     if (grid instanceof Firepillar) {
                         this.move(-1, 0);
@@ -81,6 +88,7 @@ var Chibi = function(world) {
 
     console.log("Chibi initialized");
     this.initialize();
+    this.sprite.setTransform(0, 0, -0.6, 0.6);
 };
 
 util.inherits(Chibi, Mob);
@@ -92,7 +100,7 @@ Chibi.prototype.onStartMoving_ = function() {
 Chibi.prototype.onStopMoving_ = function() {
     this.gotoAndPlay("stand");
 };
-Chibi.prototype.attack = function(){
+Chibi.prototype.attack = function() {
     this.gotoAndPlay("attack");
 }
 // BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
