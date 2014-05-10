@@ -18,11 +18,15 @@
     <link rel="stylesheet" href="/codemirror/codemirror.css">
     <script src="/codemirror/javascript.js"></script>
     <script>
+        var ctr = 0;
         function showBox(title, msg) {
+
             Popup.showModal('modal');
+            Popup.get
             title = '<div class="boxtitle">' + title + '</div>';
             msg = '<div class="boxmsg">' + msg + '</div>';
             document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');">';
+            ctr++;
         }
 
         function coex() {
@@ -55,15 +59,49 @@
         }
 
         function resizePan() {
-            var codePanHeight = (window.innerHeight - ($(".canvas-board").height()));
-            var codePanWidth = (window.innerWidth * 0.7 - 20);
-            $(".CodeMirror").css("height", codePanHeight - 65);
+            var codePanHeight = (window.innerHeight - ($(".canvas-board").height()) - 25);
+            var codePanWidth = ($(".canvas-board").width()+ 5);
+            $(".CodeMirror").css("height", codePanHeight - 65 );
             $(".codepanel").css("width", codePanWidth);
-            $(".game-ui-h").css("height", ($(".canvas-board").height() - 20));
+
+            $(".game-ui-h").css("height", ($(".canvas-board").height()+5));
             $(".cast-button").css("width", window.innerWidth * 0.7 - 40);
+
             $(".gameInfoPanel").css("height", codePanHeight - 20);
-            $(".gameInfoPanel").css("width", window.innerWidth * 0.3 - 20);
+            $(".gameInfoPanel").css("top", $(".canvas-board").height()+25);
+            $(".gameInfoPanel").css("width", window.innerWidth - ($(".canvas-board").width()) - 45);
+            $(".game-ui-h").css("width", window.innerWidth - ($(".canvas-board").width()) - 25);
+
+
+            $(".top_index").css("width",($(".canvas-board").width()-70)/12)
+            $(".left_index").css("height",($(".canvas-board").height()-35)/6)
+            
+
+            $(".codepanel").css("top",$(".canvas-board").height()+25);
+            $(".game-ui-h").css("left", ($(".canvas-board").width()+25));
+            $(".gameInfoPanel").css("left", ($(".canvas-board").width()+25));
+            
+            $("left_index").css("line-height", ($(".canvas-board").height()-35)/6)
+            $(".deadline").css("left",($(".canvas-board").width()-70)/12+ 10)
         }
+        
+        (function($) {
+
+    var resizeTimer; // Set resizeTimer to empty so it resets on page load
+
+    function resizeFunction() {
+        // Stuff that should happen on resize
+    };
+
+    // On resize, run the function and reset the timeout
+    // 250 is the delay in milliseconds. Change as you see fit.
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizePan();
+        resizeTimer = setTimeout(resizeFunction, 500);
+    });
+
+})(jQuery);
 
     </script>
 
@@ -96,7 +134,7 @@
             autofocus: true
         });
         window.onload = resizePan;
-        window.onresize = resizePan;
+
 
 
     </script>
