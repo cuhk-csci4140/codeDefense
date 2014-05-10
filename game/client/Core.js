@@ -110,6 +110,9 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/mobs/bori.png",
 		id : "bori"
 	}, {
+                src : "assets/gameobjects/mobs/Chibi.png",
+                id : "chibi"
+        }, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
@@ -133,7 +136,7 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/icearrow.png",
 		id : "icearrow"
-	} ];
+	}];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
 	this.services[CombatSevice.NAME] = new CombatSevice(this);
