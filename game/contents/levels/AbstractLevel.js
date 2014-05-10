@@ -1,5 +1,6 @@
 var GameObjectManager = require('../../framework/GameObjectManager');
 var GameObject = require('../../framework/gameobjects/GameObject');
+var Mob = require('../../contents/mobs/Mob');
 var AbstractLevel = function(world) {
 	this.world = world;
 	this.initialized = false;
@@ -7,9 +8,9 @@ var AbstractLevel = function(world) {
 	this.gameobjects = world.gameobjects;
 	// gameBoard for the board, init all null;
 	var array = new Array();
-	for(var i=0; i<12;i++){
+	for (var i = 0; i < 12; i++) {
 		array[i] = new Array();
-		for(var j=0; j<6;j++){
+		for (var j = 0; j < 6; j++) {
 			array[i][j] = null;
 		}
 	}
@@ -26,18 +27,26 @@ AbstractLevel.prototype.add = function() {
 
 };
 AbstractLevel.prototype.add_ = function(object) {
+        var stageChild = object;
+        var hpbar = null;
 	if (object instanceof GameObject) {
-		object = object.getSprite();
+		stageChild = object.getSprite();
+                if(object instanceof Mob){
+                    hpbar = object.getHPbar();
+                }
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
 			throw new Error("gameobject:" + object
 					+ " is not a instanceof GameObject");
 		}
-		object = temp.getSprite();
+		stageChild = temp.getSprite();
 	}
-
-	this.world.stage.addChild(object);
+        
+	this.world.stage.addChild(stageChild);
+        if(hpbar !== null){
+            this.world.stage.addChild(hpbar);
+        }
 };
 AbstractLevel.prototype.remove = function() {
 	for (var i = 0; i < arguments.length; i++) {
@@ -47,20 +56,25 @@ AbstractLevel.prototype.remove = function() {
 };
 AbstractLevel.prototype.remove_ = function(object) {
 	var sprite;
-        if (object instanceof GameObject) {
-            sprite = object.getSprite();
+        var hpBar;
+	if (object instanceof GameObject) {
+		sprite = object.getSprite();
+                if(object instanceof Mob){
+                    hpBar = object.getHPbar();
+                }
 	} else if (typeof object == "string") {
 		var temp = this.get(object);
 		if (!(temp instanceof GameObject)) {
 			throw new Error("gameobject:" + object
 					+ " is not a instanceof GameObject");
 		}
-                object = temp;
+		object = temp;
 		sprite = temp.getSprite();
 	}
-        this.gameboard[object.position.horizontal][object.position.vertical] = null;
+	object.dispose();
 	this.world.stage.removeChild(sprite);
-        delete object;
+        this.world.stage.removeChild(hpBar);
+	delete object;
 };
 AbstractLevel.prototype.set = function(name, object) {
 	if (typeof object == "function") {

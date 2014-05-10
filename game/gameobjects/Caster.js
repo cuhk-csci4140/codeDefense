@@ -57,7 +57,7 @@ Caster.prototype.cast_ = function(spell, onComplete) {
 		}
 
 		(function() {
-			var onCastActionComplete = spell.execute(this, onComplete);
+			var onCastActionComplete = spell.animate(this, onComplete);
 			// console.log(onCastActionComplete);
 
 			// we pass the return callback( if we have) instead of the

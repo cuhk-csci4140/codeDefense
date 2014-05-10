@@ -1,59 +1,74 @@
 var util = require('util');
-var BoardObject = require('../../gameobjects/BoardObject');
+var Mob = require('./Mob');
 var CombatService = require('../services/CombatService');
 var Bori = function(world) {
+    Bori.super_.call(this, world);
+    this.hp = 2;
+    this.originHp = 2;
+    this.setSpriteSheet(new createjs.SpriteSheet({
+        "images": [world.assets.getResult("bori")],
+        "frames": {
+            "regX": 52,
+            "height": 104,
+            "count": 76,
+            "regY": 74.5,
+            "width": 149
+        },
+        "animations": {
+            "stand": [0, 5, "stand"],
+            "initRun": [11, 16, "run", 6],
+            "run": [16, 22, "run", 4]
+        }
+    }));
+    this.defaults.movement = 2000;
+    this.stats.movement = 2000;
+    this.defaultAnimation = "stand";
+    this.damage = 50;
 
-	Bori.super_.call(this, world);
-	this.setSpriteSheet(new createjs.SpriteSheet({
-		"images" : [ world.assets.getResult("bori") ],
-		"frames" : {
-			"regX" : 52,
-			"height" : 104,
-			"count" : 76,
-			"regY" : 74.5,
-			"width" : 149
-		},
-		"animations" : {
-			"stand" : [ 0, 5, "stand" ],
-			"initRun" : [ 11, 16, "run", 6 ],
-			"run" : [ 16, 22, "run", 4 ]
-		}
-	}));
-	this.defaults.movement = 2000;
-	this.stats.movement = 2000;
-	this.defaultAnimation = "stand";
+    this.myTurn = {};
 
-	this.myTurn = {};
-	// register to script service
-	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
-			(function(event) {
-				if (event.turn == this.faction) {
-					this.myTurn = event;
-					//action 1
-					this.move(-1, 0);
-					//action 2 
-					this.queue_(function(done) {
-						world.services[CombatService.NAME].nextTurn(event);
-						done();
-					});
-					
-					//start the queue.
-					this.triggerAction();
-				}
-			}.bind(this)));
+    this.AI = function(event) {
+        if (event.turn == this.faction) {
+            this.myTurn = event;
 
-	console.log("Bori initialized");
-	this.initialize();
+            // action 1
+            if (this.position.horizontal > 1) {
+                this.move(-1, 0);
+            } else if (this.position.horizontal == 1) {
+                this.move(-1, 0);
+                this.world.gameobjects.get("player").hp -= this.damage;
+                //showBox("CAUTION!", "A monster just passed you.");
+            } else {
+                // despawn
+                this.dispose();
+            }
+
+            // action 2
+            this.queue_(function(done) {
+                world.services[CombatService.NAME].nextTurn(event);
+                done();
+            });
+
+            // start the queue.
+            this.triggerAction();
+        }
+    }.bind(this);
+    // register to script service
+    world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
+            this.AI);
+
+    console.log("Bori initialized");
+    this.initialize();
 };
 
-util.inherits(Bori, BoardObject);
+util.inherits(Bori, Mob);
 
 Bori.prototype.onStartMoving_ = function() {
-	this.gotoAndPlay("initRun");
+    this.gotoAndPlay("initRun");
 };
 
 Bori.prototype.onStopMoving_ = function() {
-	this.gotoAndPlay("stand");
+    this.gotoAndPlay("stand");
 };
 
 // BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {

@@ -22,6 +22,8 @@ var Pyroblast = function(world) {
 	}));
 	this.defaultAnimation = "initial";
         this.cost = 50;
+        this.range = 1; // +- 1 space
+        this.aoe = true;
 	console.log("Pyroblast initialized");
 	this.initialize();
 }
@@ -56,6 +58,7 @@ Pyroblast.prototype.shoot = function(caster,onComplete) {
 	});
 	this.queue_(function(done) {
 		console.log("Remove Pyroblast");
+                this.dealDamage();
 		var level = this.world.activeLevel;
 		level.remove(this);
                 
