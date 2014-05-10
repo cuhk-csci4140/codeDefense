@@ -1,6 +1,8 @@
 var GameObjectManager = require('../../framework/GameObjectManager');
 var GameObject = require('../../framework/gameobjects/GameObject');
-var Mob = require('../../contents/mobs/Mob');
+var Mob = require('../mobs/Mob');
+var TestPlayer = require('../../gameobjects/TestPlayer');
+
 var AbstractLevel = function(world) {
 	this.world = world;
 	this.initialized = false;
@@ -15,6 +17,19 @@ var AbstractLevel = function(world) {
 		}
 	}
 	this.gameboard = array;
+};
+
+AbstractLevel.prototype.checkBoard = function(){
+    var i,j;
+    for(i=0;i<12;i++){
+        for(j=0;j<6;j++){
+            var target = this.gameboard[i][j];
+            if((target != null)&& !(target instanceof TestPlayer)){
+                return false;
+            }
+        }
+    }
+    return true;
 };
 
 AbstractLevel.prototype.newGameObject = function(className) {

@@ -42,7 +42,10 @@ var TestPlayer = function(world) {
             (function(event) {
                 if (this.hp <= 0) {
                     showBox("LOSE!", "OMG");
-                } else {
+                } else if (this.world.activeLevel.checkBoard()) {
+                    showBox("WIN!", "GG");
+                }
+                else {
                     if (event.turn == this.faction) {
                     	
                     	console.log("Player start");
@@ -93,4 +96,5 @@ TestPlayer.prototype.onStartMoving_ = function() {
 TestPlayer.prototype.onStopMoving_ = function() {
     this.gotoAndPlay("stand");
 };
+
 module.exports = TestPlayer;
