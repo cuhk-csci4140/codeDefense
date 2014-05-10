@@ -40,9 +40,11 @@ var TestPlayer = function(world) {
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
             (function(event) {
                 if (this.hp <= 0) {
-                    showBox("LOST!", "OMG");
+                    showBox("LOSE!", "OMG");
                 } else {
                     if (event.turn == this.faction) {
+                    	
+                    	console.log("Player start");
                         this.myTurn = event;
 
                         this.triggerAction_();
@@ -61,6 +63,7 @@ util.inherits(TestPlayer, Caster);
  * whenever triggerAction , we go to next turn
  */
 TestPlayer.prototype.triggerAction = function() {
+	console.log("Player is done");
     this.world.services[CombatService.NAME].nextTurn(this.myTurn);
 };
 

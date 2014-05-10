@@ -108,7 +108,10 @@ ScriptService.prototype.runScript = function(script) {
 					target.exposeMethods.forEach(function(m) {
 						methods[m] = function() {
 							real[m].apply(real, arguments);
+							return methods;
 						};
+						
+						
 					});
 				}
 				return methods;

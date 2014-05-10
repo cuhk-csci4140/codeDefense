@@ -1,6 +1,6 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
-
+var CombatService = require('../services/CombatService');
 var Firepillar = function(world, args) {
     Firepillar.super_.call(this, world);
     this.name = "Firepillar";
@@ -21,7 +21,7 @@ var Firepillar = function(world, args) {
     }));
     this.defaultAnimation = "initial";
     this.castTime = 0.5;
-    this.damage = 2;
+    this.damage = 3;
     this.cost = 15;
 
     if (args == null) {
@@ -72,7 +72,10 @@ Firepillar.prototype.dealDamage = function() {
     this.queue_(function(done) {
         console.log("----------Firepillar get target-------");
         var target = this.world.activeLevel.gameboard[this.targetX][this.targetY];
-        console.log("----------Firepillar deal damage to target-------");
+      
+    	this.world.services[CombatService.NAME].callLater(2,(function(){
+     
+    	console.log("----------Firepillar deal damage to target-------");
         target.hp -= this.damage;
         if (target.hp > 0) {
             var scale = (target.hp / target.originHp);
@@ -84,7 +87,10 @@ Firepillar.prototype.dealDamage = function() {
         }
         // call the finish function;
         this.finish();
+    	}).bind(this));
     });
+
+	
     this.triggerAction();
 };
 
