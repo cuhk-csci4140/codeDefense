@@ -332,3 +332,28 @@ body {
     color: #402F08;
     
 }
+
+.stg_button {
+    outline: 0;
+	text-align: center;
+	padding-top: 5px;
+	border: 10px;
+	padding-bottom: 5px;
+	width: 100%;
+	text-decoration: none !important;
+	cursor: pointer;
+	position:fixed;
+    
+	text-align: center; //
+	background-color: green; //
+	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	color: #402F08;
+	display: inline-block;
+	font-family: Rockwell Extra Bold;
+	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
+	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+		round;
+	-moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+		round;
+	border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+}

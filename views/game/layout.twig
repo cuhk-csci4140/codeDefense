@@ -18,10 +18,25 @@
     <link rel="stylesheet" href="/codemirror/codemirror.css">
     <script src="/codemirror/javascript.js"></script>
     <script>
+        var level = null;
+        function stgSec(){
+            Popup.showModal('stageSelection');
+            document.getElementById('stageSelection').innerHTML =
+            
+            '<input class="popupokbtn" style="left:0px;bottom:120px;width:100%" type="button" value="Endless Mode" onClick="game.setLevel(\'test\');level = \'Endless Mode\';Popup.hide(\'stageSelection\');">' +
+            
+            '<input class="popupokbtn" style="left:0px;bottom:80px;width:100%" type="button" value="Normal Mode" onClick="game.setLevel(\'test\');level = \'Normal Mode\';Popup.hide(\'stageSelection\');">' +
+            
+            '<input class="popupokbtn" style="left:0px;bottom:40px;width:100%" type="button" value="Hard Mode" onClick="game.setLevel(\'test\');level = \'Hard Mode\';Popup.hide(\'stageSelection\');">' +
+            
+            '<input class="popupokbtn" style="left:0px;bottom:0px;width:100%" type="button" value="Very Hard Mode" onClick="game.setLevel(\'test\');level = \'Ver Hard Mode\';Popup.hide(\'stageSelection\');">';
+        }
+
         var ctr = 0;
         var showctr = 0;
         var titleA = new Array();;
         var msgA = new Array();;
+
         function showBox(title, msg) {
             titleA[ctr] = title;
             msgA[ctr] = msg;
@@ -32,7 +47,7 @@
         
             if(titleA[showctr]){
                 Popup.showModal('modal');
-                Popup.get
+
                 title = '<div class="boxtitle">' + titleA[showctr] + '</div>';
                 msg = '<div class="boxmsg">' + msgA[showctr] + '</div>';
                 document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');showctr++;">';
@@ -40,19 +55,6 @@
                 msgA[showctr] = null;
             }
             setTimeout(popmsg, 500);
-        }
-
-
-
-        function coex() {
-            if (collapse) {
-                document.getElementById("codepanel").style.bottom = "0px";
-                collapse = 0;
-            } else {
-                document.getElementById("codepanel").style.bottom = "-240px";
-                collapse = 1;
-
-            }
         }
 
         function cast() {
@@ -86,6 +88,7 @@
             $(".gameInfoPanel").css("top", $(".canvas-board").height()+25);
             $(".gameInfoPanel").css("width", window.innerWidth - ($(".canvas-board").width()) - 45);
             $(".game-ui-h").css("width", window.innerWidth - ($(".canvas-board").width()) - 25);
+            $(".stg_button").css("width", window.innerWidth - ($(".canvas-board").width()) - 65);
 
 
             $(".top_index").css("width",($(".canvas-board").width()-70)/12)
@@ -113,7 +116,7 @@
     $(window).resize(function() {
         clearTimeout(resizeTimer);
         resizePan();
-        resizeTimer = setTimeout(resizeFunction, 500);
+        resizeTimer = setTimeout(resizeFunction, 1000);
     });
 
 })(jQuery);
@@ -137,6 +140,7 @@
     {% endblock %}
 
     <div id="modal"></div>
+    <div id="stageSelection"></div>
 
 
     <script type="text/javascript">
