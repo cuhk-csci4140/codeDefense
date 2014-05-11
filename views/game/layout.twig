@@ -19,15 +19,30 @@
     <script src="/codemirror/javascript.js"></script>
     <script>
         var ctr = 0;
+        var showctr = 0;
+        var titleA = new Array();;
+        var msgA = new Array();;
         function showBox(title, msg) {
-
-            Popup.showModal('modal');
-            Popup.get
-            title = '<div class="boxtitle">' + title + '</div>';
-            msg = '<div class="boxmsg">' + msg + '</div>';
-            document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');">';
+            titleA[ctr] = title;
+            msgA[ctr] = msg;
             ctr++;
         }
+        
+        function popmsg(){
+        
+            if(titleA[showctr]){
+                Popup.showModal('modal');
+                Popup.get
+                title = '<div class="boxtitle">' + titleA[showctr] + '</div>';
+                msg = '<div class="boxmsg">' + msgA[showctr] + '</div>';
+                document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');showctr++;">';
+                titleA[showctr] = null;
+                msgA[showctr] = null;
+            }
+            setTimeout(popmsg, 500);
+        }
+
+
 
         function coex() {
             if (collapse) {
@@ -121,10 +136,7 @@
         </div>
     {% endblock %}
 
-    <div id="modal" >
-
-
-    </div>
+    <div id="modal"></div>
 
 
     <script type="text/javascript">
@@ -134,7 +146,7 @@
             autofocus: true
         });
         window.onload = resizePan;
-
+        popmsg();
 
 
     </script>
