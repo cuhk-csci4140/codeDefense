@@ -4,6 +4,7 @@ var Mage = require('../../gameobjects/TestPlayer');
 var Bori = require('../mobs/Bori');
 var Chibi = require('../mobs/Chibi');
 var Tree = require('../mobs/Tree');
+var Usagi = require('../mobs/Usagi');
 var CombatService = require('../services/CombatService');
 
 var demoLevel = function(world) {
@@ -30,7 +31,7 @@ demoLevel.prototype.initialize = function() {
 
     for (var i = 6; i <= 11; i++) {
         var rand = Math.random();
-        if (rand < 0.4 ) {
+        if (rand < 0.3) {
             this.set('bori' + i, Bori);
             /*this.get('bori' + i).sprite.setTransform(70 + 120 * i, 60 * (i - 6), //70
              -0.7, 0.7);
@@ -39,7 +40,7 @@ demoLevel.prototype.initialize = function() {
             this.get('bori' + i).setPosition(i, i - 6);
             this.get('bori' + i).setFaction(CombatService.TurnEnemy);
             this.add(this.get('bori' + i));
-        } else if(rand<0.8){
+        } else if (rand < 0.5) {
             this.set('chibi' + i, Chibi);
             /*this.get('chibi' + i).sprite.setTransform(30+ 120 * i, -30 * (i - 6),
              -0.6, 0.6);
@@ -48,11 +49,16 @@ demoLevel.prototype.initialize = function() {
             this.get('chibi' + i).setPosition(i, i - 6);
             this.get('chibi' + i).setFaction(CombatService.TurnEnemy);
             this.add(this.get('chibi' + i));
-        } else {
+        } else if (rand < 0.8) {
             this.set('tree' + i, Tree);
             this.get('tree' + i).setPosition(i, i - 6);
             this.get('tree' + i).setFaction(CombatService.TurnEnemy);
             this.add(this.get('tree' + i));
+        } else {
+            this.set('usagi' + i, Usagi);
+            this.get('usagi' + i).setPosition(i, i - 6);
+            this.get('usagi' + i).setFaction(CombatService.TurnEnemy);
+            this.add(this.get('usagi' + i));
         }
     }
     this.initialized = true;
