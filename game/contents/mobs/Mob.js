@@ -75,3 +75,11 @@ Mob.prototype.getHPbar = function(){
 
 // BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 module.exports = Mob;
+
+/**
+ * TODO list:
+ * Bori : nothing
+ * Chibi: rewrite the detection part, cause move 2 times
+ * Tree:  balance?
+ * Usagi: write the detection part
+ */
