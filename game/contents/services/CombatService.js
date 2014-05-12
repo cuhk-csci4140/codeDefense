@@ -5,6 +5,7 @@ var CombatService = function(world) {
 	this.world = world;
 
 	this.reset();
+	this.turnNotifiedCount_ = 0;
 };
 
 CombatService.NAME = "service.combat";
@@ -23,6 +24,7 @@ CombatService.Events = {
 CombatService.prototype.reset = function() {
 	this.waveCounter = 0;
 	this.listeners_ = [];
+	this.turnNotifiedCount_ = 0;
 	this.resetWave();
 };
 
@@ -65,35 +67,42 @@ CombatService.prototype.callLater = function(turns, callback) {
 CombatService.prototype.nextTurn = function(event) {
 	if (this.turnCounter == 0
 			|| (event instanceof Object && event.data == this.turnCounter)) {
-		this.turnCounter = this.turnCounter + 1;
 
-		if (this.turnListeners_[this.turnCounter] instanceof Array) {
-			console.log("[CombatService] execute CallLater ["
-					+ this.turnCounter + "]");
-			this.turnListeners_[this.turnCounter].forEach(function(target) {
-				if (target instanceof Function) {
-					target(this);
-				}
+		// if observer receive enough feedback
+		if (this.turnCounter == 0
+				|| this.listeners_[CombatService.Events.NextTurn] instanceof Array
+				&& this.turnNotifiedCount_ >= this.listeners_[CombatService.Events.NextTurn].length) {
+			this.turnCounter = this.turnCounter + 1;
+			this.turnNotifiedCount_ = 0;
+			if (this.turnListeners_[this.turnCounter] instanceof Array) {
+				console.log("[CombatService] execute CallLater ["
+						+ this.turnCounter + "]");
+				this.turnListeners_[this.turnCounter].forEach(function(target) {
+					if (target instanceof Function) {
+						target(this);
+					}
+				});
+			}
+
+			this.turn = CombatService.Factions[(CombatService.Factions
+					.indexOf(this.turn) + 1)
+					% CombatService.Factions.length];
+
+			// CombatService.Factions
+			/*
+			 * this.turn = this.turn == CombatService.TurnAlly ?
+			 * CombatService.TurnEnemy : CombatService.TurnAlly;
+			 */
+			this.dispatch({
+				event : CombatService.Events.NextTurn,
+				turn : this.turn,
+				data : this.turnCounter,
+				target : this
 			});
+
+			delete this.turnListeners_[this.turnCounter];
+
 		}
-
-		this.turn = CombatService.Factions[(CombatService.Factions
-				.indexOf(this.turn) + 1)
-				% CombatService.Factions.length];
-
-		// CombatService.Factions
-		/*
-		 * this.turn = this.turn == CombatService.TurnAlly ?
-		 * CombatService.TurnEnemy : CombatService.TurnAlly;
-		 */
-		this.dispatch({
-			event : CombatService.Events.NextTurn,
-			turn : this.turn,
-			data : this.turnCounter,
-			target : this
-		});
-
-		delete this.turnListeners_[this.turnCounter];
 	}
 };
 
@@ -141,9 +150,19 @@ CombatService.prototype.unsubscribe = function(e, callback) {
  * @param object
  */
 CombatService.prototype.dispatch = function(object) {
+
+	var onComplete = (function() {
+		console.log("[CombatService] observer notified total:"
+				+ this.turnNotifiedCount_ + "");
+		if (object.turn == this.turn && object.data == this.turnCounter) {
+			this.turnNotifiedCount_++;
+
+		}
+	}).bind(this);
+
 	if (this.listeners_[object.event] instanceof Array) {
 		this.listeners_[object.event].forEach(function(target) {
-			target(object);
+			target(object, onComplete);
 		});
 	}
 }

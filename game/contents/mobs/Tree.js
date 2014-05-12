@@ -34,7 +34,7 @@ var Tree = function(world) {
 
     this.myTurn = {};
 
-    this.AI = function(event) {
+    this.AI = function(event,onComplete) {
         if (event.turn == this.faction) {
             this.myTurn = event;
 
@@ -64,18 +64,19 @@ var Tree = function(world) {
                 // despawn
                 this.dispose();
             }
-
+        }
             // action 2
             this.queue_(function(done) {
 
                 done();
+                onComplete();
                 world.services[CombatService.NAME].nextTurn(event);
                 console.log("Tree is done");
             });
 
             // start the queue.
             this.triggerAction();
-        }
+      
     }.bind(this);
     // register to script service
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,

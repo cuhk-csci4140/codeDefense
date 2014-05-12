@@ -32,7 +32,7 @@ var Chibi = function(world) {
     this.defaultAnimation = "stand";
     this.damage = 50;
 
-    this.AI = function(event) {
+    this.AI = function(event,onComplete) {
 
         if (event.turn == this.faction) {
             this.myTurn = event;
@@ -108,18 +108,19 @@ var Chibi = function(world) {
                 // at position 0
                 this.dispose();
             }
-
+        }
             // action 2
             this.queue_(function(done) {
 
                 done();
+                onComplete();
                 world.services[CombatService.NAME].nextTurn(event);
                 console.log("Chibi is done");
             });
 
             // start the queue.
             this.triggerAction();
-        }
+      
     }.bind(this);
     // register to script service
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
