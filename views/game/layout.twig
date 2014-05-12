@@ -23,13 +23,16 @@
             Popup.showModal('stageSelection');
             document.getElementById('stageSelection').innerHTML =
             
-            '<input class="popupokbtn" style="left:0px;bottom:116px;width:100%" type="button" value="Endless Mode" onClick="game.setLevel(\'test\');level = \'Endless Mode\';Popup.hide(\'stageSelection\');">' +
+            '<input class="popupokbtn" style="left:-5px;bottom:120px;width:105%" type="button" value="Endless Mode" onClick="game.setLevel(\'test\');level = \'Endless Mode\';Popup.hide(\'stageSelection\');$(\'#level\').html(level);">' +
             
-            '<input class="popupokbtn" style="left:0px;bottom:76px;width:100%" type="button" value="Normal Mode" onClick="game.setLevel(\'test\');level = \'Normal Mode\';Popup.hide(\'stageSelection\');">' +
+            '<input class="popupokbtn" style="left:-5px;bottom:80px;width:105%" type="button" value="Normal Mode" onClick="game.setLevel(\'test\');level = \'Normal Mode\';Popup.hide(\'stageSelection\');$(\'#level\').html(level);">' +
             
-            '<input class="popupokbtn" style="left:0px;bottom:36px;width:100%" type="button" value="Demo Level" onClick="game.setLevel(\'demo\');level = \'Demo Level\';Popup.hide(\'stageSelection\');">' +
+            '<input class="popupokbtn" style="left:-5px;bottom:40px;width:105%" type="button" value="Demo Level" onClick="game.setLevel(\'demo\');level = \'Demo Level\';Popup.hide(\'stageSelection\');$(\'#level\').html(level);">' +
             
-            '<input class="popupokbtn" style="left:0px;bottom:-4px;width:100%" type="button" value="Test Level" onClick="game.setLevel(\'test\');level = \'Test Level\';Popup.hide(\'stageSelection\');">';
+            '<input class="popupokbtn" style="left:-5px;bottom:0px;width:105%" type="button" value="Test Level" onClick="game.setLevel(\'test\');level = \'Test Level\';Popup.hide(\'stageSelection\');$(\'#level\').html(level);">' +
+            
+            
+            '<input class="popupokbtn" style="left:-5px;bottom:-40px;width:105%" type="button" value="Resume" onClick="Popup.hide(\'stageSelection\');">';
         }
 
         var ctr = 0;
@@ -38,14 +41,20 @@
         var msgA = new Array();;
 
         function showBox(title, msg) {
+        
+            if(title||msg){
             titleA[ctr] = title;
             msgA[ctr] = msg;
             ctr++;
+            }
         }
         
         function popmsg(){
-        
-            if(titleA[showctr]){
+            
+            if(typeof game !== "undefined"){
+             $('#castRange').html(game.gameobjects.get('player').stats.castRange);
+            }
+            if(titleA[showctr]||msgA[showctr]){
                 Popup.showModal('modal');
 
                 title = '<div class="boxtitle">' + titleA[showctr] + '</div>';
@@ -72,8 +81,12 @@
                 }
             }).apply(game.gameobjects.get('player'), []);
 
+            
+
             game.gameobjects.get('player').triggerAction();
-        }
+            
+
+            }
 
         function resizePan() {
             var codePanHeight = (window.innerHeight - ($(".canvas-board").height()) - 25);
