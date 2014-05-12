@@ -6,6 +6,7 @@ var CombatService = require('../services/CombatService');
 var TestPlayer = require('../../gameobjects/TestPlayer');
 
 var Usagi = function(world) {
+
 	Usagi.super_.call(this, world);
 	this.hp = 1;
 	this.originHp = 1;
@@ -30,7 +31,7 @@ var Usagi = function(world) {
 	this.defaults.movement = 2000;
 	this.stats.movement = 2000;
 	this.defaultAnimation = "stand";
-	this.damage = 10;
+	this.damage = 100;
 
 	this.myTurn = {};
 
@@ -165,18 +166,18 @@ var Usagi = function(world) {
 				this.dispose();
 			}
 		}
-			// action 2
-			this.queue_(function(done) {
+		// action 2
+		this.queue_(function(done) {
 
-				done();
-				onComplete();
-				world.services[CombatService.NAME].nextTurn(event);
-				console.log("Usagi is done");
-			});
+			done();
+			onComplete();
+			world.services[CombatService.NAME].nextTurn(event);
+			console.log("Usagi is done");
+		});
 
-			// start the queue.
-			this.triggerAction();
-		
+		// start the queue.
+		this.triggerAction();
+
 	}.bind(this);
 	// register to script service
 	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,

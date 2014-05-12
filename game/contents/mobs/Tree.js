@@ -7,8 +7,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 
 var Tree = function(world) {
     Tree.super_.call(this, world);
-    this.hp = 5;
-    this.originHp = 5;
+    this.hp = 8;
+    this.originHp = 8;
     this.padX = 50;
     this.padY = 30;
     this.setSpriteSheet(new createjs.SpriteSheet({

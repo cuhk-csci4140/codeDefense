@@ -78,8 +78,14 @@ module.exports = Mob;
 
 /**
  * TODO list:
- * Bori : nothing
- * Chibi: rewrite the detection part, cause move 2 times
- * Tree:  balance?
- * Usagi: write the detection part
+ * Bori  (1): slow, low HP, low damage
+ *      nothing
+ * Chibi (2): fast, middle HP, lowest damage
+ *      nothing
+ * Tree  (1): slow, high HP, high damage
+ *      nothing
+ * Usagi (3): fastest, lowest HP, highest damage
+ *      nothing
+ *      
+ * Mobs HP, attack balancing
  */
