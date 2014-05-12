@@ -68,11 +68,11 @@ Firepillar.prototype.execute = function(caster) {
     });
     this.triggerAction();
 };
-Firepillar.prototype.dealDamage = function() {
+Firepillar.prototype.dealDamage = function(target) {
     this.queue_(function(done) {
         console.log("----------Firepillar get target-------");
-        var target = this.world.activeLevel.gameboard[this.targetX][this.targetY];
-      
+        //var target = this.world.activeLevel.gameboard[this.targetX][this.targetY];
+        // try add target when call
     	this.world.services[CombatService.NAME].callLater(2,(function(){
      
     	console.log("----------Firepillar deal damage to target-------");

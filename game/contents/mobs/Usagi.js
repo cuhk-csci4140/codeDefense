@@ -39,29 +39,128 @@ var Usagi = function(world) {
             this.myTurn = event;
 
             // action 1
-            if (this.position.horizontal > 1) {
-                var grid = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
-                if (grid == null) {
-                    // able to move
-                    this.move(-3, 0);
+            if (this.position.horizontal > 3) {
+                var grid1 = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
+                var grid2 = this.world.activeLevel.gameboard[this.position.horizontal - 2][this.position.vertical];
+                var grid3 = this.world.activeLevel.gameboard[this.position.horizontal - 3][this.position.vertical];
+                if (grid1 == null) {
+                    if (grid2 == null) {
+                        if (grid3 == null) {
+                            // all 3 grid are free, move
+                            this.move(-3, 0);
+                        } else {
+                            if (grid3 instanceof Firepillar) {
+                                this.move(-3, 0);
+                                grid3.dealDamage(this);
+                            } else if (grid3 instanceof Lightwall) {
+                                this.move(-2, 0);
+                            } else if (grid3 instanceof TestPlayer) {
+                                this.move(-2, 0);
+                                this.attack();
+                                grid3.hp -= this.damage;
+                            }
+                        }
+                    } else {
+                        if (grid2 instanceof Firepillar) {
+                            this.move(-2, 0);
+                            grid2.dealDamage(this);
+                        } else if (grid2 instanceof Lightwall) {
+                            this.move(-1, 0);
+                        } else if (grid2 instanceof TestPlayer) {
+                            this.move(-1, 0);
+                            this.attack();
+                            grid2.hp -= this.damage;
+                        }
+                    }
                 } else {
-                    if (grid instanceof Firepillar) {
-                        this.move(-3, 0);
-                        grid.dealDamage();
-                    } else if (grid instanceof Lightwall) {
-                        // dun move, no codes
-                    } else if (grid instanceof TestPlayer) {
-                        // attack the player!
+                    if (grid1 instanceof Firepillar) {
+                        this.move(-1, 0);
+                        grid1.dealDamage(this);
+                    } else if (grid1 instanceof Lightwall) {
+                        // dun move, no need to check grid2
+                    } else if (grid1 instanceof TestPlayer) {
+                        // attack the player
                         this.attack();
-                        grid.hp -= this.damage;
+                        grid1.hp -= this.damage;
+                    }
+                }
+            } else if (this.position.horizontal == 3) {
+                // check exist of grid1
+                var grid1 = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
+                var grid2 = this.world.activeLevel.gameboard[this.position.horizontal - 2][this.position.vertical];
+                var grid3 = this.world.activeLevel.gameboard[this.position.horizontal - 3][this.position.vertical];
+                if (grid1 == null) {
+                    if (grid2 == null) {
+                        // pass and damage
+                        if (grid3 instanceof TestPlayer) {
+                            this.move(-2, 0);
+                            this.attack();
+                            grid3.hp -= this.damage;
+                        } else {
+                            this.move(-3, 0);
+                            this.world.gameobjects.get("player").hp -= this.damage;
+                            // showBox("CAUTION!", "A monster just passed you.");
+                        }
+                    } else {
+                        if (grid2 instanceof Firepillar) {
+                            this.move(-2, 0);
+                            grid2.dealDamage(this);
+                        } else if (grid2 instanceof Lightwall) {
+                            this.move(-1, 0);
+                        } else if (grid2 instanceof TestPlayer) {
+                            this.move(-1, 0);
+                            this.attack();
+                            grid2.hp -= this.damage;
+                        }
+                    }
+                } else {
+                    if (grid1 instanceof Firepillar) {
+                        this.move(-1, 0)
+                        grid1.dealDamge(this);
+                    } else if (grid1 instanceof Lightwall) {
+
+                    } else if (grid1 instanceof TestPlayer) {
+                        this.attack();
+                        grid1.hp -= this.damage;
+                    }
+                }
+            } else if (this.position.horizontal == 2) {
+                // check exist of grid1
+                var grid1 = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
+                var grid2 = this.world.activeLevel.gameboard[this.position.horizontal - 2][this.position.vertical];
+                if (grid1 == null) {
+                    if (grid2 instanceof TestPlayer) {
+                        this.move(-1, 0);
+                        this.attack();
+                        grid2.hp -= this.damage;
+                    } else {
+                        this.move(-2, 0);
+                        this.world.gameobjects.get("player").hp -= this.damage;
+                        // showBox("CAUTION!", "A monster just passed you.");
+                    }
+                } else {
+                    if (grid1 instanceof Firepillar) {
+                        this.move(-1, 0)
+                        grid1.dealDamge(this);
+                    } else if (grid1 instanceof Lightwall) {
+
+                    } else if (grid1 instanceof TestPlayer) {
+                        this.attack();
+                        grid1.hp -= this.damage;
                     }
                 }
             } else if (this.position.horizontal == 1) {
-                this.move(-1, 0);
-                this.world.gameobjects.get("player").hp -= this.damage;
-                // showBox("CAUTION!", "A monster just passed you.");
+                var grid1 = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
+                if (grid1 instanceof TestPlayer) {
+                    this.attack();
+                    grid1.hp -= this.damage;
+                } else {
+                    this.move(-1, 0);
+                    this.world.gameobjects.get("player").hp -= this.damage;
+                    // showBox("CAUTION!", "A monster just passed you.");
+                }
             } else {
-                // despawn
+                // at position 0
                 this.dispose();
             }
 
@@ -96,7 +195,7 @@ Usagi.prototype.onStartMoving_ = function() {
 Usagi.prototype.onStopMoving_ = function() {
     this.gotoAndPlay("stand");
 };
-Usagi.prototype.attack = function(){
+Usagi.prototype.attack = function() {
     this.gotoAndPlay("attack");
 };
 

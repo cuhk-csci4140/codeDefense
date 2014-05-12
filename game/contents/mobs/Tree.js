@@ -47,7 +47,7 @@ var Tree = function(world) {
                 } else {
                     if (grid instanceof Firepillar) {
                         this.move(-1, 0);
-                        grid.dealDamage();
+                        grid.dealDamage(this);
                     } else if (grid instanceof Lightwall) {
                         // dun move, no codes
                     } else if (grid instanceof TestPlayer) {
