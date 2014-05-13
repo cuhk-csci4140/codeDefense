@@ -44,12 +44,7 @@
             }
         }
         
-        function startgame(){
-            resizePan();
-            if(level === null){
-                stgSec();
-            }
-        }
+
 
         var ctr = 0;
         var showctr = 0;
@@ -153,6 +148,16 @@
 
 })(jQuery);
 
+
+function startgame(){
+            resizePan();
+
+            if(level === null){
+                stgSec();
+            }
+        }
+        
+
     </script>
 
 </head>
@@ -182,8 +187,8 @@
             autofocus: true
         });
         window.onload = startgame;
-        popmsg();
 
+popmsg();
 
     </script>
 
