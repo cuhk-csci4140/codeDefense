@@ -46,7 +46,7 @@ var TestPlayer = function(world) {
 				if (this.hp <= 0) {
 					showBox("LOSE!", "OMG");
 				} else if (this.world.activeLevel.checkBoard()) {
-					showBox("WIN!", "GG");
+					this.world.activeLevel.win();
 				} else {
 					if (event.turn == this.faction) {
 

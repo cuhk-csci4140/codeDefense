@@ -5,7 +5,7 @@ var Mob = require('../contents/mobs/Mob');
 var ShootingSpell = function(world) {
 	console.log("Initialize a shooting spell");
 	ShootingSpell.super_.call(this, world);
-	this.penetrate;
+	this.penetrate = false;
 	// this.calTarget();
 };
 
