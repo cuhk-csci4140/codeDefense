@@ -9,8 +9,8 @@ var Bori = function(world) {
 	Bori.super_.call(this, world);
 	this.hp = 2;
 	this.originHp = 2;
-        this.padX = 65;
-        this.padY = 70;
+	this.padX = 65;
+	this.padY = 70;
 	this.setSpriteSheet(new createjs.SpriteSheet({
 		"images" : [ world.assets.getResult("bori") ],
 		"frames" : {
@@ -33,7 +33,7 @@ var Bori = function(world) {
 
 	this.myTurn = {};
 
-	this.AI = function(event) {
+	this.AI = function(event, onComplete) {
 		if (event.turn == this.faction) {
 			this.myTurn = event;
 
@@ -62,10 +62,11 @@ var Bori = function(world) {
 				// despawn
 				this.dispose();
 			}
-
+		}
 			// action 2
 			this.queue_(function(done) {
 
+				onComplete();
 				done();
 				world.services[CombatService.NAME].nextTurn(event);
 				console.log("Bori is done");
@@ -73,7 +74,7 @@ var Bori = function(world) {
 
 			// start the queue.
 			this.triggerAction();
-		}
+		
 	}.bind(this);
 	// register to script service
 	world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
@@ -81,7 +82,7 @@ var Bori = function(world) {
 
 	console.log("Bori initialized");
 	this.initialize();
-        this.sprite.setTransform(0,0,-0.6,0.6);
+	this.sprite.setTransform(0, 0, -0.6, 0.6);
 };
 
 util.inherits(Bori, Mob);
