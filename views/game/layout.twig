@@ -76,6 +76,14 @@
             }
             setTimeout(popmsg, 500);
         }
+        
+        
+        function endgamebox(title,msg){
+                Popup.showModal('modal');
+                title = '<div class="boxtitle">' + title + '</div>';
+                msg = '<div class="boxmsg">' + msg + '</div>';
+                document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');stgSec();">';
+        }
 
         function cast() {
             editor.save();
