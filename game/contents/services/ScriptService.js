@@ -25,6 +25,7 @@ var ScriptService = function(world) {
 		Thunderbolt : require('../spells/Thunderbolt'),
 		Teleport : require('../spells/Teleport'),
 		Icearrow : require('../spells/Icearrow'),
+		SLB : require('../spells/SLB'),
 		Cartridge : require('../spells/Cartridge')
 
 	};
@@ -154,20 +155,20 @@ ScriptService.prototype.runScript = function(script) {
 ScriptService.prototype.runScript_ = function(script, context, spells) {
 	var exception = false;
 
+	var dummyFunc = function() {
+	};
 	var result = (function(spells, console, window, document, XMLHttpRequest,
 			$, jQuery, util, ScriptService, game, world, Castable, JSON,
-			showBox) {
+			showBox, alert) {
 		try {
-			eval(script);
+			eval(script.replace(/eval/g,'__eval__'));
 		} catch (e) {
 			exception = e;
 		}
 	}).apply(context, [ spells, {
-		log : function() {
-
-		}
+		log : dummyFunc
 	}, {}, {}, false, false, false, false, false, false, false, false, false,
-			showBox ]);
+			showBox, dummyFunc ]);
 
 	return {
 		'result' : result,

@@ -39,7 +39,7 @@ var Core = function(opts) {
 	this.assets;
 	this.services = [];
 	this.gameobjects = new GameObjectManager(); // global gameobject
-
+        this.score = 0;
 	this.canvas = opts.canvas;
 	console.log(opts);
 	this.stage = new createjs.Stage(opts.canvasId);
@@ -142,6 +142,10 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/icearrow.png",
 		id : "icearrow"
+            }
+	, {
+		src : "assets/gameobjects/magic/SLB.png",
+		id : "SLB"
 	} ];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);
@@ -172,8 +176,11 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
-
+        var playerX = null;
+        var playerY = null;
 	try {
+                playerX = this.gameobjects.get('player').position.horizontal;
+                playerY = this.gameobjects.get('player').position.vertical;
 		this.gameobjects.dispose();
 	} catch (e) {
 		console.log("[ERROR] GameObjectManager : " + e);
@@ -189,7 +196,7 @@ Core.prototype.setLevel = function(level) {
 
 	console.log("[CORE] load level " + level);
 	this.activeLevel = new this.levels[level](this);
-	this.activeLevel.initialize();
+	this.activeLevel.initialize(playerX, playerY);
 
 }
 /**

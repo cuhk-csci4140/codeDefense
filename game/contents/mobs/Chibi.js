@@ -32,7 +32,7 @@ var Chibi = function(world) {
     this.defaultAnimation = "stand";
     this.damage = 10;
 
-    this.AI = function(event,onComplete) {
+    this.AI = function(event, onComplete) {
 
         if (event.turn == this.faction) {
             this.myTurn = event;
@@ -96,31 +96,37 @@ var Chibi = function(world) {
                 // showBox("CAUTION!", "A monster just passed you.");
             } else if (this.position.horizontal == 1) {
                 var grid1 = this.world.activeLevel.gameboard[this.position.horizontal - 1][this.position.vertical];
-                if (grid1 instanceof TestPlayer) {
-                    this.attack()
-                    grid.hp -= this.damage;
-                } else {
+                if (grid1 == null) {
                     this.move(-1, 0);
                     this.world.gameobjects.get("player").hp -= this.damage;
                     // showBox("CAUTION!", "A monster just passed you.");
+                } else {
+                    if (grid1 instanceof TestPlayer) {
+                        this.attack()
+                        grid.hp -= this.damage;
+                    } else {
+                        this.move(-1, 0);
+                        this.world.gameobjects.get("player").hp -= this.damage;
+                        // showBox("CAUTION!", "A monster just passed you.");
+                    }
                 }
             } else {
                 // at position 0
                 this.dispose();
             }
         }
-            // action 2
-            this.queue_(function(done) {
+        // action 2
+        this.queue_(function(done) {
 
-                done();
-                onComplete();
-                world.services[CombatService.NAME].nextTurn(event);
-                console.log("Chibi is done");
-            });
+            done();
+            onComplete();
+            world.services[CombatService.NAME].nextTurn(event);
+            console.log("Chibi is done");
+        });
 
-            // start the queue.
-            this.triggerAction();
-      
+        // start the queue.
+        this.triggerAction();
+
     }.bind(this);
     // register to script service
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
