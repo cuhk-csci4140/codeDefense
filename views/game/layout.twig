@@ -79,10 +79,10 @@
         
         
         function endgamebox(title,msg){
-                Popup.showModal('modal');
+                Popup.showModal('endgamediv');
                 title = '<div class="boxtitle">' + title + '</div>';
                 msg = '<div class="boxmsg">' + msg + '</div>';
-                document.getElementById('modal').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'modal\');stgSec();">';
+                document.getElementById('endgamediv').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'endgamediv\');stgSec();">';
         }
 
         function cast() {
@@ -186,6 +186,7 @@ function startgame(){
 
     <div id="modal" class="PopupDiv"></div>
     <div id="stageSelection" class="stageSelectionDiv"></div>
+    <div id="endgamediv" class="PopupDiv"></div>
 
 
     <script type="text/javascript">
