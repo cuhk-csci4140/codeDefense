@@ -59,5 +59,7 @@ testLevel.prototype.update = function(event) {
 testLevel.prototype.dispose = function() {
 
 };
-
+testLevel.prototype.jumpLevel = function(){
+  showBox("WOW SCORE", this.world.score);  
+};
 module.exports = testLevel;

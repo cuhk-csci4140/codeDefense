@@ -80,7 +80,7 @@ demoLevel.prototype.dispose = function() {
 };
 
 demoLevel.prototype.jumpLevel = function() {
-
+    this.world.setLevel('testLevel');
 };
 
 module.exports = demoLevel;

@@ -134,6 +134,7 @@ AbstractLevel.prototype.win = function() {
         cast = 0;
     }
     world.score += (this.baseTurn - turn) * 100 + hp + mp + (this.baseCast - cast) * 100;
+    this.jumpLevel();
 };
 
 AbstractLevel.prototype.jumpLevel = function(){
