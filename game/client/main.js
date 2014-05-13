@@ -16,13 +16,14 @@ jQuery(function() {
 		$('#game-cast-trigger').click(
 				function(e) {
 					editor.save();
-			//		console.log(e.currentTarget);
-				//	$(this).addClass('disabled');
+					// console.log(e.currentTarget);
+					// $(this).addClass('disabled');
 					game.services[ScriptService.NAME].runScript(document
 							.querySelector('#txtcodepanel').value);
 				})
 
 		console.log('game initialized');
-		game.setLevel("demo");
+		stgSec();
+		// game.setLevel("demo");
 	});
 });

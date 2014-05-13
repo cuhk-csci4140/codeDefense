@@ -39,7 +39,7 @@ var Core = function(opts) {
 	this.assets;
 	this.services = [];
 	this.gameobjects = new GameObjectManager(); // global gameobject
-        this.score = 0;
+	this.score = 0;
 	this.canvas = opts.canvas;
 	console.log(opts);
 	this.stage = new createjs.Stage(opts.canvasId);
@@ -89,10 +89,11 @@ Core.prototype.initialize = function(callback) {
 	// this.overlay = new Overlay();
 	// initialize connection to game server (default:same domain as the client
 	// side) ,port 7777
-	
-	  this.connection = new Connection({ address : 'ws://' + document.domain +
-	  ':7777' });
-	 
+
+	this.connection = new Connection({
+		address : 'ws://' + document.domain + ':7777'
+	});
+
 	// define all modules here
 	// this.modules['hello-world'] = new HelloWorldModule(this);
 	// this.modules[AuthModule.NAME] = new AuthModule(this);
@@ -110,15 +111,15 @@ Core.prototype.initialize = function(callback) {
 		src : "assets/gameobjects/mobs/bori.png",
 		id : "bori"
 	}, {
-                src : "assets/gameobjects/mobs/Chibi.png",
-                id : "chibi"
-        }, {
-                src : "assets/gameobjects/mobs/tree.png",
-                id : "tree"
-        }, {
-                src : "assets/gameobjects/mobs/usagi.png",
-                id : "usagi"
-        }, {
+		src : "assets/gameobjects/mobs/Chibi.png",
+		id : "chibi"
+	}, {
+		src : "assets/gameobjects/mobs/tree.png",
+		id : "tree"
+	}, {
+		src : "assets/gameobjects/mobs/usagi.png",
+		id : "usagi"
+	}, {
 		src : "assets/gameobjects/board.png",
 		id : "board"
 	}, {
@@ -142,8 +143,7 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/icearrow.png",
 		id : "icearrow"
-            }
-	, {
+	}, {
 		src : "assets/gameobjects/magic/SLB.png",
 		id : "SLB"
 	} ];
@@ -176,11 +176,11 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
-        var playerX = null;
-        var playerY = null;
+	var playerX = null;
+	var playerY = null;
 	try {
-                playerX = this.gameobjects.get('player').position.horizontal;
-                playerY = this.gameobjects.get('player').position.vertical;
+		playerX = this.gameobjects.get('player').position.horizontal;
+		playerY = this.gameobjects.get('player').position.vertical;
 		this.gameobjects.dispose();
 	} catch (e) {
 		console.log("[ERROR] GameObjectManager : " + e);
@@ -206,20 +206,21 @@ Core.prototype.setLevel = function(level) {
  */
 Core.prototype.render = function(event) {
 
-	var delta = event.delta / 1000;
-	this.stage.update(event);
-	this.gameobjects.render(event);
+	if (this.activeLevel) {
+		var delta = event.delta / 1000;
+		this.stage.update(event);
+		this.gameobjects.render(event);
 
-	// get player
-	var player = this.gameobjects.get('player');
-	// get hp and mp bar
-	var hpBar = document.querySelector("#hp");
-	var mpBar = document.querySelector("#mp");
-	// update hp and mp
-	hpBar.value = player.hp;
-	mpBar.value = player.mp;
-	mpBar.max = player.maxMp;
-
+		// get player
+		var player = this.gameobjects.get('player');
+		// get hp and mp bar
+		var hpBar = document.querySelector("#hp");
+		var mpBar = document.querySelector("#mp");
+		// update hp and mp
+		hpBar.value = player.hp;
+		mpBar.value = player.mp;
+		mpBar.max = player.maxMp;
+	}
 }
 
 Core.prototype.onWindowResize = function() {

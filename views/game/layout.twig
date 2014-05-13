@@ -60,7 +60,7 @@
         
         function popmsg(){
             
-            if(typeof game !== "undefined"){
+            if(typeof game !== "undefined" && game.activeLevel){
              $('#castRange').html(game.gameobjects.get('player').stats.castRange);
             }
             if(titleA[showctr]||msgA[showctr]){

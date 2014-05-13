@@ -39,7 +39,7 @@ testLevel.prototype.initialize = function(x, y) {
         do {
             x = 4 + Math.ceil(Math.random() * 8) - 1;
             y = Math.ceil(Math.random() * 6) - 1;
-        } while ((x == 5 && y == 3 && this.gameboard[x][y] != null));
+        } while ((x == 5 && y == 3) || this.gameboard[x][y] != null);
         // console.log(x);
 
         currentBori.setPosition(x, y);
