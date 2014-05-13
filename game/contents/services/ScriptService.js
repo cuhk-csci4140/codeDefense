@@ -25,6 +25,7 @@ var ScriptService = function(world) {
 		Thunderbolt : require('../spells/Thunderbolt'),
 		Teleport : require('../spells/Teleport'),
 		Icearrow : require('../spells/Icearrow'),
+                SLB : require('../spells/SLB'),
 		Cartridge : require('../spells/Cartridge')
 
 	};

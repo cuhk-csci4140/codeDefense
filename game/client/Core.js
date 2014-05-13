@@ -142,6 +142,10 @@ Core.prototype.initialize = function(callback) {
 	}, {
 		src : "assets/gameobjects/magic/icearrow.png",
 		id : "icearrow"
+            }
+	, {
+		src : "assets/gameobjects/magic/SLB.png",
+		id : "SLB"
 	} ];
 
 	this.services[ScriptSevice.NAME] = new ScriptSevice(this);

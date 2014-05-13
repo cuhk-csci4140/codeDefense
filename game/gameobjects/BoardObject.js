@@ -177,6 +177,8 @@ BoardObject.prototype.gotoAndPlay = function(name, onComplete) {
 		};
 		this.sprite.addEventListener('animationend', listener);
 	}
+        
+        return function(){}.bind(this);
 	/*
 	 * if (onComplete) { setTimeout(onComplete, (this.frameCount_(name) /
 	 * this.sprite.framerate) * 1000 + 200); }
