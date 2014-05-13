@@ -103,8 +103,11 @@ Core.prototype.initialize = function(callback) {
 	// preloader
 	this.onWindowResize();
 	this.levels['demo'] = require('../contents/levels/demoLevel');
-	this.levels['test'] = require('../contents/levels/testLevel');
-	var assets = [ {
+        this.levels['test'] = require('../contents/levels/testLevel');
+        this.levels['stage1a'] = require('../contents/levels/Stage1a');
+        this.levels['stage1b'] = require('../contents/levels/Stage1b');
+        this.levels['stage1c'] = require('../contents/levels/Stage1c');
+ 	var assets = [ {
 		src : "assets/gameobjects/characters/m_mage.png",
 		id : "m_mage"
 	}, {
