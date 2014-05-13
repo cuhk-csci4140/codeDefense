@@ -103,7 +103,7 @@ var Chibi = function(world) {
                 } else {
                     if (grid1 instanceof TestPlayer) {
                         this.attack()
-                        grid.hp -= this.damage;
+                        grid1.hp -= this.damage;
                     } else {
                         this.move(-1, 0);
                         this.world.gameobjects.get("player").hp -= this.damage;

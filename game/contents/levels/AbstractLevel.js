@@ -2,6 +2,7 @@ var GameObjectManager = require('../../framework/GameObjectManager');
 var GameObject = require('../../framework/gameobjects/GameObject');
 var Mob = require('../mobs/Mob');
 var TestPlayer = require('../../gameobjects/TestPlayer');
+var CombatService = require('../services/CombatService');
 
 var AbstractLevel = function(world) {
     this.world = world;
@@ -123,7 +124,7 @@ AbstractLevel.prototype.dispose = function() {
 
 AbstractLevel.prototype.win = function() {
     showBox("WIN!", "GG");
-    var turn = world.services[ScriptService.NAME].turnCounter;
+    var turn = this.world.services[CombatService.NAME].turnCounter;
     var hp = this.get('player').hp;
     var mp = this.get('player').mp;
     var cast = this.get('player').actionCounter;
@@ -133,11 +134,11 @@ AbstractLevel.prototype.win = function() {
     if ((this.baseCast - cast) <= 0) {
         cast = 0;
     }
-    world.score += (this.baseTurn - turn) * 100 + hp + mp + (this.baseCast - cast) * 100;
+    this.world.score += (this.baseTurn - turn) * 100 + hp + mp + (this.baseCast - cast) * 100;
     this.jumpLevel();
 };
 
-AbstractLevel.prototype.jumpLevel = function(){
+AbstractLevel.prototype.jumpLevel = function() {
     // override in each level to select new stage / end
 };
 module.exports = AbstractLevel;

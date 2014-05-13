@@ -1,6 +1,7 @@
 var util = require('util');
 var Castable = require('../../gameobjects/Castable');
 var Mob = require('../mobs/Mob');
+var TestPlayer = require('../../gameobjects/TestPlayer');
 var SLB = function(world) {
     SLB.super_.call(this, world);
     this.name = "SLB";
@@ -89,27 +90,14 @@ SLB.prototype.execute = function(caster, onComplete) {
 SLB.prototype.calTarget = function(caster) {
     console.log(this.name + " calculating target");
     var gameBoard = this.world.activeLevel.gameboard;
-    var vertical = this.position.vertical;
-    var horizontal;
-    var target;
-    // flag to indicate if target array all null
-    var allNull = true;
-    for (horizontal = (this.position.horizontal + 1); horizontal < 12; horizontal++) {
-        target = gameBoard[horizontal][vertical];
-        if (target instanceof Mob) {
-            console.log("H: " + horizontal + " V: " + vertical + " is Mob");
-            allNull = false;
-            this.target.push(target);
-
-        }
-        // this.target = gameBoard[horizontal][vertical];
-    }
-    if (allNull || this.penetrate) {
-        this.targetX = 13;
-        this.targetY = vertical;
-        if (allNull) {
-            this.target = [];
+    var i, j;
+    for(i=0;i<12;i++){
+        for(j=0;j<6;j++){
+            if((gameBoard[i][j]!= null) && !(gameBoard[i][j] instanceof TestPlayer)){
+                this.target.push(gameBoard[i][j]);
+            } 
         }
     }
+    
 };
 module.exports = SLB;
