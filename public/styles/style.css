@@ -90,6 +90,7 @@ body {
 	padding-bottom: 0px;
 	padding-left: 0px;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 }
 
 .cast-button {
@@ -109,6 +110,7 @@ body {
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
@@ -137,6 +139,7 @@ body {
 	color: white;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	text-align: left;
 	height: 20px;
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
@@ -182,6 +185,7 @@ body {
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -197,6 +201,7 @@ body {
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -206,6 +211,7 @@ body {
 .basiccmd {
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -221,6 +227,7 @@ body {
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	height: 200px;
 	width: 300px;
 }
@@ -234,6 +241,7 @@ body {
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -267,6 +275,7 @@ body {
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
@@ -301,6 +310,7 @@ body {
     height:20px;
     width:67px;
     font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
     background-image: url(/assets/gameobjects/bg/bg3.png);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
     round;
@@ -323,6 +333,7 @@ body {
     height:67px;
     width:20px;
     font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
     background-image: url(/assets/gameobjects/bg/bg3.png);
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
@@ -353,6 +364,7 @@ body {
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
@@ -370,6 +382,7 @@ body {
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
 	font-family: Rockwell Extra Bold;
+    src: local(Rockwell Extra Bold), url('/assets/gameobjects/RockwellExtraBold') format('opentype');
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
