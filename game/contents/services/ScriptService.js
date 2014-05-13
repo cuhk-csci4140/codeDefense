@@ -161,6 +161,7 @@ ScriptService.prototype.runScript_ = function(script, context, spells) {
 			$, jQuery, util, ScriptService, game, world, Castable, JSON,
 			showBox, alert) {
 		try {
+			
 			eval(script.replace(/eval/g,'__eval__'));
 		} catch (e) {
 			exception = e;
