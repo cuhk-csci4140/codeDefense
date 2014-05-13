@@ -105,7 +105,7 @@ body {
     
 	text-align: center; //
 	background-color: green; //
-	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	background-image: url(/assets/gameobjects/bg/bg3.png);
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
@@ -258,9 +258,12 @@ body {
 	text-decoration: none !important;
 	cursor: pointer;
 	position: absolute;
-	text-align: center; //
-	background-color: green; //
-	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	text-align: center;
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+    
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
@@ -346,7 +349,7 @@ body {
     
 	text-align: center; //
 	background-color: green; //
-	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	background-image: url(/assets/gameobjects/bg/bg3.png);
 	color: #402F08;
 	display: inline-block;
 	font-family: Rockwell Extra Bold;
@@ -356,4 +359,36 @@ body {
 	-moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
 	border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+}
+
+.stageSelectionDiv {
+    border: 4px;
+	-webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	-moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+	color: #402F08;
+	font-family: Rockwell Extra Bold;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	width: 98.5%;
+	height: 96%;
+}
+
+
+.gametitle {
+    position:absolute;
+    width: 446px;
+	height: 107px;
+    top:40%;
+    left:40%;
+    background-image: url(/assets/gameobjects/bg/codedefence.png);
+	background-size: cover;
 }
