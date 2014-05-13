@@ -23,7 +23,7 @@ jQuery(function() {
 				})
 
 		console.log('game initialized');
-		stgSec();
-		// game.setLevel("demo");
+	//	stgSec();
+	//	 game.setLevel("demo");
 	});
 });
