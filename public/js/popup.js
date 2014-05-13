@@ -856,7 +856,7 @@ Popup.hide = function(divId) {
 // PROTOTYPE PROPERTIES
 // --------------------------------------------------------------------
 Popup.prototype.content = null;
-Popup.prototype.className = "PopupDiv";
+Popup.prototype.className = null;
 Popup.prototype.style = null; // Styles to be applied to the DIV
 Popup.prototype.width = null;
 Popup.prototype.height = null;
