@@ -43,6 +43,13 @@
             document.getElementById('stageSelection').innerHTML += '<input class="popupokbtn" style="left:25%;bottom:20px;width:50%" type="button" value="Resume" onClick="Popup.hide(\'stageSelection\');">';
             }
         }
+        
+        function startgame(){
+            resizePan();
+            if(level === null){
+                stgSec();
+            }
+        }
 
         var ctr = 0;
         var showctr = 0;
@@ -174,7 +181,7 @@
             lineNumbers: true,
             autofocus: true
         });
-        window.onload = resizePan;
+        window.onload = startgame;
         popmsg();
 
 
