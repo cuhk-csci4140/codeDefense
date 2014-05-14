@@ -92,20 +92,25 @@ BoardObject.prototype.move = function(h, v, equation) {
     if (v > this.stats.castRange) {
         throw new Error("You cannot move too far!");
     }
+    {
+
+    }
     if ((this.position.horizontal + h) >= 0
             && (this.position.horizontal + h) <= this.boardWidth
             && (this.position.vertical + v) >= 0
             && (this.position.vertical + v) <= this.boardHeight) {
-
-        this
-                .queue_(function(event) {
-                    console.log("move object in game board");
-                    this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
-                    this.world.activeLevel.gameboard[this.position.horizontal
-                            + h][this.position.vertical + v] = this;
-                    this.moveTo_(this.position.horizontal + h,
-                            this.position.vertical + v, equation, event);
-                });
+        if (this.world.activeLevel.gameboard[this.position.horizontal + h][this.position.vertical + v] == null) {
+            this.queue_(function(event) {
+                console.log("move object in game board");
+                this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;
+                this.world.activeLevel.gameboard[this.position.horizontal
+                        + h][this.position.vertical + v] = this;
+                this.moveTo_(this.position.horizontal + h,
+                        this.position.vertical + v, equation, event);
+            });
+        } else {
+            throw new Error("Opps, crushed!");
+        }
     } else {
         throw new Error("Moving to VOID");
     }
