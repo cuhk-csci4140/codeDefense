@@ -30,7 +30,7 @@ var Chibi = function(world) {
     this.defaults.movement = 2000;
     this.stats.movement = 2000;
     this.defaultAnimation = "stand";
-    this.damage = 10;
+    this.damage = 30;
 
     this.AI = function(event, onComplete) {
 

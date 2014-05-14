@@ -11,7 +11,6 @@ var ScriptSevice = require('../contents/services/ScriptService');
 var CombatSevice = require('../contents/services/CombatService');
 var Connection = require('../framework/net/client/AbstractConnection');
 
-
 // modules
 // var HelloWorldModule = require('../modules/helloworld/client/module');
 // var AuthModule = require('../modules/auth/client/module');
@@ -86,14 +85,14 @@ Core.extend = jQuery.extend;
  * @param callback
  */
 Core.prototype.initialize = function(callback) {
-    // Core.super_.prototype.initialize.call(this);
-    // this.overlay = new Overlay();
-    // initialize connection to game server (default:same domain as the client
-    // side) ,port 7777
+            // Core.super_.prototype.initialize.call(this);
+            // this.overlay = new Overlay();
+            // initialize connection to game server (default:same domain as the client
+            // side) ,port 7777
 
-    this.connection = new Connection({
-        address: 'ws://' + document.domain + ':7777'
-    });
+            this.connection = new Connection({
+                address: 'ws://' + document.domain + ':7777'
+            });
 
     // define all modules here
     // this.modules['hello-world'] = new HelloWorldModule(this);
@@ -109,6 +108,7 @@ Core.prototype.initialize = function(callback) {
     this.levels['stage1b'] = require('../contents/levels/Stage1b');
     this.levels['stage1c'] = require('../contents/levels/Stage1c');
     this.levels['stage1d'] = require('../contents/levels/Stage1d');
+    this.levels['endless'] = require('../contents/levels/endlessLevel');
     var assets = [{
             src: "assets/gameobjects/characters/m_mage.png",
             id: "m_mage"

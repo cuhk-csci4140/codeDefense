@@ -56,8 +56,8 @@ Stage1d.prototype.dispose = function() {
 };
 
 Stage1d.prototype.jumpLevel = function() {
-    showBox("Wave 3 Cleared!", "Last Wave is coming!");
-    this.world.setLevel('stage1c');
+    this.world.connection.socket.emit("CM_SCORE", {data: this.world.score, stage: "Stage 1"});
+    endgamebox("Stage Cleared!", "Score: " + this.world.score);
 };
 
 module.exports = Stage1d;
