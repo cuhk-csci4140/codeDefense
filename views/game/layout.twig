@@ -110,7 +110,8 @@
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br>this.cast(new spells.Fireball());<br>MP Cost: 10<br>Damage: 2';
                 break;
             case "firewall":
-                title = "Firewall";
+
+                title = "Fire Pillar";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br>this.cast(new spells.Firewall(x,y));<br><span style="color:green">*Burn enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 15<br>Damage: 3';
                 break;
             case "thunderbolt":
@@ -124,14 +125,19 @@
             case "meteor":
                 title = "Meteor";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/meteor.png"></img><br>this.cast(new spells.Meteor(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
-                break;
+                break; 
             case "icearrow":
                 title = "Ice Arrow";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png"></img><br>this.cast(new spells.Icearrow());<br>spells.Icearrow.prototype.scale( scale )<br><span style="color:green">*Penetration*</span><br>MP Cost: 10^(1 + scale*1.4/10)<br>Damage: 1';
                 break;
             case "lightwall":
                 title = "Lightwall";
+
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br>this.cast(new spells.Lightwall(x,y));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 10<br>Damage: 0';
+                break;
+            case "teleport":
+                title = "Teleport";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/teleport.png"></img><br>this.cast(new spells.Teleport(x,y,z (optional) ));<br> z : function(){ return spellObject;}<br>MP Cost: 10<br>Damage: 0';
                 break;
             }
         
