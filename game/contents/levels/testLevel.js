@@ -39,7 +39,7 @@ testLevel.prototype.initialize = function() {
 		// console.log(x);
 
 		currentBori.setPosition(x, y);
-		currentBori.hpBar.setTransform(35 + 120 * x, (120 * y) + 10, 0.6, 0.6);
+		//currentBori.hpBar.setTransform(35 + 120 * x, (120 * y) + 10, 0.6, 0.6);
 		currentBori.setFaction(CombatService.TurnEnemy);
 		this.add(currentBori);
 	}
