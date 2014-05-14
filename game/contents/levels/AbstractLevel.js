@@ -20,6 +20,7 @@ var AbstractLevel = function(world) {
     this.gameboard = array;
     this.baseTurn = 10;
     this.baseCast = 6;
+    this.bgm = null;
 };
 
 AbstractLevel.prototype.checkBoard = function() {
