@@ -167,7 +167,7 @@ Core.prototype.initialize = function(callback) {
     createjs.Sound.alternateExtensions = ["ogg"];	// add other extensions to try loading if the src file extension is not supported
     //createjs.Sound.addEventListener("fileload", createjs.proxy(soundLoaded, this)); // add an event listener for when load is completed
     createjs.Sound.registerManifest(manifest, assetsPath);
-    
+
     var game = this;
     this.assets.addEventListener("complete", function() {
         console.log('Assets load complete');

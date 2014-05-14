@@ -2,6 +2,7 @@ var util = require('util');
 var AbstractLevel = require('./AbstractLevel');
 var Mage = require('../../gameobjects/TestPlayer');
 var Bori = require('../mobs/Bori');
+var Chibi = require('../mobs/Chibi');
 var CombatService = require('../services/CombatService');
 
 var Stage1b = function(world) {
@@ -17,7 +18,7 @@ Stage1b.prototype.initialize = function(x, y) {
     if (x != null && y != null) {
         this.get('player').setPosition(x, y);
     } else {
-        this.get('player').setPosition(0, 3);
+        this.get('player').setPosition(0, 0);
     }
     this.get('player').setFaction(CombatService.TurnAlly);
 
@@ -28,11 +29,17 @@ Stage1b.prototype.initialize = function(x, y) {
 
     this.add(ground, this.get('player'));
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 3; i++) {
         this.set('bori' + i, Bori);
-        this.get('bori' + i).setPosition(11, i);
+        this.get('bori' + i).setPosition(11, 2 * i);
         this.get('bori' + i).setFaction(CombatService.TurnEnemy);
         this.add(this.get('bori' + i));
+    }
+    for (var i = 0; i < 3; i++) {
+        this.set('chibi' + i, Chibi);
+        this.get('chibi' + i).setPosition(11, 2 * i + 1);
+        this.get('chibi' + i).setFaction(CombatService.TurnEnemy);
+        this.add(this.get('chibi' + i));
     }
     this.initialized = true;
 };
