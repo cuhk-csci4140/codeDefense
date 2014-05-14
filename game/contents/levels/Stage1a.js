@@ -28,7 +28,7 @@ Stage1a.prototype.initialize = function() {
 
     for (var i = 0; i < 6; i++) {
         this.set('bori' + i, Bori);
-        this.get('bori' + i).setPosition(11, i);
+        this.get('bori' + i).setPosition(10, i);
         this.get('bori' + i).setFaction(CombatService.TurnEnemy);
         this.add(this.get('bori' + i));
     }
