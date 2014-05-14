@@ -107,23 +107,19 @@
             switch (skill) {
             case "movement":
                 title = "Movement";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/movement.png"></img><br>this.move(x,y)<br>MP Cost: 0<br>Damage: 0';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/movement.png"></img><br><span style="color:green">Move within the cast range</span><br>this.move(x,y)<br><span style="color:green">*Relative coordinate*</span><br><br>MP Cost: 0<br>Damage: 0';
                 break;
             case "fireball":
                 title = "Fireball";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br>this.cast(new spells.Fireball());<br>MP Cost: 2<br>Damage: 2';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br><span style="color:green">Shoot a fireball and due damage to enemy</span><br>this.cast(new spells.Fireball());<br><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "firewall":
                 title = "Fire Pillar";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br>this.cast(new spells.Firepillar(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
-                break;
-            case "thunderbolt":
-                title = "Thunderblot";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br><span style="color:green">Summon a firewall to block and due damage to enemy</span><br>this.cast(new spells.Firepillar(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "pyroblast":
                 title = "Pyroblast";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/pyroblast.png"></img><br>this.cast(new spells.Pyroblast());<br><span style="color:green">*Range Damage*</span><br>MP Cost: 2<br>Damage: 2';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/pyroblast.png"></img><br><span style="color:green">Pyroblast to due huge damage to enemy</span><br>this.cast(new spells.Pyroblast());<br><span style="color:green">*Range Damage*</span><br><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "meteor":
                 title = "Meteor";
@@ -131,19 +127,27 @@
                 break;
             case "icearrow":
                 title = "Ice Arrow";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png"></img><br>this.cast(new spells.Icearrow());<br><span style="color:green">*Penetration*</span><br>MP Cost: 2<br>Damage: 2';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png"></img><br><span style="color:green">Shoot an ice arrow to due damage to enemy</span><br>this.cast(new spells.Icearrow());<br><span style="color:green">*Penetration*</span><br><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "lightwall":
                 title = "Lightwall";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br>this.cast(new spells.Lightwall(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 0';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br><span style="color:green">Summon a firewall to block enemy</span><br>this.cast(new spells.Lightwall(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br><br>MP Cost: 2<br>Damage: 0';
                 break;
             case "thunderbolt":
-                title = "Thunderblot";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                title = "Thunderbolt";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br><span style="color:green">Summon a thunderbolt and due damage to enemy</span><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "teleport":
                 title = "Teleport";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/teleport.png"></img><br>this.cast(new spells.Teleport(x,y));<br>MP Cost: 2<br>Damage: 0';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/teleport.png"></img><br><span style="color:green">Teleport to a specific coordinate</span><br>this.cast(new spells.Teleport(x,y));<br><span style="color:green">Absolute coordinate</span><br><br>MP Cost: 2<br>Damage: 0';
+                break;
+            case "fireballadv":
+                title = "Multiple Fireball";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireballadv.png"></img><br><span style="color:green">Cast multiple Fireball in a row.</span><br>var cart = spells.Cartridge(n);<br>cart.load(function(){return new spells.Fireball();});<br>this.cast(cart);<br><br>MP Cost: n x Fireball<br>Damage: n x Fireball';
+                break;
+            case "telecast":
+                title = "Cast magic after Teleport";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/telecast.png"></img><br><span style="color:green">Cast Firewall right after Teleport</span><br>this.cast(new spells.Teleport(x,y,function(){  return new spells.Fireball()}));<br><br>MP Cost: Teleport + Fireball<br>Damage: Fireball';
                 break;
             }
         
