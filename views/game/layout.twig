@@ -31,8 +31,12 @@
             }
             Popup.showModal('stageSelection');
             document.getElementById('stageSelection').innerHTML =
+            
+            '<div style="position:absolute;background-image: url(/assets/gameobjects/bg/teleportbg.png);background-size: cover;bottom:0px;left:50px;height:100%;width:70%"></div>' +
+
 
             '<div style="position:absolute;background-image: url(/assets/gameobjects/bg/swordman_m.png);background-size: cover;bottom:0px;left:50px;height:100%;width:70%"></div>' +
+            
             
             '<div class="gametitle"></div>' +
 
@@ -125,7 +129,7 @@
             case "meteor":
                 title = "Meteor";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/meteor.png"></img><br>this.cast(new spells.Meteor(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
-                break; 
+                break;
             case "icearrow":
                 title = "Ice Arrow";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png"></img><br>this.cast(new spells.Icearrow());<br>spells.Icearrow.prototype.scale( scale )<br><span style="color:green">*Penetration*</span><br>MP Cost: 10^(1 + scale*1.4/10)<br>Damage: 1';
