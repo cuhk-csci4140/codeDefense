@@ -99,6 +99,7 @@ ScriptService.prototype.runScript = function(script) {
 							result = real.animate(caster, onComplete);
 						} catch (e) {
 							showBox('Oops! Cast Error.', e);
+							console.log(e);
 						}
 
 						return result;
@@ -145,6 +146,7 @@ ScriptService.prototype.runScript = function(script) {
 
 		} catch (e) {
 			showBox('Oops! Cast Error.', e);
+			console.log( e);
 		}
 	}
 
