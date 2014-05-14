@@ -100,8 +100,8 @@
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br>this.cast(new spells.Fireball());<br>MP Cost: 2<br>Damage: 2';
                 break;
             case "firewall":
-                title = "Firewall";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br>this.cast(new spells.Firewall(x,y));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                title = "Fire Pillar";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br>this.cast(new spells.Firepillar(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
                 break;
             case "thunderbolt":
                 title = "Thunderblot";
@@ -121,11 +121,15 @@
                 break;
             case "lightwall":
                 title = "Lightwall";
-                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br>this.cast(new spells.Lightwall(x,y));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 0';
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br>this.cast(new spells.Lightwall(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 0';
                 break;
             case "thunderbolt":
                 title = "Thunderblot";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "teleport":
+                title = "Teleport";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/teleport.png"></img><br>this.cast(new spells.Teleport(x,y));<br>MP Cost: 2<br>Damage: 0';
                 break;
             }
         
