@@ -32,7 +32,7 @@ var Usagi = function(world) {
     this.stats.movement = 2000;
     this.defaultAnimation = "stand";
     this.damage = 100;
-
+    this.stats.castRange = 3;
     this.myTurn = {};
 
     this.AI = function(event, onComplete) {
