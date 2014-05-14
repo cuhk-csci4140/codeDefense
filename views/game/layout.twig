@@ -81,6 +81,9 @@
             
             if(typeof game !== "undefined" && game.activeLevel){
              $('#castRange').html(game.gameobjects.get('player').stats.castRange);
+             $('#playerhp').html(game.gameobjects.get('player').hp);
+             $('#playermp').html(game.gameobjects.get('player').mp);
+
             }
             if(titleA[showctr]||msgA[showctr]){
                 Popup.showModal('modal');
