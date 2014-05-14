@@ -65,8 +65,7 @@ endlessLevel.prototype.initialize = function(x, y) {
     }
 
     this.initialized = true;
-    this.get('player').mp = 200;
-    this.get('player').maxMp = 200;
+    this.loadBGM();
 };
 
 endlessLevel.prototype.update = function(event) {

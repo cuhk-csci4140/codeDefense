@@ -42,6 +42,7 @@ Stage1b.prototype.initialize = function(x, y) {
         this.add(this.get('chibi' + i));
     }
     this.initialized = true;
+    this.loadBGM();
 };
 
 Stage1b.prototype.update = function(event) {

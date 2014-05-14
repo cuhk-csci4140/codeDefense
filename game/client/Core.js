@@ -85,14 +85,14 @@ Core.extend = jQuery.extend;
  * @param callback
  */
 Core.prototype.initialize = function(callback) {
-            // Core.super_.prototype.initialize.call(this);
-            // this.overlay = new Overlay();
-            // initialize connection to game server (default:same domain as the client
-            // side) ,port 7777
+    // Core.super_.prototype.initialize.call(this);
+    // this.overlay = new Overlay();
+    // initialize connection to game server (default:same domain as the client
+    // side) ,port 7777
 
-            this.connection = new Connection({
-                address: 'ws://' + document.domain + ':7777'
-            });
+    this.connection = new Connection({
+        address: 'ws://' + document.domain + ':7777'
+    });
 
     // define all modules here
     // this.modules['hello-world'] = new HelloWorldModule(this);
@@ -161,8 +161,10 @@ Core.prototype.initialize = function(callback) {
     //load sound here
     var assetsPath = "assets/bgm/";
     var manifest = [
-        {src: "bgm01.ogg", id: 1},
-        {src: "bgm02.ogg", id: 2}
+        {src: "BGM_Intro.ogg", id: 1},
+        {src: "BGM_body.ogg", id: 2},
+        {src: "Lose.ogg", id: 3},
+        {src: "Win.ogg", id: 4}
     ];
 
     createjs.Sound.alternateExtensions = ["ogg"];	// add other extensions to try loading if the src file extension is not supported

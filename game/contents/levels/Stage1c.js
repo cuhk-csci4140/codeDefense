@@ -44,6 +44,7 @@ Stage1c.prototype.initialize = function(x, y) {
         this.add(this.get('tree' + i));
     }
     this.initialized = true;
+    this.loadBGM();    
 };
 
 Stage1c.prototype.update = function(event) {

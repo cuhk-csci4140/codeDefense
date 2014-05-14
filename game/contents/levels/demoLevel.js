@@ -66,6 +66,7 @@ demoLevel.prototype.initialize = function(x, y) {
         }
     }
     this.initialized = true;
+    this.loadBGM();
 };
 
 demoLevel.prototype.update = function(event) {

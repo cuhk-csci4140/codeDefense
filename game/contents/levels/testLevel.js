@@ -43,16 +43,14 @@ testLevel.prototype.initialize = function(x, y) {
 		// console.log(x);
 
 		currentBori.setPosition(x, y);
-		currentBori.hpBar.setTransform(35 + 120 * x, (120 * y) + 10, 0.6, 0.6);
+		//currentBori.hpBar.setTransform(35 + 120 * x, (120 * y) + 10, 0.6, 0.6);
 		currentBori.setFaction(CombatService.TurnEnemy);
 		this.add(currentBori);
 	}
-	console.log(this.gameboard);
-	this.bgm = createjs.Sound.play(1, {
-		interrupt : createjs.Sound.INTERRUPT_NONE,
-		loop : -1
-	});
+	console.log(this.gameboard);  
+        
 	this.initialized = true;
+        this.loadBGM();        
 };
 
 testLevel.prototype.update = function(event) {
