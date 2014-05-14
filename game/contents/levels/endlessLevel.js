@@ -13,7 +13,7 @@ var endlessLevel = function(world) {
 
 util.inherits(endlessLevel, AbstractLevel);
 
-endlessLevel.prototype.initialize = function(x, y) {
+endlessLevel.prototype.initialize = function(x, y, hp) {
 
     this.initialized = true;
 
@@ -23,6 +23,9 @@ endlessLevel.prototype.initialize = function(x, y) {
         this.get('player').setPosition(x, y);
     } else {
         this.get('player').setPosition(0, 0);
+    }
+    if (hp != null) {
+        this.get('player').hp = hp;
     }
     this.get('player').setFaction(CombatService.TurnAlly);
 

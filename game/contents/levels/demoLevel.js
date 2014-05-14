@@ -13,17 +13,13 @@ var demoLevel = function(world) {
 
 util.inherits(demoLevel, AbstractLevel);
 
-demoLevel.prototype.initialize = function(x, y) {
+demoLevel.prototype.initialize = function() {
 
     this.initialized = true;
 
     this.set('player', Mage);
     this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-    if (x != null && y != null) {
-        this.get('player').setPosition(x, y);
-    } else {
-        this.get('player').setPosition(0, 0);
-    }
+    this.get('player').setPosition(0, 0);
     this.get('player').setFaction(CombatService.TurnAlly);
 
     var ground = new createjs.Shape();

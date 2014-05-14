@@ -13,7 +13,7 @@ var Stage1c = function(world) {
 
 util.inherits(Stage1c, AbstractLevel);
 
-Stage1c.prototype.initialize = function(x, y) {
+Stage1c.prototype.initialize = function(x, y, hp) {
     this.initialized = true;
     this.set('player', Mage);
     this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
@@ -21,6 +21,9 @@ Stage1c.prototype.initialize = function(x, y) {
         this.get('player').setPosition(x, y);
     } else {
         this.get('player').setPosition(0, 0);
+    }
+    if (hp != null) {
+        this.get('player').hp = hp;
     }
     this.get('player').setFaction(CombatService.TurnAlly);
 
@@ -44,7 +47,7 @@ Stage1c.prototype.initialize = function(x, y) {
         this.add(this.get('tree' + i));
     }
     this.initialized = true;
-    this.loadBGM();    
+    this.loadBGM();
 };
 
 Stage1c.prototype.update = function(event) {

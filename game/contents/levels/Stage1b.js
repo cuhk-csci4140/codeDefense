@@ -11,7 +11,7 @@ var Stage1b = function(world) {
 
 util.inherits(Stage1b, AbstractLevel);
 
-Stage1b.prototype.initialize = function(x, y) {
+Stage1b.prototype.initialize = function(x, y, hp) {
     this.initialized = true;
     this.set('player', Mage);
     this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
@@ -19,6 +19,9 @@ Stage1b.prototype.initialize = function(x, y) {
         this.get('player').setPosition(x, y);
     } else {
         this.get('player').setPosition(0, 0);
+    }
+    if (hp != null) {
+        this.get('player').hp = hp;
     }
     this.get('player').setFaction(CombatService.TurnAlly);
 

@@ -197,9 +197,11 @@ Core.prototype.initialize = function(callback) {
 Core.prototype.setLevel = function(level) {
     var playerX = null;
     var playerY = null;
+    var playerHp = null;
     try {
         playerX = this.gameobjects.get('player').position.horizontal;
         playerY = this.gameobjects.get('player').position.vertical;
+        playerHp = this.gameobjects.get('player').hp;
         this.gameobjects.dispose();
     } catch (e) {
         console.log("[ERROR] GameObjectManager : " + e);
@@ -215,7 +217,7 @@ Core.prototype.setLevel = function(level) {
 
     console.log("[CORE] load level " + level);
     this.activeLevel = new this.levels[level](this);
-    this.activeLevel.initialize(playerX, playerY);
+    this.activeLevel.initialize(playerX, playerY,playerHp);
 
 }
 /**
