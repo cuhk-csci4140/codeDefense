@@ -31,13 +31,13 @@ Stage1b.prototype.initialize = function(x, y) {
 
     for (var i = 0; i < 3; i++) {
         this.set('bori' + i, Bori);
-        this.get('bori' + i).setPosition(11, 2 * i);
+        this.get('bori' + i).setPosition(9, 2 * i);
         this.get('bori' + i).setFaction(CombatService.TurnEnemy);
         this.add(this.get('bori' + i));
     }
     for (var i = 0; i < 3; i++) {
         this.set('chibi' + i, Chibi);
-        this.get('chibi' + i).setPosition(11, 2 * i + 1);
+        this.get('chibi' + i).setPosition(10, 2 * i + 1);
         this.get('chibi' + i).setFaction(CombatService.TurnEnemy);
         this.add(this.get('chibi' + i));
     }

@@ -175,6 +175,7 @@ AbstractLevel.prototype.jumpLevel = function() {
 };
 
 AbstractLevel.prototype.lost = function() {
+	
     endgamebox("LOSS!", "GG Well Play!");
     
     if (this.bgm !== undefined && this.bgm !== null) {

@@ -11,7 +11,6 @@ var ScriptSevice = require('../contents/services/ScriptService');
 var CombatSevice = require('../contents/services/CombatService');
 var Connection = require('../framework/net/client/AbstractConnection');
 
-
 // modules
 // var HelloWorldModule = require('../modules/helloworld/client/module');
 // var AuthModule = require('../modules/auth/client/module');
@@ -26,56 +25,56 @@ var Connection = require('../framework/net/client/AbstractConnection');
  */
 var Core = function(opts) {
 
-    if (Core.instance === null) {
-        Core.instance = this;
-    } else {
-        throw Error('Singeton Pattern Error');
-    }
+	if (Core.instance === null) {
+		Core.instance = this;
+	} else {
+		throw Error('Singeton Pattern Error');
+	}
 
-    var game = this;
-    this.opts = Core.extend({}, opts);
+	var game = this;
+	this.opts = Core.extend({}, opts);
 
-    Core.opts = this.opts;
+	Core.opts = this.opts;
 
-    this.assets;
-    this.services = [];
-    this.gameobjects = new GameObjectManager(); // global gameobject
-    this.score = 0;
-    this.canvas = opts.canvas;
-    console.log(opts);
-    this.stage = new createjs.Stage(opts.canvasId);
+	this.assets;
+	this.services = [];
+	this.gameobjects = new GameObjectManager(); // global gameobject
+	this.score = 0;
+	this.canvas = opts.canvas;
+	console.log(opts);
+	this.stage = new createjs.Stage(opts.canvasId);
 
-    // resize options (Full-screen size)
-    if (opts.width == this.opts.width && opts.height == this.opts.height
-            || (!opts.width && !opts.height)) {
-        this.opts.resize = true;
-        console.log("resize handler : on");
-        window.addEventListener('resize', function() {
-            game.onWindowResize();
-        }, false);
-    }
+	// resize options (Full-screen size)
+	if (opts.width == this.opts.width && opts.height == this.opts.height
+			|| (!opts.width && !opts.height)) {
+		this.opts.resize = true;
+		console.log("resize handler : on");
+		window.addEventListener('resize', function() {
+			game.onWindowResize();
+		}, false);
+	}
 
-    this.initialized = false;
+	this.initialized = false;
 
-    this.active = false;
+	this.active = false;
 
-    this.modules = [];
-    this.levels = {};
+	this.modules = [];
+	this.levels = {};
 
-    this.activeLevel = false;
-    this.ratio;
-    this.time = Date.now();
-    this.active = false;
+	this.activeLevel = false;
+	this.ratio;
+	this.time = Date.now();
+	this.active = false;
 };
 
 Core.instance = null;
 Core.opts = {};
 
 Core.prototype.ready = function(func) {
-    window.addEventListener("load", function load(event) {
-        window.removeEventListener("load", load, false);
-        func();
-    }, false);
+	window.addEventListener("load", function load(event) {
+		window.removeEventListener("load", load, false);
+		func();
+	}, false);
 };
 Core.extend = jQuery.extend;
 
@@ -108,6 +107,7 @@ Core.prototype.initialize = function(callback) {
     this.levels['stage1a'] = require('../contents/levels/Stage1a');
     this.levels['stage1b'] = require('../contents/levels/Stage1b');
     this.levels['stage1c'] = require('../contents/levels/Stage1c');
+    this.levels['endless'] = require('../contents/levels/endlessLevel');
     var assets = [{
             src: "assets/gameobjects/characters/m_mage.png",
             id: "m_mage"
@@ -194,27 +194,27 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
-    var playerX = null;
-    var playerY = null;
-    try {
-        playerX = this.gameobjects.get('player').position.horizontal;
-        playerY = this.gameobjects.get('player').position.vertical;
-        this.gameobjects.dispose();
-    } catch (e) {
-        console.log("[ERROR] GameObjectManager : " + e);
-    }
+	var playerX = null;
+	var playerY = null;
+	try {
+		playerX = this.gameobjects.get('player').position.horizontal;
+		playerY = this.gameobjects.get('player').position.vertical;
+		this.gameobjects.dispose();
+	} catch (e) {
+		console.log("[ERROR] GameObjectManager : " + e);
+	}
 
-    this.services[CombatSevice.NAME].reset();
-    if (this.activeLevel) {
-        console.log("[CORE] unload current level");
-        this.activeLevel.dispose();
-        delete this.activeLevel;
-    }
-    this.gameobjects = new GameObjectManager(); // global gameobject
+	this.services[CombatSevice.NAME].reset();
+	if (this.activeLevel) {
+		console.log("[CORE] unload current level");
+		this.activeLevel.dispose();
+		delete this.activeLevel;
+	}
+	this.gameobjects = new GameObjectManager(); // global gameobject
 
-    console.log("[CORE] load level " + level);
-    this.activeLevel = new this.levels[level](this);
-    this.activeLevel.initialize(playerX, playerY);
+	console.log("[CORE] load level " + level);
+	this.activeLevel = new this.levels[level](this);
+	this.activeLevel.initialize(playerX, playerY);
 
 }
 /**
@@ -224,37 +224,37 @@ Core.prototype.setLevel = function(level) {
  */
 Core.prototype.render = function(event) {
 
-    if (this.activeLevel) {
-        var delta = event.delta / 1000;
-        this.stage.update(event);
-        this.gameobjects.render(event);
+	if (this.activeLevel) {
+		var delta = event.delta / 1000;
+		this.stage.update(event);
+		this.gameobjects.render(event);
 
-        // get player
-        var player = this.gameobjects.get('player');
-        // get hp and mp bar
-        var hpBar = document.querySelector("#hp");
-        var mpBar = document.querySelector("#mp");
-        // update hp and mp
-        hpBar.value = player.hp;
-        mpBar.value = player.mp;
-        mpBar.max = player.maxMp;
-    }
+		// get player
+		var player = this.gameobjects.get('player');
+		// get hp and mp bar
+		var hpBar = document.querySelector("#hp");
+		var mpBar = document.querySelector("#mp");
+		// update hp and mp
+		hpBar.value = player.hp;
+		mpBar.value = player.mp;
+		mpBar.max = player.maxMp;
+	}
 }
 
 Core.prototype.onWindowResize = function() {
-    console.log("resize");
-    var h = window.innerHeight;
-    var w = window.innerWidth;
-    var h_ratio = 727 / h;
-    var w_ratio = 1440 / w;
+	console.log("resize");
+	var h = window.innerHeight;
+	var w = window.innerWidth;
+	var h_ratio = 727 / h;
+	var w_ratio = 1440 / w;
 
-    this.ratio = h_ratio >= w_ratio ? h_ratio : w_ratio;
+	this.ratio = h_ratio >= w_ratio ? h_ratio : w_ratio;
 
-    if (this.stage) {
-        this.stage.setTransform(0, 0, 1 / this.ratio, 1 / this.ratio);
-    }
+	if (this.stage) {
+		this.stage.setTransform(0, 0, 1 / this.ratio, 1 / this.ratio);
+	}
 
-    this.canvas.width = 1440 / this.ratio;
-    this.canvas.height = 727 / this.ratio;
+	this.canvas.width = 1440 / this.ratio;
+	this.canvas.height = 727 / this.ratio;
 }
 module.exports = Core;
