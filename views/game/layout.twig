@@ -26,6 +26,9 @@
     <script>
         var level = null;
         function stgSec(){
+            if(game.activeLevel.bgm !== undefined && game.activeLevel.bgm !== null){
+                game.activeLevel.bgm.stop();
+            }
             Popup.showModal('stageSelection');
             document.getElementById('stageSelection').innerHTML =
 
@@ -43,7 +46,7 @@
             '<input class="popupokbtn" style="left:25%;bottom:70px;width:50%" type="button" value="Test Level" onClick="game.setLevel(\'test\');level = \'Test Level\';Popup.hide(\'stageSelection\');$(\'#level\').html(level);">';
             
             if(level !== null){
-            document.getElementById('stageSelection').innerHTML += '<input class="popupokbtn" style="left:25%;bottom:20px;width:50%" type="button" value="Resume" onClick="Popup.hide(\'stageSelection\');">';
+            document.getElementById('stageSelection').innerHTML += '<input class="popupokbtn" style="left:25%;bottom:20px;width:50%" type="button" value="Resume" onClick="resumeGame();">';
             }
         }
         
@@ -53,6 +56,13 @@
         var showctr = 0;
         var titleA = new Array();;
         var msgA = new Array();;
+        
+        function resumeGame(){
+            Popup.hide('stageSelection');
+            if(game.activeLevel.bgm !== undefined && game.activeLevel.bgm !== null){
+                game.activeLevel.bgm.play();
+            }
+        }
 
         function showBox(title, msg) {
         
