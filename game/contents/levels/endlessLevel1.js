@@ -7,26 +7,19 @@ var Tree = require('../mobs/Tree');
 var Usagi = require('../mobs/Usagi');
 var CombatService = require('../services/CombatService');
 
-var endlessLevel = function(world) {
-    endlessLevel.super_.call(this, world);
+var endlessLevel1 = function(world) {
+    endlessLevel1.super_.call(this, world);
 };
 
-util.inherits(endlessLevel, AbstractLevel);
+util.inherits(endlessLevel1, AbstractLevel);
 
-endlessLevel.prototype.initialize = function(x, y, hp) {
+endlessLevel1.prototype.initialize = function() {
 
     this.initialized = true;
 
     this.set('player', Mage);
     this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-    if (x != null && y != null) {
-        this.get('player').setPosition(x, y);
-    } else {
-        this.get('player').setPosition(0, 0);
-    }
-    if (hp != null) {
-        this.get('player').hp = hp;
-    }
+    this.get('player').setPosition(0, 0);
     this.get('player').setFaction(CombatService.TurnAlly);
 
     var ground = new createjs.Shape();
@@ -71,25 +64,25 @@ endlessLevel.prototype.initialize = function(x, y, hp) {
     this.loadBGM();
 };
 
-endlessLevel.prototype.update = function(event) {
+endlessLevel1.prototype.update = function(event) {
     if (this.initialized) {
 
     }
 };
-endlessLevel.prototype.dispose = function() {
+endlessLevel1.prototype.dispose = function() {
 
 };
 
-endlessLevel.prototype.jumpLevel = function() {
+endlessLevel1.prototype.jumpLevel = function() {
     this.world.connection.socket.emit("CM_SCORE", {
         data: this.world.score,
         stage: "Endless Mode"
     });
     showBox("Score: ", this.world.score);
-    this.world.setLevel('endless');
+    this.world.setLevel('endless2');
 };
-endlessLevel.prototype.lost = function() {
+endlessLevel1.prototype.lost = function() {
     showBox("LOSS!", "GG Well Play!");
     endgamebox("Score: ", this.world.score);
 };
-module.exports = endlessLevel;
+module.exports = endlessLevel1;

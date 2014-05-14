@@ -108,7 +108,8 @@ Core.prototype.initialize = function(callback) {
     this.levels['stage1b'] = require('../contents/levels/Stage1b');
     this.levels['stage1c'] = require('../contents/levels/Stage1c');
     this.levels['stage1d'] = require('../contents/levels/Stage1d');
-    this.levels['endless'] = require('../contents/levels/endlessLevel');
+    this.levels['endless1'] = require('../contents/levels/endlessLevel1');
+    this.levels['endless2'] = require('../contents/levels/endlessLevel2');
     var assets = [{
             src: "assets/gameobjects/characters/m_mage.png",
             id: "m_mage"
