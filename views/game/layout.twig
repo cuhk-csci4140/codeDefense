@@ -85,7 +85,59 @@
                 Popup.showModal('endgamediv');
                 title = '<div class="boxtitle">' + title + '</div>';
                 msg = '<div class="boxmsg">' + msg + '</div>';
-                document.getElementById('endgamediv').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'endgamediv\');stgSec();">';
+                document.getElementById('endgamediv').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'endgamediv\');level=null;stgSec();">';
+        }
+        
+        function info(skill){
+        
+            switch (skill) {
+            case "movement":
+                title = "Movement";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/movement.png"></img><br>this.move(x,y)<br>MP Cost: 0<br>Damage: 0';
+                break;
+            case "fireball":
+                title = "Fireball";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br>this.cast(new spells.Fireball());<br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "firewall":
+                title = "Firewall";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br>this.cast(new spells.Firewall(x,y));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "thunderbolt":
+                title = "Thunderblot";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "pyroblast":
+                title = "Pyroblast";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/pyroblast.png"></img><br>this.cast(new spells.Pyroblast());<br><span style="color:green">*Range Damage*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "meteor":
+                title = "Meteor";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/meteor.png"></img><br>this.cast(new spells.Meteor(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "icearrow":
+                title = "Ice Arrow";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png"></img><br>this.cast(new spells.Icearrow());<br><span style="color:green">*Penetration*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            case "lightwall":
+                title = "Lightwall";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png"></img><br>this.cast(new spells.Lightwall(x,y));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 0';
+                break;
+            case "thunderbolt":
+                title = "Thunderblot";
+                msg = '<img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png"></img><br>this.cast(new spells.Thunderbolt(x,y));<br><span style="color:red">*Range limit*</span><br>MP Cost: 2<br>Damage: 2';
+                break;
+            }
+        
+      
+            
+            
+            
+            
+            Popup.showModal('skillinfo');
+            title = '<div class="boxtitle">' + title + '</div>';
+            msg = '<div class="boxmsg">' + msg + '</div>';
+            document.getElementById('skillinfo').innerHTML = title + "<br>" + msg + '<input class="popupokbtn" type="button" value="OK" onClick="Popup.hide(\'skillinfo\');">';
         }
 
         function cast() {
@@ -190,7 +242,7 @@ function startgame(){
     <div id="modal" class="PopupDiv"></div>
     <div id="stageSelection" class="stageSelectionDiv"></div>
     <div id="endgamediv" class="PopupDiv"></div>
-
+    <div id="skillinfo" class="skillinfo"><div>
 
     <script type="text/javascript">
         var editor = CodeMirror.fromTextArea(txtcodepanel, {

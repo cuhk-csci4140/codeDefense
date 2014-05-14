@@ -25,9 +25,18 @@
                 <div style="height:50px"></div>
                 <div class="instPanTitle">Basic commands</div>
                 <div class="basiccmd">
-                    <img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/movement.png" onclick="info('movement')" ></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/fireball.png" onclick="info('fireball')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/firewall.png" onclick="info('firewall')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/pyroblast.png" onclick="info('pyroblast')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/meteor.png" onclick="info('meteor')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png" onclick="info('icearrow')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png" onclick="info('lightwall')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png" onclick="info('thunderbolt')"></img></a>
+                   <!-- <a href=""><img class="skill_thum" src="/assets/gameobjects/bg/SLB.png" onclick="info('SLB')"></img></a> -->
                     
-                    
+            
+                   <!--
                     Movements<br>
                     this.move(x,y);<br><br>
                     Magic<br>
@@ -42,11 +51,13 @@
                     Challenge yourself:
 
                     <a href="javascript:game.setLevel('test');">Test Level</a>
-
+                    <a href="#" onclick="showBox('You have killed all monsters!', 'You Win!!');
+                    return false;">MsgBox Demo: showBox(title,msg)</a>
+                    
+                    -->
                 </div>
 
-                <a href="#" onclick="showBox('You have killed all monsters!', 'You Win!!');
-                        return false;">MsgBox Demo: showBox(title,msg)</a>
+                
 
             </div>
             <div class="gameInfoPanel" id="gameInfoPanel">
