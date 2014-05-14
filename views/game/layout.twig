@@ -111,9 +111,12 @@
                 break;
             case "fireball":
                 title = "Fireball";
+
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/fireball.png"></img><br><span style="color:green">Shoot a fireball and due damage to enemy</span><br>this.cast(new spells.Fireball());<br><br>MP Cost: 2<br>Damage: 2';
+
                 break;
             case "firewall":
+
                 title = "Fire Pillar";
                 msg = '<img class="skill_thum" src="/assets/gameobjects/bg/firewall.png"></img><br><span style="color:green">Summon a firewall to block and due damage to enemy</span><br>this.cast(new spells.Firepillar(x));<br><span style="color:green">*Block enemy*</span><br><span style="color:red">*Range limit*</span><br><br>MP Cost: 2<br>Damage: 2';
                 break;
@@ -151,10 +154,7 @@
                 break;
             }
         
-      
-            
-            
-            
+
             
             Popup.showModal('skillinfo');
             title = '<div class="boxtitle">' + title + '</div>';

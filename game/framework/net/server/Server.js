@@ -34,8 +34,8 @@ Server.prototype.start = function() {
 			console.log(listener.NAME + ' listened');
 			if (listener.NAME) {
 				socket.on(listener.NAME, function(data) {
-					console.log(" >>> [" + listener.NAME + "] ");
-					// console.log(data);
+					console.log(socket.id + " >>> [" + listener.NAME + "] ");
+				//	console.log(data);
 					var sm = new listener(data, socket);
 					delete sm;
 				});
@@ -48,14 +48,15 @@ Server.prototype.start = function() {
 		 * The MSG Where player disconnected from the server
 		 */
 		socket.on('disconnect', function(data) {
-			console.log("[DISCONNECTED]");
+			console.log("[DISCONNECTED]" + socket.id);
 
 		});
 
-		console.log("[Connected]");
+		console.log("[Connected] " + socket.id);
 
 		socket.on('CM_TEST', function(data) {
-
+			console.log(" >> [CM_TEST] ");
+			console.log(data);
 		});
 
 		socket.emit('SM_TEST', {

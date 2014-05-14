@@ -11,6 +11,7 @@ var ScriptSevice = require('../contents/services/ScriptService');
 var CombatSevice = require('../contents/services/CombatService');
 var Connection = require('../framework/net/client/AbstractConnection');
 
+
 // modules
 // var HelloWorldModule = require('../modules/helloworld/client/module');
 // var AuthModule = require('../modules/auth/client/module');
