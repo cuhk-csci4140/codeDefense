@@ -11,6 +11,7 @@ var ScriptSevice = require('../contents/services/ScriptService');
 var CombatSevice = require('../contents/services/CombatService');
 var Connection = require('../framework/net/client/AbstractConnection');
 
+
 // modules
 // var HelloWorldModule = require('../modules/helloworld/client/module');
 // var AuthModule = require('../modules/auth/client/module');
@@ -191,11 +192,10 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
-    var playerX = null;
-    var playerY = null;
+    var player= null;
     try {
-        playerX = this.gameobjects.get('player').position.horizontal;
-        playerY = this.gameobjects.get('player').position.vertical;
+        player = this.gameobjects.get('player');
+        this.gameobjects.remove('player');
         this.gameobjects.dispose();
     } catch (e) {
         console.log("[ERROR] GameObjectManager : " + e);
@@ -211,7 +211,7 @@ Core.prototype.setLevel = function(level) {
 
     console.log("[CORE] load level " + level);
     this.activeLevel = new this.levels[level](this);
-    this.activeLevel.initialize(playerX, playerY);
+    this.activeLevel.initialize(player);
 
 }
 /**

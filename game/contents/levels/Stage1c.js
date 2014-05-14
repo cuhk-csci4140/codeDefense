@@ -13,18 +13,19 @@ var Stage1c = function(world) {
 
 util.inherits(Stage1c, AbstractLevel);
 
-Stage1c.prototype.initialize = function(x, y) {
+Stage1c.prototype.initialize = function(player) {
 
     this.initialized = true;
-
-    this.set('player', Mage);
-    this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-    if (x != null && y != null) {
-        this.get('player').setPosition(x, y);
+    if (player != null) {
+        // restore all the player
+        this.set('player', player);
+        this.get('player').mp = 100;
     } else {
+        this.set('player', Mage);
+        this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
         this.get('player').setPosition(0, 3);
+        this.get('player').setFaction(CombatService.TurnAlly);
     }
-    this.get('player').setFaction(CombatService.TurnAlly);
 
     var ground = new createjs.Shape();
     ground.graphics.beginBitmapFill(this.world.assets.getResult("board"),
@@ -58,6 +59,7 @@ Stage1c.prototype.dispose = function() {
 };
 
 Stage1c.prototype.jumpLevel = function() {
+    this.world.connection.socket.emit("CM_SCORE", {data: this.world.score, stage: "Stage 1"});
     endgamebox("Stage Cleared!", "Score: " + this.world.score);
 };
 
