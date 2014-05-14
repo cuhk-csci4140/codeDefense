@@ -44,7 +44,7 @@ var TestPlayer = function(world) {
 			(function(event, onComplete) {
 				this.NextTurnOnComplete = onComplete;
 				if (this.hp <= 0) {
-					showBox("LOSE!", "OMG");
+					this.world.activeLevel.lost();
 				} else if (this.world.activeLevel.checkBoard()) {
 					this.world.activeLevel.win();
 				} else {

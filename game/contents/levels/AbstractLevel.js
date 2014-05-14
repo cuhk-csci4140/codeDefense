@@ -141,4 +141,9 @@ AbstractLevel.prototype.win = function() {
 AbstractLevel.prototype.jumpLevel = function() {
     // override in each level to select new stage / end
 };
+
+AbstractLevel.prototype.lost = function() {
+    endgamebox("LOSS!", "GG Well Play!");
+};
+
 module.exports = AbstractLevel;
