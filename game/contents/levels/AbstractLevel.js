@@ -23,6 +23,21 @@ var AbstractLevel = function(world) {
     this.bgm = null;
 };
 
+AbstractLevel.prototype.loadBGM = function() {
+    this.bgm = createjs.Sound.play(1, {
+        interrupt: createjs.Sound.INTERRUPT_NONE,
+        volume: 0.2
+    });
+
+    this.bgm.addEventListener("complete", (function(instance) {
+        this.bgm = this.bgm = createjs.Sound.play(2, {
+            interrupt: createjs.Sound.INTERRUPT_NONE,
+            loop: -1,
+            volume: 0.2
+        });
+    }).bind(this));
+};
+
 AbstractLevel.prototype.checkBoard = function() {
     var i, j;
     for (i = 0; i < 12; i++) {
@@ -135,7 +150,24 @@ AbstractLevel.prototype.win = function() {
         cast = 0;
     }
     this.world.score += (this.baseTurn - turn) * 100 + hp + mp + (this.baseCast - cast) * 100;
-    this.jumpLevel();
+
+
+
+    if (this.bgm !== undefined && this.bgm !== null) {
+        this.bgm.stop();
+    }
+
+    this.bgm = createjs.Sound.play(4, {
+        interrupt: createjs.Sound.INTERRUPT_NONE,
+        volume: 0.2
+    });
+
+    this.bgm.addEventListener("complete", (function(instance) {
+        this.jumpLevel();
+    }).bind(this));
+
+
+
 };
 
 AbstractLevel.prototype.jumpLevel = function() {
@@ -144,6 +176,19 @@ AbstractLevel.prototype.jumpLevel = function() {
 
 AbstractLevel.prototype.lost = function() {
     endgamebox("LOSS!", "GG Well Play!");
+    
+    if (this.bgm !== undefined && this.bgm !== null) {
+        this.bgm.stop();
+    }    
+    
+    this.bgm = createjs.Sound.play(3, {
+        interrupt: createjs.Sound.INTERRUPT_NONE,
+        volume: 0.2
+    });
+
+    this.bgm.addEventListener("complete", (function(instance) {
+        this.jumpLevel();
+    }).bind(this));
 };
 
 module.exports = AbstractLevel;

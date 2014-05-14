@@ -68,6 +68,7 @@ demoLevel.prototype.initialize = function(x, y) {
     this.initialized = true;
     this.get('player').mp = 200;
     this.get('player').maxMp = 200;
+    this.loadBGM();    
 };
 
 demoLevel.prototype.update = function(event) {

@@ -33,6 +33,7 @@ Stage1a.prototype.initialize = function() {
         this.add(this.get('bori' + i));
     }
     this.initialized = true;
+    this.loadBGM();
 };
 
 Stage1a.prototype.update = function(event) {

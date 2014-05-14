@@ -160,8 +160,10 @@ Core.prototype.initialize = function(callback) {
     //load sound here
     var assetsPath = "assets/bgm/";
     var manifest = [
-        {src: "bgm01.ogg", id: 1},
-        {src: "bgm02.ogg", id: 2}
+        {src: "BGM_Intro.ogg", id: 1},
+        {src: "BGM_body.ogg", id: 2},
+        {src: "Lose.ogg", id: 3},
+        {src: "Win.ogg", id: 4}
     ];
 
     createjs.Sound.alternateExtensions = ["ogg"];	// add other extensions to try loading if the src file extension is not supported

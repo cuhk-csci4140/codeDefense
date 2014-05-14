@@ -47,12 +47,10 @@ testLevel.prototype.initialize = function(x, y) {
 		currentBori.setFaction(CombatService.TurnEnemy);
 		this.add(currentBori);
 	}
-	console.log(this.gameboard);
-	this.bgm = createjs.Sound.play(1, {
-		interrupt : createjs.Sound.INTERRUPT_NONE,
-		loop : -1
-	});
+	console.log(this.gameboard);  
+        
 	this.initialized = true;
+        this.loadBGM();        
 };
 
 testLevel.prototype.update = function(event) {
