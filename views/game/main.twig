@@ -10,8 +10,8 @@
 
 
 
-                <div style="height:50%;">
-                    <textarea  cols="60" id="txtcodepanel" placeholder="Command me to kill all monsters!"></textarea>
+                <div style="60%">
+                    <textarea  cols="1" id="txtcodepanel" placeholder="Command me to kill all monsters!"></textarea>
                 </div>
                 <a id="game-cast-trigger" class="cast-button" href="#">
                     Cast spells!!!
@@ -20,8 +20,23 @@
         </div>
         <div class="game-ui-h">
             <div class="instructionPanel" id="instructionPanel">
+             <a id="stgSelection" class="stg_button" href="#"
+            onclick="stgSec();">Stage Selection</a>
+                <div style="height:50px"></div>
                 <div class="instPanTitle">Basic commands</div>
                 <div class="basiccmd">
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/movement.png" onclick="info('movement')" ></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/fireball.png" onclick="info('fireball')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/firewall.png" onclick="info('firewall')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/pyroblast.png" onclick="info('pyroblast')"></img></a>
+                    <!-- <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/meteor.png" onclick="info('meteor')"></img></a> -->
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/icearrow.png" onclick="info('icearrow')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/lightwall.png" onclick="info('lightwall')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/thunderbolt.png" onclick="info('thunderbolt')"></img></a>
+                    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/teleport.png" onclick="info('teleport')"></img></a>
+                   <!-- <a href=""><img class="skill_thum" src="/assets/gameobjects/bg/SLB.png" onclick="info('SLB')"></img></a> -->
+                   
+                   <!--
                     Movements<br>
                     this.move(x,y);<br><br>
                     Magic<br>
@@ -29,41 +44,79 @@
                     this.cast(new spells.Pyroblast());<br>
                     this.cast(new spells.Thunderbolt(x,y)); *Relative position, +/- 2<br>
                     this.cast(new spells.Teleport(x,y)); *Absolute position<br>
-                    
+                    <br>
+                    For loop and while loop is allowed.
                     <br>
                     <br>
-                    Challenge yourself: 
+                    Challenge yourself:
+
                     <a href="javascript:game.setLevel('test');">Test Level</a>
-
+                    <a href="#" onclick="showBox('You have killed all monsters!', 'You Win!!');
+                    return false;">MsgBox Demo: showBox(title,msg)</a>
+                    
+                    -->
                 </div>
+                <div class="instPanTitle">Advanced commands examples</div>
+<div class="basiccmd">
+    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/fireballadv.png" onclick="info('fireballadv')" ></img></a>
+    <a href="#"><img class="skill_thum" src="/assets/gameobjects/bg/telecast.png" onclick="info('telecast')"></img></a>
+    
+</div>
 
-                <a href="#" onclick="showBox('You have killed all monsters!', 'You Win!!');
-                        return false;">MsgBox Demo: showBox(title,msg)</a>
 
             </div>
             <div class="gameInfoPanel" id="gameInfoPanel">
                 <div class="instPanTitle">Game Status</div>
                 <div class="basiccmd">
-                    Stage <label id="stage">1</label> Round <label id="round">1</label><br>
-                    HP <progress id="hp" style="position:absolute;left:35px;top:57px" max="100" min="0" value="10">
+                    <label id="level"></label><br>
+                   <!-- Stage <label id="stage">1</label> Round <label id="round">1</label><br> -->
+                   HP: <label id="playerhp"></label> <progress id="hp" style="position:absolute;left:65px;top:70px" max="100" min="0" value="10">
                             <div pseudo="-webkit-progress-inner-element">
                                 <div pseudo="-webkit-progress-bar" style="background-color: white">
                                     <div pseudo="-webkit-progress-value" style="background-color: #7e7"></div>
                                 </div>
                             </div>
                         </progress><br>
-                        MP <progress id="mp" style="position:absolute;left:35px;top:73px" max="100" min="0" value="60">
+                   MP: <label id="playermp"></label><progress id="mp" style="position:absolute;left:65px;top:90px" max="100" min="0" value="60">
                             <div pseudo="-webkit-progress-inner-element">
                                 <div pseudo="-webkit-progress-bar" style="background-color: white">
                                     <div pseudo="-webkit-progress-value" style="background-color: #69d2e7"></div>
                                 </div>
                             </div>
                             </progress><br>
-
+                        Cast Range: <label id="castRange">1</label>
                 </div>
 
-
-            </div>
+                       </div>
         </div>
+    
+        <div class="deadline" ></div>
+
+        <div style="position:fixed;top:0px;left:25px;display:inline-block; width:100%;font-size: 0px">
+        <div class="top_index" >0</div>
+        <div class="top_index" >1</div>
+        <div class="top_index" >2</div>
+        <div class="top_index" >3</div>
+        <div class="top_index" >4</div>
+        <div class="top_index" >5</div>
+        <div class="top_index" >6</div>
+        <div class="top_index" >7</div>
+        <div class="top_index" >8</div>
+        <div class="top_index" >9</div>
+        <div class="top_index" >10</div>
+        <div class="top_index" >11</div>
+        </div>
+
+    <div style="position:fixed;top:25px;left:0px;display:block;height:100%">
+        <div class="left_index" >0</div>
+        <div class="left_index" >1</div>
+        <div class="left_index" >2</div>
+        <div class="left_index" >3</div>
+        <div class="left_index" >4</div>
+        <div class="left_index" >5</div>
+
+        </div>
+
+
 
     {% endblock %}

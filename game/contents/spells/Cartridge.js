@@ -3,13 +3,11 @@ var ShootingSpell = require('../../gameobjects/ShootingSpell');
 var Caster = require('../../gameobjects/Caster');
 
 /**
- 
-Cast four Fireball in a row.
-var cart = spells.Cartridge(4);
-cart.load(function(){  return new spells.Fireball();   });
-this.cast(cart);
+ * 
+ * Cast four Fireball in a row. var cart = spells.Cartridge(4);
+ * cart.load(function(){ return new spells.Fireball(); }); this.cast(cart);
  */
-var Cartridge = function(world,args) {
+var Cartridge = function(world, args) {
 
 	Cartridge.super_.call(this, world);
 	this.name = "Cartridge";
@@ -46,7 +44,10 @@ Cartridge.prototype.shoot = function(caster, onComplete) {
 			this.queue_(function(done) {
 
 				var spell = this.cartridge();
+
 				if (caster.isCastable(spell)) {
+					spell.cost = spell.cost / 2;
+					spell.cost = spell.cost > 5 ? spell.cost : 5;
 					caster.cast_(spell, done);
 				}
 

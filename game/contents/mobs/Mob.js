@@ -75,3 +75,17 @@ Mob.prototype.getHPbar = function(){
 
 // BoardObject.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 module.exports = Mob;
+
+/**
+ * TODO list:
+ * Bori  (1): slow, low HP, low damage
+ *      nothing
+ * Chibi (2): fast, middle HP, lowest damage
+ *      nothing
+ * Tree  (1): slow, high HP, high damage
+ *      nothing
+ * Usagi (3): fastest, lowest HP, highest damage
+ *      nothing
+ *      
+ * Mobs HP, attack balancing
+ */

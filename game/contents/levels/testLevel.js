@@ -10,13 +10,17 @@ var testLevel = function(world) {
 
 util.inherits(testLevel, AbstractLevel);
 
-testLevel.prototype.initialize = function() {
+testLevel.prototype.initialize = function(x, y) {
 
 	this.initialized = true;
 
 	this.set('player', Mage);
 	this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-	this.get('player').setPosition(5, 3);
+	if (x != null && y != null) {
+		this.get('player').setPosition(x, y);
+	} else {
+		this.get('player').setPosition(0, 0);
+	}
 	this.get('player').setFaction(CombatService.TurnAlly);
 
 	var ground = new createjs.Shape();
@@ -35,7 +39,7 @@ testLevel.prototype.initialize = function() {
 		do {
 			x = 4 + Math.ceil(Math.random() * 8) - 1;
 			y = Math.ceil(Math.random() * 6) - 1;
-		} while ((x == 5 && y == 3 && this.gameboard[x][y] != null));
+		} while ((x == 5 && y == 3) || this.gameboard[x][y] != null);
 		// console.log(x);
 
 		currentBori.setPosition(x, y);
@@ -44,6 +48,10 @@ testLevel.prototype.initialize = function() {
 		this.add(currentBori);
 	}
 	console.log(this.gameboard);
+	this.bgm = createjs.Sound.play(1, {
+		interrupt : createjs.Sound.INTERRUPT_NONE,
+		loop : -1
+	});
 	this.initialized = true;
 };
 
@@ -55,5 +63,11 @@ testLevel.prototype.update = function(event) {
 testLevel.prototype.dispose = function() {
 
 };
-
+testLevel.prototype.jumpLevel = function() {
+	this.world.connection.socket.emit("CM_SCORE", {
+		data : this.world.score,
+		stage : "Stage Test"
+	});
+	showBox("WOW SCORE", this.world.score);
+};
 module.exports = testLevel;

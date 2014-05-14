@@ -1,6 +1,8 @@
+
 html,body {
 	width: 100%;
 	height: 100%;
+   
 }
 
 body {
@@ -9,6 +11,10 @@ body {
 	overflow: hidden;
 	font-family: arial;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-repeat:none;
+ 
+
 }
 
 #loader {
@@ -31,7 +37,9 @@ body {
 }
 
 .canvas-board {
-	width: 70% !important;
+    padding-top:25px;
+    padding-left:25px;
+	width: 68% !important;
 	display: inline-block;
 	position: relative;
 }
@@ -82,25 +90,27 @@ body {
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-left: 0px;
-	font-family: Rockwell Extra Bold;
-}
+	font-family: 'Oswald', sans-serif;
+    }
 
 .cast-button {
 	outline: 0;
 	text-align: center;
-	padding-top: 5px;
+	padding-top: 0px;
 	border: 10px;
-	padding-bottom: 5px;
+	padding-bottom: 0px;
 	width: 100%;
 	text-decoration: none !important;
 	cursor: pointer;
-	position: relative;
+	position:fixed;
+    
 	text-align: center; //
 	background-color: green; //
-	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	background-image: url(/assets/gameobjects/bg/bg3.png);
 	color: #402F08;
 	display: inline-block;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
@@ -128,7 +138,8 @@ body {
 	background-color: rgba(3, 102, 6, 0.5);
 	color: white;
 	display: inline-block;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	text-align: left;
 	height: 20px;
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
@@ -173,7 +184,8 @@ body {
 		round;
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -188,16 +200,18 @@ body {
 		round;
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
-	font-family: Rockwell Extra Bold;
-	padding-top: 5px;
+	font-family: 'Oswald', sans-serif;
+    
+	padding-top: 0px;
 	padding-right: 0px;
-	padding-bottom: 5px;
-	padding-left: 5px;
+	padding-bottom: 0px;
+	padding-left: 0px;
 }
 
 .basiccmd {
 	color: #402F08;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -212,7 +226,8 @@ body {
 		round;
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	height: 200px;
 	width: 300px;
 }
@@ -225,7 +240,8 @@ body {
 		round;
 	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
 	color: #402F08;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	padding-top: 5px;
 	padding-right: 0px;
 	padding-bottom: 5px;
@@ -250,12 +266,16 @@ body {
 	text-decoration: none !important;
 	cursor: pointer;
 	position: absolute;
-	text-align: center; //
-	background-color: green; //
-	background-image: url(/assets/gameobjects/bg/woodbg2.jpg);
+	text-align: center;
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+    
 	color: #402F08;
 	display: inline-block;
-	font-family: Rockwell Extra Bold;
+	font-family: 'Oswald', sans-serif;
+    
 	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
 	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
 		round;
@@ -272,4 +292,143 @@ body {
 .boxmsg {
 	font-size: 16px;
 	text-align: center;
+}
+
+.deadline {
+    position:fixed;
+    top:0;
+    height:700px;
+    width:30px;
+    background-size:30px 150px;
+    background-image:url(/assets/gameobjects/bg/chain.png);
+    background-repeat: repeat-y;
+}
+
+.top_index {
+    display:inline-block;
+    text-align:center;
+    height:20px;
+    width:67px;
+    font-family: 'Oswald', sans-serif;
+    
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+    round;
+	-moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+    round;
+	border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    background-size:79px 20px;
+    background-repeat: repeat-x repeat-y;
+    color: #402F08;
+    font-size: 15px;
+    
+}
+
+.left_index {
+    line-height: 50px;
+    vertical-align:middle;
+    font-size: 15px;
+    display:block;
+    text-align:center;
+    height:67px;
+    width:20px;
+    font-family: 'Oswald', sans-serif;
+    background-image: url(/assets/gameobjects/bg/bg3.png);
+	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
+	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+    round;
+	-moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+    round;
+	border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+    background-size:20px 79px;
+    background-repeat: repeat-x repeat-y;
+    color: #402F08;
+    
+}
+
+.stg_button {
+    outline: 0;
+	text-align: center;
+	padding-top: 0px;
+	border: 10px;
+	padding-bottom: 0px;
+	width: 100%;
+	text-decoration: none !important;
+	cursor: pointer;
+	position:fixed;
+    
+	text-align: center; //
+	background-color: green; //
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+	color: #402F08;
+	display: inline-block;
+	font-family: 'Oswald', sans-serif;
+    
+	box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
+	-webkit-border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+		round;
+	-moz--border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10
+		round;
+	border-image: url(/assets/gameobjects/bg/btnbg.png) 10 10 10 10 round;
+}
+
+.stageSelectionDiv {
+    border: 4px;
+	-webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	-moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+	color: #402F08;
+	font-family: 'Oswald', sans-serif;
+    
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	width: 98.5%;
+	height: 96%;
+}
+
+
+.gametitle {
+    position:absolute;
+    width: 446px;
+	height: 107px;
+    top:40%;
+    left:40%;
+    background-image: url(/assets/gameobjects/bg/codedefence.png);
+	background-size: cover;
+}
+
+.skill_thum {
+    width:22%;
+    box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.5);
+    border-radius:10px;
+}
+
+.skillinfo {
+    border: 4px;
+	-webkit-border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	-moz--border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4
+    round;
+	border-image: url(/assets/gameobjects/bg/titlebg.png) 4 4 4 4 round;
+	color: #402F08;
+	font-family: 'Oswald', sans-serif;
+    
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	background-image: url(/assets/gameobjects/bg/bg3.png);
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	width: 300px;
+	height:400px;
 }

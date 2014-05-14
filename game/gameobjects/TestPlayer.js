@@ -38,33 +38,39 @@ var TestPlayer = function(world) {
     }).bind(this));
 
     this.myTurn = {};
+    this.NextTurnOnComplete = function() {
+    };
     world.services[CombatService.NAME].subscribe(CombatService.Events.NextTurn,
-            (function(event) {
+            (function(event, onComplete) {
+                this.NextTurnOnComplete = onComplete;
                 if (this.hp <= 0) {
-                    showBox("LOSE!", "OMG");
+                    this.world.activeLevel.lost();
+                } else if (this.world.activeLevel.checkBoard()) {
+                    this.world.activeLevel.win();
                 } else {
                     if (event.turn == this.faction) {
-                    	
-                    	console.log("Player start");
+
+                        console.log("Player start");
                         this.myTurn = event;
 
                         this.triggerAction_();
+                    } else {
+                        onComplete();
                     }
                 }
             }.bind(this)));
-
     console.log("player initialized");
     this.initialize();
 };
 
 // util.inherits(Caster, BoardObject);
 util.inherits(TestPlayer, Caster);
-
 /**
  * whenever triggerAction , we go to next turn
  */
 TestPlayer.prototype.triggerAction = function() {
-	console.log("Player is done");
+    console.log("Player is done");
+    this.NextTurnOnComplete();
     this.world.services[CombatService.NAME].nextTurn(this.myTurn);
 };
 
@@ -93,4 +99,5 @@ TestPlayer.prototype.onStartMoving_ = function() {
 TestPlayer.prototype.onStopMoving_ = function() {
     this.gotoAndPlay("stand");
 };
+
 module.exports = TestPlayer;

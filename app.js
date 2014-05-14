@@ -32,7 +32,7 @@ app.configure('development', function() {
 
 // router here
 
-app.get('/', routes.index.index);
+app.get('/', routes.game.index);
 app.get('/game', routes.game.index);
 app.get('/game/test', routes.game.test);
 http.createServer(app).listen(app.get('port'), function() {
