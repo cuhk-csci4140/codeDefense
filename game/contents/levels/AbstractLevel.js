@@ -123,7 +123,6 @@ AbstractLevel.prototype.dispose = function() {
 };
 
 AbstractLevel.prototype.win = function() {
-    showBox("WIN!", "GG");
     var turn = this.world.services[CombatService.NAME].turnCounter;
     var hp = this.get('player').hp;
     var mp = this.get('player').mp;
