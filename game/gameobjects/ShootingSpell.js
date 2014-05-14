@@ -50,45 +50,69 @@ ShootingSpell.prototype.calTarget = function(caster) {
                 var i, j, targetNow;
                 for (i = 1; i <= this.range; i++) {
                     for (j = 1; j <= this.range; j++) {
-                        targetNow = gameBoard[horizontal + i][vertical + j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal + i < 12) {
+                            if (vertical + j < 6) {
+                                targetNow = gameBoard[horizontal + i][vertical + j];
+                                if ((targetNow !== null)
+                                        && (typeof (targetNow) !== "undefined")) {
+                                    this.target.push(targetNow);
+                                }
+                            }
                         }
-                        targetNow = gameBoard[horizontal - i][vertical - j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal + i < 12) {
+                            if (vertical - j >= 0) {
+                                targetNow = gameBoard[horizontal + i][vertical - j];
+                                if ((targetNow !== null)
+                                        && (typeof (targetNow) !== "undefined")) {
+                                    this.target.push(targetNow);
+                                }
+                            }
                         }
-                        targetNow = gameBoard[horizontal - i][vertical + j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal - i >= 0) {
+                            if (vertical + j < 6) {
+                                targetNow = gameBoard[horizontal - i][vertical + j];
+                                if ((targetNow !== null)
+                                        && (typeof (targetNow) !== "undefined")) {
+                                    this.target.push(targetNow);
+                                }
+                            }
                         }
-                        targetNow = gameBoard[horizontal + i][vertical - j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal - i >= 0) {
+                            if (vertical - j >= 0) {
+                                targetNow = gameBoard[horizontal - i][vertical - j];
+                                if ((targetNow !== null)
+                                        && (typeof (targetNow) !== "undefined")) {
+                                    this.target.push(targetNow);
+                                }
+                            }
                         }
-                        targetNow = gameBoard[horizontal][vertical - j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (vertical - j >= 0) {
+                            targetNow = gameBoard[horizontal][vertical - j];
+                            if ((targetNow !== null)
+                                    && (typeof (targetNow) !== "undefined")) {
+                                this.target.push(targetNow);
+                            }
                         }
-                        targetNow = gameBoard[horizontal][vertical + j];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (vertical + j < 6) {
+                            targetNow = gameBoard[horizontal][vertical + j];
+                            if ((targetNow !== null)
+                                    && (typeof (targetNow) !== "undefined")) {
+                                this.target.push(targetNow);
+                            }
                         }
-                        targetNow = gameBoard[horizontal - i][vertical];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal + i < 12) {
+                            targetNow = gameBoard[horizontal + i][vertical];
+                            if ((targetNow !== null)
+                                    && (typeof (targetNow) !== "undefined")) {
+                                this.target.push(targetNow);
+                            }
                         }
-                        targetNow = gameBoard[horizontal + i][vertical];
-                        if ((targetNow !== null)
-                                && (typeof (targetNow) !== "undefined")) {
-                            this.target.push(targetNow);
+                        if (horizontal - i >= 0) {
+                            targetNow = gameBoard[horizontal - i][vertical];
+                            if ((targetNow !== null)
+                                    && (typeof (targetNow) !== "undefined")) {
+                                this.target.push(targetNow);
+                            }
                         }
                     }
                 }
@@ -109,6 +133,7 @@ ShootingSpell.prototype.calTarget = function(caster) {
             this.target = [];
         }
     }
-};
+}
+;
 
 module.exports = ShootingSpell;
