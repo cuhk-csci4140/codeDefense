@@ -4,16 +4,30 @@ var GameObjectManager = require('../../GameObjectManager');
 var World = require('../../../World');
 var io = require('../../../vendor/socket.io-client');
 
-/**
- * Server Message on the server
- * @constructor
- * @this {ServerMessage}
- * @param data 
- * @return {instance} Connection.instance
- */
 var ServerMessage = function(data) {
-    this.__defineGetter__("connection", function(){
-        return Connection.instance;
-    });
+	this.name = "ABSTRACT_MESSENGE";
+	this.data = {};
+	// this.connection = AbstractConnection.instance;
 };
-ServerMessage.name = "ABSTRACT_MESSENGE";
+
+/**
+ * Client Message getSocket
+ * 
+ * @return {socket} this socket
+ * @this {ServerMessage }
+ */
+
+ServerMessage.prototype.getSocket = function() {
+	return this.connection.socket;
+};
+/**
+ * Client Message emit this client message
+ * 
+ * @return {this}
+ * @this {ServerMessage }
+ */
+ServerMessage.prototype.emit = function() {
+	return this.connection.emit(this);
+};
+
+module.exports = ServerMessage;
