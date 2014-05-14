@@ -11,18 +11,16 @@ var Stage1b = function(world) {
 
 util.inherits(Stage1b, AbstractLevel);
 
-Stage1b.prototype.initialize = function(player) {
+Stage1b.prototype.initialize = function(x, y) {
     this.initialized = true;
-    if (player != null) {
-        // restore all the player
-        this.set('player', player);
-        this.get('player').mp = 100;
+    this.set('player', Mage);
+    this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
+    if (x != null && y != null) {
+        this.get('player').setPosition(x, y);
     } else {
-        this.set('player', Mage);
-        this.get('player').sprite.setTransform(70, 60, 0.6, 0.6);
-        this.get('player').setPosition(0, 3);
-        this.get('player').setFaction(CombatService.TurnAlly);
+        this.get('player').setPosition(0, 0);
     }
+    this.get('player').setFaction(CombatService.TurnAlly);
 
     var ground = new createjs.Shape();
     ground.graphics.beginBitmapFill(this.world.assets.getResult("board"),

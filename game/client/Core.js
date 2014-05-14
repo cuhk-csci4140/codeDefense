@@ -167,7 +167,7 @@ Core.prototype.initialize = function(callback) {
     createjs.Sound.alternateExtensions = ["ogg"];	// add other extensions to try loading if the src file extension is not supported
     //createjs.Sound.addEventListener("fileload", createjs.proxy(soundLoaded, this)); // add an event listener for when load is completed
     createjs.Sound.registerManifest(manifest, assetsPath);
-    
+
     var game = this;
     this.assets.addEventListener("complete", function() {
         console.log('Assets load complete');
@@ -192,10 +192,11 @@ Core.prototype.initialize = function(callback) {
 };
 
 Core.prototype.setLevel = function(level) {
-    var player= null;
+    var playerX = null;
+    var playerY = null;
     try {
-        player = this.gameobjects.get('player');
-        this.gameobjects.remove('player');
+        playerX = this.gameobjects.get('player').position.horizontal;
+        playerY = this.gameobjects.get('player').position.vertical;
         this.gameobjects.dispose();
     } catch (e) {
         console.log("[ERROR] GameObjectManager : " + e);
@@ -211,7 +212,7 @@ Core.prototype.setLevel = function(level) {
 
     console.log("[CORE] load level " + level);
     this.activeLevel = new this.levels[level](this);
-    this.activeLevel.initialize(player);
+    this.activeLevel.initialize(playerX, playerY);
 
 }
 /**
