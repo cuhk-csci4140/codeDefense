@@ -21,7 +21,7 @@ var Thunderbolt = function(world, args) {
 	this.args = args;
 	this.castTime = 5;
 	this.damage = 5;
-	this.cost = 20;
+	this.cost = 10;
 	console.log("Thunderbolt initialized");
 	this.initialize();
 }

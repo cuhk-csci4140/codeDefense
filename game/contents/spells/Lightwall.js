@@ -21,7 +21,7 @@ var Lightwall = function(world, args) {
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1;
-	this.cost = 10;
+	this.cost = 7;
 	if (args == null) {
 		throw new Error("No distance defined");
 	} else {

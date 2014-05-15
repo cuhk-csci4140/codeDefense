@@ -23,7 +23,7 @@ var Pyroblast = function(world) {
 		}
 	}));
 	this.defaultAnimation = "initial";
-	this.cost = 25;
+	this.cost = 20;
 	this.range = 1; // +- 1 space
 	this.aoe = true;
 	this.damage = 5;
