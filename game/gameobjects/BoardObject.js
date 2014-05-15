@@ -109,7 +109,7 @@ BoardObject.prototype.move = function(h, v, equation) {
                         this.position.vertical + v, equation, event);
             });
         } else {
-            throw new Error("Opps, crushed!");
+            throw new Error("Opps, you can't move to that place!");
         }
     } else {
         throw new Error("Moving to VOID");

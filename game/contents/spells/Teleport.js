@@ -9,7 +9,7 @@ var Teleport = function(world, args) {
 	this.castTime = 0.5;
 	console.log("Teleport initialized");
 	this.args = args;
-    this.cost = 10;
+	this.cost = 10;
 	this.initialize();
 }
 util.inherits(Teleport, Castable);
@@ -21,7 +21,9 @@ Teleport.prototype.execute = function(caster, onComplete) {
 		if (this.args.length >= 2) {
 			var x = parseInt(this.args[0]);
 			var y = parseInt(this.args[1]);
-			if (x >= 0 && x < this.boardWidth && y >= 0 && y < this.boardHeight) {
+
+			if (x >= 0 && x < this.boardWidth && y >= 0 && y < this.boardHeight
+					&& this.world.activeLevel.gameboard[x][y] == null) {
 				caster.setPosition(x, y);
 				if (this.args.length >= 3) {
 					if (!caster.isCastable(this.args[2])
@@ -36,7 +38,8 @@ Teleport.prototype.execute = function(caster, onComplete) {
 				}
 
 			} else {
-				console.log("Teleporting to a invalid position");
+				showBox("Teleport","Teleporting to a invalid position.");
+				console.log("Teleporting to a invalid position.");
 			}
 		}
 		onComplete();
