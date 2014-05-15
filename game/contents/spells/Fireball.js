@@ -22,7 +22,7 @@ var Fireball = function(world) {
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1.5;
-	this.cost = 10;
+	this.cost = 5;
 	this.damage = 2;
 	console.log("Fireball initialized");
 	this.initialize();

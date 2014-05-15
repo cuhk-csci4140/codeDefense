@@ -7,8 +7,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 
 var Chibi = function(world) {
     Chibi.super_.call(this, world);
-    this.hp = 4;
-    this.originHp = 4;
+    this.hp = 6;
+    this.originHp = 6;
     this.padX = 40;
     this.padY = 40;
     this.setSpriteSheet(new createjs.SpriteSheet({

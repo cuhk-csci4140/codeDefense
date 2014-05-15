@@ -46,8 +46,6 @@ Cartridge.prototype.shoot = function(caster, onComplete) {
 				var spell = this.cartridge();
 
 				if (caster.isCastable(spell)) {
-					spell.cost = spell.cost / 2;
-					spell.cost = spell.cost > 5 ? spell.cost : 5;
 					caster.cast_(spell, done);
 				}
 
