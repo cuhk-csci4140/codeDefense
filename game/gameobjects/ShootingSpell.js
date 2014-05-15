@@ -54,7 +54,8 @@ ShootingSpell.prototype.calTarget = function(caster) {
                             if (vertical + j < 6) {
                                 targetNow = gameBoard[horizontal + i][vertical + j];
                                 if ((targetNow !== null)
-                                        && (typeof (targetNow) !== "undefined")) {
+                                        && (typeof (targetNow) !== "undefined")
+                                        && targetNow instanceof Mob) {
                                     this.target.push(targetNow);
                                 }
                             }
@@ -63,7 +64,8 @@ ShootingSpell.prototype.calTarget = function(caster) {
                             if (vertical - j >= 0) {
                                 targetNow = gameBoard[horizontal + i][vertical - j];
                                 if ((targetNow !== null)
-                                        && (typeof (targetNow) !== "undefined")) {
+                                        && (typeof (targetNow) !== "undefined")
+                                        && targetNow instanceof Mob) {
                                     this.target.push(targetNow);
                                 }
                             }
@@ -72,7 +74,8 @@ ShootingSpell.prototype.calTarget = function(caster) {
                             if (vertical + j < 6) {
                                 targetNow = gameBoard[horizontal - i][vertical + j];
                                 if ((targetNow !== null)
-                                        && (typeof (targetNow) !== "undefined")) {
+                                        && (typeof (targetNow) !== "undefined")
+                                        && targetNow instanceof Mob) {
                                     this.target.push(targetNow);
                                 }
                             }
@@ -81,7 +84,8 @@ ShootingSpell.prototype.calTarget = function(caster) {
                             if (vertical - j >= 0) {
                                 targetNow = gameBoard[horizontal - i][vertical - j];
                                 if ((targetNow !== null)
-                                        && (typeof (targetNow) !== "undefined")) {
+                                        && (typeof (targetNow) !== "undefined")
+                                        && targetNow instanceof Mob) {
                                     this.target.push(targetNow);
                                 }
                             }
@@ -89,28 +93,32 @@ ShootingSpell.prototype.calTarget = function(caster) {
                         if (vertical - j >= 0) {
                             targetNow = gameBoard[horizontal][vertical - j];
                             if ((targetNow !== null)
-                                    && (typeof (targetNow) !== "undefined")) {
+                                    && (typeof (targetNow) !== "undefined")
+                                    && targetNow instanceof Mob) {
                                 this.target.push(targetNow);
                             }
                         }
                         if (vertical + j < 6) {
                             targetNow = gameBoard[horizontal][vertical + j];
                             if ((targetNow !== null)
-                                    && (typeof (targetNow) !== "undefined")) {
+                                    && (typeof (targetNow) !== "undefined")
+                                    && targetNow instanceof Mob) {
                                 this.target.push(targetNow);
                             }
                         }
                         if (horizontal + i < 12) {
                             targetNow = gameBoard[horizontal + i][vertical];
                             if ((targetNow !== null)
-                                    && (typeof (targetNow) !== "undefined")) {
+                                    && (typeof (targetNow) !== "undefined")
+                                    && targetNow instanceof Mob) {
                                 this.target.push(targetNow);
                             }
                         }
                         if (horizontal - i >= 0) {
                             targetNow = gameBoard[horizontal - i][vertical];
                             if ((targetNow !== null)
-                                    && (typeof (targetNow) !== "undefined")) {
+                                    && (typeof (targetNow) !== "undefined")
+                                    && targetNow instanceof Mob) {
                                 this.target.push(targetNow);
                             }
                         }

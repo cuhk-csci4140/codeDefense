@@ -13,7 +13,7 @@ var Cartridge = function(world, args) {
 	this.name = "Cartridge";
 	this.defaultAnimation = "initial";
 	this.castTime = 0.5;
-	this.cost = 5;
+	this.cost = 4;
 	this.damage = 0;
 	this.args = args;
 	console.log("Cartridge initialized");
