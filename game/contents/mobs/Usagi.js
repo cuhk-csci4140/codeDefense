@@ -8,8 +8,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 var Usagi = function(world) {
 
     Usagi.super_.call(this, world);
-    this.hp = 3;
-    this.originHp = 3;
+    this.hp = 1;
+    this.originHp = 1;
     this.padX = 65;
     this.padY = 50;
     this.setSpriteSheet(new createjs.SpriteSheet({
@@ -31,7 +31,7 @@ var Usagi = function(world) {
     this.defaults.movement = 2000;
     this.stats.movement = 2000;
     this.defaultAnimation = "stand";
-    this.damage = 100;
+    this.damage = 90;
     this.stats.castRange = 3;
     this.myTurn = {};
 

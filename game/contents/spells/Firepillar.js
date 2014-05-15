@@ -22,7 +22,7 @@ var Firepillar = function(world, args) {
     this.defaultAnimation = "initial";
     this.castTime = 0.5;
     this.damage = 3;
-    this.cost = 10;
+    this.cost = 12;
 
     if (args == null) {
         throw new Error("No distance defined");

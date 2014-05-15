@@ -7,8 +7,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 
 var Tree = function(world) {
     Tree.super_.call(this, world);
-    this.hp = 10;
-    this.originHp = 10;
+    this.hp = 8;
+    this.originHp = 8;
     this.padX = 50;
     this.padY = 30;
     this.setSpriteSheet(new createjs.SpriteSheet({
@@ -30,7 +30,7 @@ var Tree = function(world) {
     this.defaults.movement = 2000;
     this.stats.movement = 2000;
     this.defaultAnimation = "stand";
-    this.damage = 50;
+    this.damage = 40;
 
     this.myTurn = {};
 
