@@ -104,4 +104,10 @@ Castable.prototype.moveTo_ = function(h, v, equation, onCompleteEvent) {
 	})
 
 };
+
+
+Castable.prototype.dispose = function() {
+   //nothing
+};
+
 module.exports = Castable;
