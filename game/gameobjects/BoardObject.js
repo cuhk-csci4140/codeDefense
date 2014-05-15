@@ -86,10 +86,10 @@ BoardObject.prototype.queueOnCompleteEvent_ = function(c) {
 };
 
 BoardObject.prototype.move = function(h, v, equation) {
-    if (h > this.stats.castRange) {
+    if (Math.abs(h) > this.stats.castRange) {
         throw new Error("You cannot move too far!");
     }
-    if (v > this.stats.castRange) {
+    if (Math.abs(v) > this.stats.castRange) {
         throw new Error("You cannot move too far!");
     }
     {
