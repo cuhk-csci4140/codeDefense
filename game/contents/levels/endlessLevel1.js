@@ -29,7 +29,7 @@ endlessLevel1.prototype.initialize = function() {
 
     this.add(ground, this.get('player'));
 
-    for (var i = 1; i <= (6 + Math.ceil(Math.random() * 4)); i++) {
+    for (var i = 1; i <= (4 + Math.ceil(Math.random() * 4)); i++) {
         var rand = Math.random();
         if (rand < 0.25) {
             this.set('mob' + i, Bori);
