@@ -36,7 +36,7 @@ var TestPlayer = function(world) {
             this.triggerAction_();
         }
     }).bind(this));
-
+    this.stats.castRange = 3;
     this.myTurn = {};
     this.NextTurnOnComplete = function() {
     };
