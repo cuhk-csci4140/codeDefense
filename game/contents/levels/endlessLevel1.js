@@ -39,7 +39,6 @@ endlessLevel1.prototype.initialize = function() {
 
         } else if (rand < 0.75) {
             this.set('mob' + i, Tree);
-            this.add(this.get('tree' + i));
         } else {
             this.set('mob' + i, Usagi);
         }
