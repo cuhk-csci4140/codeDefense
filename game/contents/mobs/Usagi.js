@@ -8,8 +8,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 var Usagi = function(world) {
 
     Usagi.super_.call(this, world);
-    this.hp = 2;
-    this.originHp = 2;
+    this.hp = 3;
+    this.originHp = 3;
     this.padX = 65;
     this.padY = 50;
     this.setSpriteSheet(new createjs.SpriteSheet({

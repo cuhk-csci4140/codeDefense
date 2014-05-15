@@ -23,10 +23,10 @@ var Pyroblast = function(world) {
 		}
 	}));
 	this.defaultAnimation = "initial";
-	this.cost = 25;
+	this.cost = 35;
 	this.range = 1; // +- 1 space
 	this.aoe = true;
-	this.damage = 8;
+	this.damage = 4;
 	console.log("Pyroblast initialized");
 	this.initialize();
 }
