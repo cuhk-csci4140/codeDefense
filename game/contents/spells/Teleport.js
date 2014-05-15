@@ -8,7 +8,7 @@ var Teleport = function(world, args) {
     this.castTime = 0.5;
     console.log("Teleport initialized");
     this.args = args;
-    this.cost = 5;
+    this.cost = 7;
     this.initialize();
 
 }

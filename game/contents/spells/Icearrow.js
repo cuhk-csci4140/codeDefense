@@ -21,10 +21,10 @@ var Icearrow = function(world) {
 	}));
 	this.defaultAnimation = "initial";
 	this.castTime = 1.5;
-	this.cost = 8;
+	this.cost = 4;
 	this.penetrate = true;
 
-	this.baseCost = 10;
+	this.baseCost = 6;
 	this.damage = 1;
 	console.log("Icearrow initialized");
 	this.initialize();
