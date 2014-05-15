@@ -9,7 +9,7 @@ var GameServer = require('./game/server/server');
 var app = express();
 
 app.configure(function() {
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', process.env.PORT || 3389);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'twig');
 	// This section is optional and can be used to configure twig.
