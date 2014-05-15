@@ -34,7 +34,7 @@ Icearrow.exposeMethods = [ "scale" ];
 Icearrow.prototype.scale = function(scale) {
 	if (scale >= 1 && scale <= 4) {
 		this.damage = scale;
-		this.cost = Math.pow(this.baseCost, 1 + (scale*1.4 / 10));
+		this.cost = Math.ceil(Math.pow(this.baseCost, 1 + (scale*1.3 / 10)));
 	} else {
 		throw new Error("Ice Arrow can only be scaled upto 4!");
 	}
