@@ -4,3 +4,5 @@ public/js/bundle.js
 php/r/game/bundle.js
 game/temp
 nbproject/*
+*/.DS_Store
+.DS_Store

@@ -39,6 +39,8 @@ exports.build = function() {
 	    useClosure = true;
 	}
     }
+	
+	DEV = true;
 
     bundle = browserify(infile, {
 	watch : DEV,
