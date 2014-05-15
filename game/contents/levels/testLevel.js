@@ -53,6 +53,8 @@ testLevel.prototype.initialize = function(x, y, hp) {
     console.log(this.gameboard);
 
     this.initialized = true;
+    this.get('player').maxMp = 200;
+    this.get('player').mp = 200;
     this.loadBGM();
 };
 

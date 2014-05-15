@@ -62,6 +62,8 @@ demoLevel.prototype.initialize = function() {
         }
     }
     this.initialized = true;
+    this.get('player').maxMp = 200;
+    this.get('player').mp = 200;
     this.loadBGM();
 };
 
