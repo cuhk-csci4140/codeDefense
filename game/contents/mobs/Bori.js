@@ -7,8 +7,8 @@ var TestPlayer = require('../../gameobjects/TestPlayer');
 
 var Bori = function(world) {
     Bori.super_.call(this, world);
-    this.hp = 3;
-    this.originHp = 3;
+    this.hp = 5;
+    this.originHp = 5;
     this.padX = 65;
     this.padY = 70;
     this.setSpriteSheet(new createjs.SpriteSheet({

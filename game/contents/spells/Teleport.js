@@ -3,7 +3,7 @@ var Castable = require('../../gameobjects/Castable');
 var ScriptService = require('../services/ScriptService');
 
 var Teleport = function(world, args) {
-	Teleport.super_.call(this, world);
+    Teleport.super_.call(this, world);
 
 	this.name = "Teleport";
 	this.castTime = 0.5;
@@ -11,12 +11,14 @@ var Teleport = function(world, args) {
 	this.args = args;
 	this.cost = 10;
 	this.initialize();
+
 }
 util.inherits(Teleport, Castable);
 
 Teleport.exposeMethods = [];
 
 Teleport.prototype.execute = function(caster, onComplete) {
+
 	return (function() {
 		if (this.args.length >= 2) {
 			var x = parseInt(this.args[0]);
@@ -31,11 +33,12 @@ Teleport.prototype.execute = function(caster, onComplete) {
 						this.args[2] = this.args[2]();
 					}
 
-					if (caster.isCastable(this.args[2])) {
-						caster.cast_(this.args[2], onComplete);
-						return;
-					}
-				}
+                    if (caster.isCastable(this.args[2])) {
+                        caster.cast_(this.args[2], onComplete);
+                        return;
+                    }
+                }
+
 
 			} else {
 				showBox("Teleport","Teleporting to a invalid position.");
@@ -44,6 +47,7 @@ Teleport.prototype.execute = function(caster, onComplete) {
 		}
 		onComplete();
 	}).bind(this);
+
 };
 
 module.exports = Teleport;
