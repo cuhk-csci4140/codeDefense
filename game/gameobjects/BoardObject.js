@@ -99,7 +99,7 @@ BoardObject.prototype.move = function(h, v, equation) {
             && (this.position.horizontal + h) <= this.boardWidth
             && (this.position.vertical + v) >= 0
             && (this.position.vertical + v) <= this.boardHeight) {
-        if (this.world.activeLevel.gameboard[this.position.horizontal + h][this.position.vertical + v] == null) {
+        if (this.world.activeLevel.gameboard[this.position.horizontal + h][this.position.vertical + v] == null || (h == 0 && v == 0)) {
             this.queue_(function(event) {
                 console.log("move object in game board");
                 this.world.activeLevel.gameboard[this.position.horizontal][this.position.vertical] = null;

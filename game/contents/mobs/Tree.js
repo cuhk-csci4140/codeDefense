@@ -57,9 +57,14 @@ var Tree = function(world) {
                     }
                 }
             } else if (this.position.horizontal == 1) {
-                this.move(-1, 0);
-                this.world.gameobjects.get("player").hp -= this.damage;
-                // showBox("CAUTION!", "A monster just passed you.");
+                if (grid != null && grid instanceof TestPlayer) {
+                    // attack the player!
+                    grid.hp -= this.damage;
+                } else {
+                    this.move(-1, 0);
+                    this.world.gameobjects.get("player").hp -= this.damage;
+                    // showBox("CAUTION!", "A monster just passed you.");
+                }
             } else {
                 // despawn
                 this.dispose();
