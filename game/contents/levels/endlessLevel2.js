@@ -40,14 +40,13 @@ endlessLevel2.prototype.initialize = function(x, y, hp) {
         var rand = Math.random();
         if (rand < 0.25) {
             this.set('mob' + i, Bori);
-
-        } else if (rand < 0.5) {
+        } else if (rand < 0.55) {
             this.set('mob' + i, Chibi);
 
-        } else if (rand < 0.75) {
-            this.set('mob' + i, Tree);
-        } else {
+        } else if (rand < 0.85) {
             this.set('mob' + i, Usagi);
+        } else {
+            this.set('mob' + i, Tree);
         }
 
         var mob = this.get('mob' + i);
